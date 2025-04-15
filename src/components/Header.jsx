@@ -11,18 +11,42 @@ import SearchBar from "./SearchBar"; // Make sure this component exists
 import { BsPeople } from "react-icons/bs";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import { GrChatOption } from "react-icons/gr";
 import Avatar from "boring-avatars";
+import { PiChatsCircleBold } from "react-icons/pi";
+import { Link } from 'react-router-dom';
+
+
 
 const Header = () => {
   const isMobile = useMediaQuery("(max-width:1200px)");
 
   const navLinks = (
     <>
-      <Button color="inherit">Home</Button>
-      <Button color="inherit">My Books</Button>
-      <Button color="inherit">Browse</Button>
-      <Button color="inherit">Community</Button>
+      <Button
+      color="inherit"
+      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      component={Link} to={`/`}
+      >
+        Home
+      </Button>
+      <Button
+      color="inherit" 
+      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      component={Link} to={`/my-books`}
+      >
+        My Books
+        </Button>
+      <Button
+      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      component={Link} to={`/browse`}
+      color="inherit"
+      >
+        Browse</Button>
+      <Button 
+      color="inherit"
+      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      component={Link} to={`/community`}
+      >Community</Button>
     </>
   );
 
@@ -72,41 +96,44 @@ const Header = () => {
 
           {/* Right: Icons + Avatar */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-            <IconButton sx={{ height: 40, width: 40 }} title="Notifications">
+            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Notifications">
               <NotificationsNoneOutlinedIcon />
             </IconButton>
-            <IconButton sx={{ height: 40, width: 40 }} title="Group conversations">
-              <GrChatOption />
+            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Group conversations">
+              <PiChatsCircleBold size={40}  />
             </IconButton>
-            <IconButton sx={{ height: 40, width: 40 }} title="Messages">
+            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1"}} title="Messages">
               <MailOutlineIcon />
             </IconButton>
-            <IconButton sx={{ height: 40, width: 40 }} title="Settings">
+            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Settings">
               <BsPeople />
             </IconButton>
-            <IconButton sx={{ height: 40, width: 40 }} title="Profile">
+            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Profile">
               <Avatar name="Miss Blue" variant="beam" />
             </IconButton>
           </Box>
-        </Toolbar>
-      </AppBar>
-
-      {/* Second Row Nav (Only on mobile: screen < 1200px) */}
-      {isMobile && (
+           {isMobile && (
         <Box
           sx={{
-            mt: 8, // push below AppBar
+            height: "46px",
             display: "flex",
             justifyContent: "center",
             gap: 1,
-            backgroundColor: "#f5f1e9",
-            py: 1,
-            borderBottom: "1px solid #ccc",
+            backgroundColor: "#f5f1e9",    
+            width: "100%",
+            position: "absolute",
+            top: 64.5,
+            borderBottom: "solid #ccc",
           }}
         >
           {navLinks}
         </Box>
       )}
+        </Toolbar>
+      </AppBar>
+
+      {/* Second Row Nav (Only on mobile: screen < 1200px) */}
+     
     </>
   );
 };

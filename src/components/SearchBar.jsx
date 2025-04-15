@@ -14,6 +14,7 @@ const SearchBar = () => {
             backgroundColor: "#f5f5f5",
             borderRadius: 1,
             px: 1,
+            maxWidth: 700,
             width: "100%",
           }}
         >
