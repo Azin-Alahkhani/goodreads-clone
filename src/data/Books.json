@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "cover": "https://covers.openlibrary.org/b/id/10447768-L.jpg",
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "cover": "https://covers.openlibrary.org/b/id/7222246-L.jpg",
+    "rating": 4.7
+  }
+]
