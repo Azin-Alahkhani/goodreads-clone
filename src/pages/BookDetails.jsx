@@ -9,6 +9,7 @@ import {
   Divider,
   Button,
 } from "@mui/material";
+import { fetchBookById } from "../utils/FetchBooks.js"; // Adjust the import path as necessary
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -16,34 +17,38 @@ const BookDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBookDetails = async () => {
+     const loadBook = async () => {
       try {
-        const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`);
-        const data = await res.json();
-        setBook(data.volumeInfo);
+        const data = await fetchBookById(id);
+        setBook(data);
       } catch (error) {
-        console.error("Error fetching book:", error);
+        console.error("Error loading book:", error);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchBookDetails();
+    
+       
+          loadBook();
+    
   }, [id]);
+  useEffect(() => {
+    if(book) console.log(book);
+  },[book]);
 
   if (loading) return <CircularProgress sx={{ m: 4 }} />;
   if (!book) return <Typography sx={{ m: 4 }}>Book not found.</Typography>;
 
   return (
-    <Box sx={{ p: 4, maxWidth: 1000, margin: "auto", display: "flex", gap: 4 }}>
+    <Box sx={{ p: 1, maxWidth: 1000, margin: 2, display: "flex", gap: 4 }}>
       {/* Left: Cover */}
-      <Box sx={{ flexShrink: 0 }}>
-        <img
-          src={book.imageLinks?.thumbnail || ""}
+      <Box sx={{ flexShrink: 0 , display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {book.cover ? <img
+          src={book.cover}
           alt={book.title}
-          style={{ width: 200, borderRadius: 8 }}
-        />
-        <Box mt={2} display="flex" gap={1} flexWrap="wrap">
+          style={{ width: 210, borderRadius: 8 }}
+        /> :" null"}
+       <Box mt={2} display="flex" gap={1} flexWrap="wrap">
           <Chip label="Want to Read" />
           <Chip label="Currently Reading" />
           <Chip label="Read" />
@@ -51,21 +56,21 @@ const BookDetails = () => {
       </Box>
 
       {/* Right: Info */}
-      <Box sx={{ flex: 1 }}>
-        <Typography variant="h4">{book.title}</Typography>
-        <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-          {book.authors?.join(", ") || "Unknown Author"}
+      <Box sx={{ flex: 1, display: "flex", flexDirection: "column" , gap: 1 }}>
+        <Typography variant="h3" sx={{fontFamily:"sans-serif"}}>{book.title}</Typography>
+        <Typography variant="h5" color="text.secondary" gutterBottom>
+          {book.author || "Unknown Author"}
         </Typography>
 
         <Box display="flex" alignItems="center" gap={1} mt={1}>
           <Rating
-            value={book.averageRating || 0}
+            value={book.avgRating || 0}
             precision={0.5}
             readOnly
-            size="small"
+           size="large"
           />
           <Typography variant="body2">
-            {book.averageRating || "—"} · {book.ratingsCount || 0} ratings
+            {book.avgRating || "—"} · {book.ratingsCount || 4} ratings
           </Typography>
         </Box>
 

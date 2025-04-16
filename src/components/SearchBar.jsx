@@ -22,7 +22,7 @@ const SearchBar = () => {
   useEffect(() => {
     const loadBooks = async () => {
       if (searchTerm.length < 3) return setOptions([]);
-      console.log("Loading books for: ", searchTerm);
+      //console.log("Loading books for: ", searchTerm);
       setLoading(true);
       const books = await fetchBooks(searchTerm);
       setOptions(books);
@@ -77,6 +77,7 @@ const SearchBar = () => {
         onChange={(event, value) => {
     if (value?.id) {
       navigate(`/book/${value.id}`);
+      setSearchTerm(""); // Clear the search term
     }
   }}
         onInputChange={(e, value) => {
