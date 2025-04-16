@@ -265,7 +265,7 @@ useEffect(() => {
                       </TableCell>
                       <TableCell>
                         <Typography variant="caption">
-                          {"★".repeat(book.rating)}
+                          {"★".repeat(book.avgRating)}
                         </Typography>
                       </TableCell>
                       <TableCell>

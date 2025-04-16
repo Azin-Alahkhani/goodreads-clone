@@ -8,12 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { fetchBooks} from "../utils/FetchBooks.js";
+import { fetchBooks } from "../utils/FetchBooks.js";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadBooks = async () => {
@@ -24,17 +28,29 @@ const SearchBar = () => {
       setOptions(books);
       setLoading(false);
     };
-   
+
     const delayDebounce = setTimeout(() => {
       loadBooks();
     }, 300); // debounce a bit
 
     return () => clearTimeout(delayDebounce);
   }, [searchTerm]);
- const handleSeeAll = () => {
-      // Handle the "See All" button click
-      console.log("See All clicked");
-    }
+
+  //const handleSeeAll = () => {
+    // Handle the "See All" button click (you can implement your custom logic here)
+   // console.log("See All clicked");
+  //};
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  // Get only the first 5 results
+  const limitedOptions = options.length > 12 ? options.slice(0, 5) : options;
+  // Show loading spinner if loading
+
   return (
     <Box
       sx={{
@@ -46,22 +62,36 @@ const SearchBar = () => {
         px: 1,
         maxWidth: 700,
         width: "100%",
-        height: "40px", // Set fixed height for the input box
-        position: "relative", // Set parent container to relative for Popper positioning
-        zIndex: 1000, // Ensure that the search bar stays on top
+        height: "40px",
+        position: "relative",
       }}
     >
       <SearchIcon sx={{ color: "gray" }} />
       <Autocomplete
         freeSolo
         sx={{ width: "100%" }}
-        options={options}
+        options={limitedOptions} // Pass only the first 5 books
         getOptionLabel={(option) => option.title}
         loading={loading}
-        onInputChange={(e, value) => setSearchTerm(value)}
+        open={open}
+        onChange={(event, value) => {
+    if (value?.id) {
+      navigate(`/book/${value.id}`);
+    }
+  }}
+        onInputChange={(e, value) => {
+          setSearchTerm(value);
+          if (value.length > 0) {
+            handleOpen(); // Open dropdown when typing
+          } else {
+            handleClose(); // Close dropdown when input is empty
+          }
+        }}
+        onBlur={handleClose}
         renderOption={(props, option) => (
           <Box
             component="li"
+            key={option.title}
             {...props}
             sx={{
               display: "flex",
@@ -84,8 +114,6 @@ const SearchBar = () => {
                 {option.author}
               </Typography>
             </Box>
-           
-           
           </Box>
         )}
         renderInput={(params) => (
@@ -93,23 +121,10 @@ const SearchBar = () => {
             ref={params.InputProps.ref}
             inputProps={params.inputProps}
             placeholder="Search books..."
-            sx={{ ml: 1, flex: 1, height: "100%" }} // Make sure input box height remains consistent
+            sx={{ ml: 1, flex: 1, height: "100%", width: "100%" }}
           />
         )}
-        PopperComponent={(props) => (
-          <div
-            {...props}
-            style={{
-              width: "100%", 
-              position: "absolute", // Keep it positioned relative to the parent
-              top: "100%", // Make the dropdown appear below the input
-              left: 0, // Align the dropdown with the input
-              zIndex: 999, // Ensure dropdown appears above other elements
-              maxHeight: "300px", // Optional: Limit the dropdown height if there are many options
-              overflowY: "auto", // Scrollable dropdown
-            }}
-          />
-        )}
+        
       />
     </Box>
   );

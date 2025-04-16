@@ -7,10 +7,11 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
     const info = item.volumeInfo;
   
     return {
+      id: item.id, 
       title: info.title || "N/A",
       author: (info.authors && info.authors.join(", ")) || "Unknown",
-      avgRating: info.averageRating || "—",
-      myRating: null, // user input later maybe
+      avgRating: 4,
+      myRating: 3, // user input later maybe
       shelves: ["To-read"],
       reviews: info.ratingsCount || 0,
       dateRead: "-",
