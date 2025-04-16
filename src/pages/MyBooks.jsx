@@ -20,46 +20,21 @@ import {
 } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
-import SearchBar from "../components/SearchBar"; // adjust path
+import SearchBar from "../components/SearchBar"; 
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { fetchBooks } from "../utils/FetchBooks.js"; 
 
-const dummyBooks = [
-  {
-    title: "The Hobbit",
-    author: "J.R.R. Tolkien",
-    rating: 4,
-    shelves: ["Fantasy", "Favorites"],
-    dateRead: "2023-02-15",
-    dateAdded: "2023-03-10",
-    cover: "../assets/IMG_5561.JPG",
-    myRating: 3,
-    Reviews: "A timeless clas...",
-  },
-  {
-    title: "1984",
-    author: "George Orwell",
-    rating: 4,
-    shelves: ["Dystopia"],
-    dateRead: "2022-11-10",
-    dateAdded: "2023-03-10",
-    cover: "../assets/IMG_5561.JPG",
-    myRating: 3,
-    Reviews: "A timeless clas...",
-  },
-  {
-    title: "The Pragmatic Programmer",
-    author: "Andy Hunt",
-    rating: 5,
-    shelves: ["Tech", "To Reread"],
-    dateRead: "2023-06-01",
-    dateAdded: "2023-03-10",
-    cover: "https://example.com/hobbit.jpg",
-    myRating: 3,
-    Reviews: "A timeless clas...",
-  },
-];
+
+
 
 const MyBooks = () => {
+
+    const [books, setBooks] = useState([]);
+
+useEffect(() => {
+  fetchBooks("lord of the rings").then(setBooks);
+}, []);
   return (
     <Box
       sx={{
@@ -141,11 +116,11 @@ const MyBooks = () => {
             </Box>
           </Box>
         </Box>
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2 }}  />
         <Box sx={{ display: "flex",
             overflow: "auto",
             justifyContent: "center",
-            gap: 2,
+            gap: 5,
             my: 2,}}>
           {/* Sidebar */}
           <Grid
@@ -249,7 +224,7 @@ const MyBooks = () => {
                 </TableHead>
 
                 <TableBody>
-                  {dummyBooks.map((book, index) => (
+                  {books.map((book, index) => (
                     <TableRow
                       key={index}
                       sx={{ borderBottom: "1px solid #ddd" }}
@@ -297,12 +272,12 @@ const MyBooks = () => {
                           {book.dateAdded}
                         </Typography>
                       </TableCell>
-                      {/* <TableCell>
+                       <TableCell>
               <Box sx={{ display: "flex", gap: 1 }}>
                 <Button size="small">Edit</Button>
                 <Button size="small">Delete</Button>
               </Box>
-            </TableCell> */}
+            </TableCell> 
                     </TableRow>
                   ))}
                 </TableBody>
