@@ -20,10 +20,11 @@ import {
 } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
-import SearchBar from "../components/SearchBar"; 
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchBooks } from "../utils/FetchBooks.js"; 
+import SearchIcon from "@mui/icons-material/Search";
+import { InputBase } from "@mui/material";
 
 
 
@@ -33,7 +34,7 @@ const MyBooks = () => {
     const [books, setBooks] = useState([]);
 
 useEffect(() => {
-  fetchBooks("lord of the rings").then(setBooks);
+  fetchBooks("lord of").then(setBooks);
 }, []);
   return (
     <Box
@@ -75,7 +76,27 @@ useEffect(() => {
           >
             {/* SearchBar */}
             <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth: 200 , height: 20 }}>
-              <SearchBar />
+              {/*<SearchBar isHeader={false} />*/}
+              <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      backgroundColor: "white",
+                      borderRadius: 0.8,
+                      border: "1px solid #dcd7cc",
+                      px: 1,
+                      maxWidth: 700,
+                      width: "100%",
+                      height: "90%",
+                    }}
+                  >
+                     <SearchIcon sx={{ color: "gray" }} />
+                      <InputBase
+                               placeholder="Search books..."
+                               sx={{ ml: 1, flex: 1 }}
+                               inputProps={{ "aria-label": "search books" }}
+                             />
+                  </Box>
             </Box>
 
             {/* Right: Action buttons */}
@@ -230,11 +251,11 @@ useEffect(() => {
                       sx={{ borderBottom: "1px solid #ddd" }}
                     >
                       <TableCell>
-                        <img
+                        {book.cover ? <img
                           src={book.cover}
                           alt="img"
                           style={{ width: "50px", height: "auto" }}
-                        />
+                        /> : null}
                       </TableCell>
                       <TableCell>
                         <Typography variant="caption">{book.title}</Typography>

@@ -1,10 +1,11 @@
 // utils/fetchBooks.js
 export const fetchBooks = async (query) => {
-  const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10`);
-  const data = await response.json();
-
+const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(query)}&maxResults=10`); 
+ const data = await response.json();
+  console.log(query);
   return data.items.map(item => {
     const info = item.volumeInfo;
+  
     return {
       title: info.title || "N/A",
       author: (info.authors && info.authors.join(", ")) || "Unknown",

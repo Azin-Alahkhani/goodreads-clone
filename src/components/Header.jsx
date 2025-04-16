@@ -91,7 +91,7 @@ const Header = () => {
 
           {/* SearchBar in center regardless of screen size */}
           <Box sx={{ flexGrow: 1, mx: 2 }}>
-            <SearchBar />
+            <SearchBar  />
           </Box>
 
           {/* Right: Icons + Avatar */}
