@@ -70,7 +70,7 @@ const BookDetails = () => {
            size="large"
           />
           <Typography variant="body2">
-            {book.avgRating || "—"} · {book.ratingsCount || 4} ratings
+            {book.avgRating || "—"} · {book.ratingsCount || 4} ratings . {book.reviews} reviews
           </Typography>
         </Box>
 
@@ -79,19 +79,42 @@ const BookDetails = () => {
         <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
           {book.description || "No description available."}
         </Typography>
+          {book.categories && (
+  <Box sx={{ mt: 2 }}>
+    <Typography variant="subtitle2" color="text.secondary">
+      Genres:
+    </Typography>
+    <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+      {book.categories.map((category, index) => (
+        <Box
+          key={index}
+          sx={{
+            backgroundColor: "#f1f1f1",
+            px: 1,
+            py: 0.5,
+            borderRadius: "8px",
+            fontSize: "0.85rem",
+          }}
+        >
+          {category}
+        </Box>
+      ))}
+    </Box>
+  </Box>
+)}
 
-        <Divider sx={{ my: 2 }} />
+     <Box sx={{mt: 2 , display:"flex", flexDirection:"column", gap:1}}>
 
-        <Typography variant="body2">
+        <Typography variant="caption" color="text.secondary">
           <strong>Publisher:</strong> {book.publisher || "Unknown"}
         </Typography>
-        <Typography variant="body2">
-          <strong>Published:</strong> {book.publishedDate || "N/A"}
+        <Typography variant="caption" color="text.secondary">
+          <strong>First Published:</strong> {book.publishedDate || "N/A"}
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="caption" color="text.secondary">
           <strong>Pages:</strong> {book.pageCount || "N/A"}
         </Typography>
-
+</Box>
         {book.previewLink && (
           <Button
             href={book.previewLink}
