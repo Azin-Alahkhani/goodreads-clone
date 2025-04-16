@@ -14,8 +14,9 @@ import {
   TableRow,
   Paper,
   Container,
-   Button, IconButton,
-   Divider,
+  Button,
+  IconButton,
+  Divider,
 } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
@@ -32,7 +33,6 @@ const dummyBooks = [
     cover: "../assets/IMG_5561.JPG",
     myRating: 3,
     Reviews: "A timeless clas...",
-
   },
   {
     title: "1984",
@@ -44,7 +44,6 @@ const dummyBooks = [
     cover: "../assets/IMG_5561.JPG",
     myRating: 3,
     Reviews: "A timeless clas...",
-
   },
   {
     title: "The Pragmatic Programmer",
@@ -56,170 +55,257 @@ const dummyBooks = [
     cover: "https://example.com/hobbit.jpg",
     myRating: 3,
     Reviews: "A timeless clas...",
-
   },
 ];
 
 const MyBooks = () => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" ,flexWrap: "wrap", width: "100%", maxWidth: "1200px", px: 2  }}>
-  <Box sx={{ width: "100%", maxWidth: "1200px", px: 2 }}>
-        <Box
-        sx={{
+    <Box
+      sx={{
         display: "flex",
-        flexWrap: "wrap",
-       // justifyContent: "space-between",
-        alignItems: "center",
-        gap: 2,
-        my: 2,
-  }}
->
-  {/* Left: Title (again, optional redundancy) */}
-  <Typography variant="h6" sx={{ fontFamily: "Arial" }}>
-    My Books
-  </Typography>
+        justifyContent: "center",
+        width: "100%",
+        maxWidth: "1200px",
+        px: 2,
+      }}
+    >
+      <Box sx={{ width: "100%", maxWidth: "1200px", px: 2 }}>
+        {/* Top: Title and SearchBar and Buttons */}
+        <Box
+          sx={{
+            display: "flex",
+            overflow: "auto",
+            alignItems: "center",
+            gap: 2,
+            my: 2,
+          }}
+        >
+          {/* Left: Title */}
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "Arial", justifySelf: "start" }}
+          >
+            My Books
+          </Typography>
 
-  {/* Center: SearchBar */}
-  <Box sx={{ flexGrow: 1, minWidth: 300, maxWidth: 400 }}>
-    <SearchBar />
-  </Box>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              justifyContent: "end",
+              alignItems: "center",
+              flexGrow: 1,
+            }}
+          >
+            {/* SearchBar */}
+            <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth: 200 , height: 20 }}>
+              <SearchBar />
+            </Box>
 
-  {/* Right: Action buttons */}
-  <Box
-    sx={{
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      gap: 1,
-    }}
-  >
-    <Button size="small" sx={{color:"black", fontSize:"10px"}}>Batch Edit</Button>
-    <Button size="small" sx={{color:"black"}}>Settings</Button>
-    <Button size="small" sx={{color:"black"}}>Stats</Button>
-    <Button size="small" sx={{color:"black"}}>Print</Button>
-    <IconButton size="small" sx={{color:"black"}} title="Table View">
-      <TableRowsIcon />
-    </IconButton>
-    <IconButton size="small" sx={{color:"black"}} title="List View">
-      <ViewListIcon />
-    </IconButton>
-  </Box>
+            {/* Right: Action buttons */}
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1,
+              }}
+            >
+              <Button size="small" sx={{ color: "black", fontSize: "10px" }}>
+                Batch Edit
+              </Button>
+              <Button size="small" sx={{ color: "black" }}>
+                Settings
+              </Button>
+              <Button size="small" sx={{ color: "black" }}>
+                Stats
+              </Button>
+              <Button size="small" sx={{ color: "black" }}>
+                Print
+              </Button>
+              <IconButton
+                size="small"
+                sx={{ color: "black" }}
+                title="Table View"
+              >
+                <TableRowsIcon />
+              </IconButton>
+              <IconButton
+                size="small"
+                sx={{ color: "black" }}
+                title="List View"
+              >
+                <ViewListIcon />
+              </IconButton>
+            </Box>
+          </Box>
         </Box>
         <Divider sx={{ my: 2 }} />
-      <Grid container spacing={2}>
-        {/* Sidebar */}
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom sx={{ fontFamily: "Arial", fontWeight: "bold" , fontSize: 14 }}>
-            Bookshelves
-          </Typography>
-          <List dense>
-            {["All", "Read", "Currently Reading", "Want to Read"].map(
-              (shelf) => (
+        <Grid container spacing={2}>
+          {/* Sidebar */}
+          <Grid
+            sx={{
+              minWidth: "200px",
+              flexShrink: 0,
+            }}
+          >
+            <Typography
+              variant="body1"
+              gutterBottom
+              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+            >
+              Bookshelves
+            </Typography>
+            <List dense>
+              {["All", "Read", "Currently Reading", "Want to Read"].map(
+                (shelf) => (
+                  <ListItem key={shelf} button>
+                    <ListItemText primary={shelf} />
+                  </ListItem>
+                )
+              )}
+            </List>
+            <Divider sx={{ my: 1 }} />
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+            >
+              Your reading activity
+            </Typography>
+            <List dense>
+              {[
+                "Review Drafts",
+                "Kindle Notes & Highlights",
+                "Reading Challenge",
+                "Year in Books",
+                "Reading stats",
+              ].map((shelf) => (
                 <ListItem key={shelf} button>
                   <ListItemText primary={shelf} />
                 </ListItem>
-              )
-            )}
-          </List>
-          <Divider sx={{ my: 1 }} />
-          <Typography variant="h6" gutterBottom sx={{ fontFamily: "Arial", fontWeight: "bold" , fontSize: 14 }}>
-            Your reading activity
-          </Typography>
-          <List dense>
-            {["Review Drafts",
-"Kindle Notes & Highlights",
-"Reading Challenge"
-,"Year in Books",
-"Reading stats"].map(
-              (shelf) => (
-                <ListItem key={shelf} button>
-                  <ListItemText primary={shelf} />
-                </ListItem>
-              )
-            )}
-          </List>
-        </Grid>
+              ))}
+            </List>
+          </Grid>
 
-        {/* Main Table*/}
-        <Grid item xs={12} md={9}>
-  <Box sx={{ border: "none", width: "100%", boxShadow: 1 }}>
-    <Grid container spacing={2} sx={{ backgroundColor: "#f5f1e9", padding: 1 }}>
-   
-      <Grid item xs={1}>
-        <Typography variant="body2">Cover</Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography variant="body2">Title</Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography variant="body2">Author</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">Avg Rating</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">My Rating</Typography>
-      </Grid>
-      <Grid item xs={2}>
-        <Typography variant="body2">Shelves</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">Reviews</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">Date Read</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">Date Added</Typography>
-      </Grid>
-      <Grid item xs={1}>
-        <Typography variant="body2">Actions</Typography>
-      </Grid>
-    </Grid>
+          {/* Main Table*/}
+          <Grid sx={{ flexGrow: 1, width: "740px" }}>
+            <TableContainer
+              component={Paper}
+              x={{
+                minWidth: 740,
+                borderCollapse: "separate",
+                borderSpacing: 0,
+                "& td, & th": {
+                  borderBottom: "1px solid #ddd",
+                  borderRight: "none",
+                  borderLeft: "none",
+                },
+                "& thead tr": {
+                  backgroundColor: "transparent",
+                },
+                "& tbody tr:last-child td": {
+                  borderBottom: "none",
+                },
+              }}
+            >
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell variant="head">
+                      <Typography variant="caption">Cover</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Title</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Author</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Avg Rating</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">My Rating</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Shelves</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Reviews</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Date Read</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="caption">Date Added</Typography>
+                    </TableCell>
+                    {/* <TableCell><Typography variant="caption">Actions</Typography></TableCell> */}
+                  </TableRow>
+                </TableHead>
 
-   
-    {dummyBooks.map((book, index) => (
-      <Grid container spacing={2} key={index} sx={{ padding: 1, borderBottom: "1px solid #ddd" }}>
-        <Grid item xs={1}>
-          <img src={book.cover} alt={book.title} style={{ width: "50px", height: "auto" }} />
+                <TableBody>
+                  {dummyBooks.map((book, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ borderBottom: "1px solid #ddd" }}
+                    >
+                      <TableCell>
+                        <img
+                          src={book.cover}
+                          alt="img"
+                          style={{ width: "50px", height: "auto" }}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">{book.title}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">{book.author}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {"★".repeat(book.rating)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {"★".repeat(book.myRating)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {book.shelves.join(", ")}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {book.reviews}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {book.dateRead}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption">
+                          {book.dateAdded}
+                        </Typography>
+                      </TableCell>
+                      {/* <TableCell>
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <Button size="small">Edit</Button>
+                <Button size="small">Delete</Button>
+              </Box>
+            </TableCell> */}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
         </Grid>
-        <Grid item xs={2}>
-          <Typography variant="body2">{book.title}</Typography>
-        </Grid>
-        <Grid item xs={2}>
-          <Typography variant="body2">{book.author}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body2">{"★".repeat(book.rating)}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body2">{"★".repeat(book.myRating)}</Typography>
-        </Grid>
-        <Grid item xs={2}>
-          <Typography variant="body2">{book.shelves.join(", ")}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body2">{book.reviews}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body2">{book.dateRead}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body2">{book.dateAdded}</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Button size="small">Edit</Button>
-            <Button size="small">Delete</Button>
-          </Box>
-        </Grid>
-      </Grid>
-    ))}
-  </Box>
-        </Grid> 
-
-      </Grid>
-   </Box>
+      </Box>
     </Box>
   );
 };
