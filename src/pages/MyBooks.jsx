@@ -21,6 +21,7 @@ import {
 import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import SearchBar from "../components/SearchBar"; // adjust path
+import { Link } from "react-router-dom";
 
 const dummyBooks = [
   {
@@ -87,7 +88,7 @@ const MyBooks = () => {
           >
             My Books
           </Typography>
-
+        {/* Right */}
           <Box
             sx={{
               display: "flex",
@@ -111,8 +112,8 @@ const MyBooks = () => {
                 gap: 1,
               }}
             >
-              <Button size="small" sx={{ color: "black", fontSize: "10px" }}>
-                Batch Edit
+              <Button size="small" component={Link}  sx={{ fontSize: "10px", color:"darkgreen" }}>
+                <Typography variant="caption">Batch Edit</Typography> 
               </Button>
               <Button size="small" sx={{ color: "black" }}>
                 Settings
@@ -141,7 +142,11 @@ const MyBooks = () => {
           </Box>
         </Box>
         <Divider sx={{ my: 2 }} />
-        <Grid container spacing={2}>
+        <Box sx={{ display: "flex",
+            overflow: "auto",
+            justifyContent: "center",
+            gap: 2,
+            my: 2,}}>
           {/* Sidebar */}
           <Grid
             sx={{
@@ -304,7 +309,7 @@ const MyBooks = () => {
               </Table>
             </TableContainer>
           </Grid>
-        </Grid>
+        </Box>
       </Box>
     </Box>
   );
