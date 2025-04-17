@@ -13,7 +13,7 @@ const App = () => {
     const isMobile = useMediaQuery("(max-width:1200px)");
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%', flexGrow: 1}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%'}}>
     <Router>
       <Header />  {/* Display header across all pages */}
       <Box sx={{paddingTop: (isMobile ? "110px" : "64px"), paddingBottom: '20px' , display:"flex", justifyContent:"center",flexGrow:1,overflowX:"auto" }}>

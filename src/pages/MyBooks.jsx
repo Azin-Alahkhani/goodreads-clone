@@ -250,14 +250,14 @@ useEffect(() => {
                       key={index}
                       sx={{ borderBottom: "1px solid #ddd" }}
                     >
-                      <TableCell>
+                      <TableCell component={Link} to={`/book/${book.id}`}>
                         {book.cover ? <img
                           src={book.cover}
                           alt="img"
                           style={{ width: "50px", height: "auto" }}
                         /> : null}
                       </TableCell>
-                      <TableCell>
+                      <TableCell component={Link} to={`/book/${book.id}`}>
                         <Typography variant="caption">{book.title}</Typography>
                       </TableCell>
                       <TableCell>

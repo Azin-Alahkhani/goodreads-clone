@@ -35,7 +35,7 @@ export const fetchBookById = async (id) => {
     id: data.id,
     title: info.title || "N/A",
     author: (info.authors && info.authors.join(", ")) || "Unknown",
-    avgRating:  4,
+    avgRating:  4.5,
     myRating: 3,
     shelves: ["To-read"],
     reviews: info.ratingsCount || 0,

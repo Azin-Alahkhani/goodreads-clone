@@ -8,7 +8,11 @@ import {
   Chip,
   Divider,
   Button,
+  IconButton,
 } from "@mui/material";
+import { ChevronRight } from "@mui/icons-material";
+import { useRef } from "react";
+
 import { fetchBookById } from "../utils/FetchBooks.js"; // Adjust the import path as necessary
 import Avatar from "boring-avatars";
 
@@ -16,6 +20,8 @@ const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const scrollRef = useRef(null);
 
   useEffect(() => {
      const loadBook = async () => {
@@ -70,16 +76,22 @@ const BookDetails = () => {
             readOnly
            size="large"
           />
+          <Typography variant="h3" color="text.primary"  fontFamily={"fantasy"}>
+             <strong>{book.avgRating || "—"} </strong>
+             </Typography>
           <Typography variant="body2">
-            {book.avgRating || "—"} · {book.ratingsCount || 4} ratings . {book.reviews} reviews
+           · {book.ratingsCount || 143} ratings . {book.reviews} reviews
           </Typography>
         </Box>
 
         <Divider sx={{ my: 2 }} />
 
-        <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
-          {book.description || "No description available."}
-        </Typography>
+        
+        <ExpandableText
+        text={book.description || "No description available."}
+        lines={3} 
+        variant="body1"
+      />
           {book.categories && (
   <Box sx={{ mt: 2 }}>
     <Typography variant="subtitle2" color="text.secondary">
@@ -115,7 +127,7 @@ const BookDetails = () => {
         <Typography variant="caption" color="text.secondary">
           <strong>Pages:</strong> {book.pageCount || "N/A"}
         </Typography>
-</Box>
+     </Box>
 <Divider sx={{ my: 2 }} />
 
 {/* Readers Section */}
@@ -230,41 +242,49 @@ const BookDetails = () => {
 <Divider sx={{ my: 2 }} />
 
 {/* Readers Also Enjoyed Section */}
-<Box sx={{ mt: 3 }}>
-  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+<Box sx={{ mt: 3 , position: "relative" }}>
+  <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
     Readers Also Enjoyed
   </Typography>
 
   {/* Book Cards Container */}
-  <Box sx={{ display: "flex", mt: 2, gap: 2, overflowX: "auto" }}>
+  <Box
+  ref={scrollRef}
+    sx={{
+      display: "flex",
+      gap: 2,
+      overflowX: "auto",
+      flexWrap: "nowrap",
+      scrollBehavior: "smooth",
+      p: 2,
+    }}>
     {/* Repeat this Card for each similar book */}
     {[...Array(5)].map((_, index) => (
       <Box>
       <Box
-        key={index}
-        sx={{
-          width: 120,
-         // height: 220,
-          backgroundColor: "#f5f5f5",
-          borderRadius: 2,
-          boxShadow: 1,
-          overflow: "hidden",
-          transition: "transform 0.3s ease",
-          "&:hover img": {
-            transform: "scale(1.05)", // Only the image comes forward on hover
-            boxShadow: 3, // Increase shadow on hover
-          },
-        }}
-      >
+  key={index}
+  sx={{
+    width: 120,
+    height: 180,
+    borderRadius: 2,
+    boxShadow: 1,
+    overflow: "hidden",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.05)",
+      boxShadow: 4,
+    },
+  }}
+>
+
         {/* Book Image */}
         <img
           src={book.cover} // Replace with actual book cover
           alt={`Book ${index + 1}`}
           style={{
             width: "100%",
-             // Fixed height for the image
-            objectFit: "cover",
-            transition: "transform 0.3s ease", // Smooth transition for the image
+             height: "100%",
+            objectFit: "cover", // Smooth transition for the image
           }}
         />
         
@@ -310,26 +330,129 @@ const BookDetails = () => {
         </Box>
     ))}
   </Box>
+  <IconButton
+    sx={{
+      position: "absolute",
+      top: "40%",
+      right: 0,
+      transform: "translateY(-50%)",
+      backgroundColor: "white",
+      boxShadow: 2,
+      zIndex: 1,
+      "&:hover": {
+        backgroundColor: "#f0f0f0",
+      },
+    }}
+    onClick={() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollLeft += 300; // adjust scroll distance
+      }
+    }}
+  >
+    <ChevronRight />
+  </IconButton>
 </Box>
 
+<Divider sx={{ my: 2 }} />
 
+{/* My Rating & Review Section */}
+<Box sx={{ mt: 1 }}>
+  <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+    My Rating & Review
+  </Typography>
+  
+  <Box sx={{ display: "flex", gap: 2, mt:2,flexDirection: "row", justifyContent:"between" , alignItems: 'flex-start' }}>
+    {/* profile Image */}
+   <Box sx={{ display: "flex", alignItems: "center" , justifyContent:"space-between" , width:"20%", mt:2 }}>
+     <Box sx={{ display: "flex", alignItems: "center" , justifyContent:"start"}}>
+      <Box
+      sx={{
+        width: 80,
+        height: 80,
+        borderRadius: "50%",
+        overflow: "hidden",
+        mr: 2,
+        backgroundColor: "#ddd",
+      }}
+    >
+      <Avatar name={"sima farahani"} variant="beam" />
+      
+    </Box>
+      <Box sx={{display:"flex", flexDirection:"column" }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          Your Name
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          3 Reviews
+        </Typography>
+      </Box>
+      </Box>
+   
+   </Box>
+    
+    {/* My Review */}
+    <Box sx={{ width:"85%" , display:"flex", flexDirection:"column", mt:3, gap:2}} >
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 , justifyContent:"space-between" }}>
+      <Rating
+        name="user-rating"
+        value={book.myRating}
+        precision={0.5}
+        />
+        <Typography variant="body2" color="text.secondary">
+         October 17, 2018
+        </Typography>
+        </Box>
+        <ExpandableText
+        text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis felis in felis ultricies, id tincidunt odio gravida. Sed utvelit vitae arcu posuere tincidunt eget ut mauris. Integer sollicitud in turpis eu nisi varius, sit amet tristique justo dictum. Phasellus egetleo at magna aliquam ultricies sit amet et odio. Pellentesque vitae erat vel nunc fermentum sodales."
+        lines={3} // Number of lines to show before truncating
+      />
+     
+      
+    </Box>
+  </Box>
+</Box>
 
-
-
-        {/*{book.previewLink && (
-          <Button
-            href={book.previewLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{ mt: 2 }}
-            variant="outlined"
-          >
-            Preview on Google Books
-          </Button>
-        )}*/}
+       
       </Box>
     </Box>
   );
 };
 
 export default BookDetails;
+
+
+const ExpandableText = ({ text = "", lines = 3 , variant="body2"}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => setExpanded((prev) => !prev);
+
+  const shouldTruncate = text.length > 300;
+
+  return (
+    <Box>
+      <Typography
+        variant={variant}
+        sx={{
+          color: "text.secondary",
+          display: "-webkit-box",
+          WebkitLineClamp: expanded ? "none" : lines,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "pre-line",
+        }}
+      >
+        {text || "No content available."}
+      </Typography>
+      {shouldTruncate && (
+        <Button
+          onClick={toggleExpanded}
+          sx={{ mt: 1, px: 0, textTransform: "none" }}
+          size="small"
+        >
+          {expanded ? "Show less" : "Show more"}
+        </Button>
+      )}
+    </Box>
+  );
+};
