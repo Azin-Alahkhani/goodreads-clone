@@ -5,6 +5,7 @@ import Header from './components/Header'; // Import the Header
 import Home from './pages/Home';
 import BookDetails from './pages/BookDetails';
 import MyBooks from './pages/MyBooks';
+import Search from './pages/Search'; // Import the Search page
 import { Box } from '@mui/material';
 import { useMediaQuery } from '@mui/material'; // Import useMediaQuery from MUI
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/my-books" element={<MyBooks />} />
+        <Route path="/search" element={<Search />} /> {/* Add the Search route */}
       </Routes>
       </Box>
     </Router>

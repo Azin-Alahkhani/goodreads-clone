@@ -14,5 +14,14 @@ const theme = createTheme({
       fontSize: '0.7rem',
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none", // disables ALL CAPS globally
+        },
+      },
+    },
+  },
 });
 export default theme;

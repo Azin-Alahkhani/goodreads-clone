@@ -242,56 +242,58 @@ const BookDetails = () => {
 <Divider sx={{ my: 2 }} />
 
 {/* Readers Also Enjoyed Section */}
-<Box sx={{ mt: 3 , position: "relative" }}>
+<Box sx={{ mt: 3, overflow: "hidden", position: "relative" }}>
   <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
     Readers Also Enjoyed
   </Typography>
 
   {/* Book Cards Container */}
   <Box
-  ref={scrollRef}
+    ref={scrollRef}
     sx={{
-      display: "flex",
-      gap: 2,
-      overflowX: "auto",
-      flexWrap: "nowrap",
-      scrollBehavior: "smooth",
-      p: 2,
-    }}>
-    {/* Repeat this Card for each similar book */}
+          display: "flex",
+          gap: 2,
+          overflowX: "auto",
+          flexWrap: "nowrap",
+          scrollBehavior: "smooth",
+          p: 2,
+          '&::-webkit-scrollbar': { display: 'none' }, // optional
+          width: "100%", // crucial!
+        }}
+  >
     {[...Array(5)].map((_, index) => (
-      <Box>
       <Box
-  key={index}
-  sx={{
-    width: 120,
-    height: 180,
-    borderRadius: 2,
-    boxShadow: 1,
-    overflow: "hidden",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-    "&:hover": {
-      transform: "scale(1.05)",
-      boxShadow: 4,
-    },
-  }}
->
-
-        {/* Book Image */}
-        <img
-          src={book.cover} // Replace with actual book cover
-          alt={`Book ${index + 1}`}
-          style={{
+        key={index}
+        sx={{
+          flex: "0 0 auto", // Prevent shrinking/wrapping
+          width: 120,
+        }}
+      >
+        <Box
+          sx={{
             width: "100%",
-             height: "100%",
-            objectFit: "cover", // Smooth transition for the image
+            height: 180,
+            borderRadius: 2,
+            boxShadow: 1,
+            overflow: "hidden",
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 4,
+            },
           }}
-        />
-        
-        {/* Book Info (Title, Author, Rating) */}
-        
-      </Box>
-      <Box sx={{ p: 1 }}>
+        >
+          <img
+            src={book.cover}
+            alt={`Book ${index + 1}`}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </Box>
+        <Box sx={{ p: 1 }}>
           <Typography
             variant="body2"
             sx={{
@@ -324,16 +326,18 @@ const BookDetails = () => {
               fontSize: "0.75rem",
             }}
           >
-            ★ 4.3 {/* Dummy rating, replace with actual data */}
+            ★ 4.3
           </Typography>
         </Box>
-        </Box>
+      </Box>
     ))}
   </Box>
+
+  {/* Scroll Button */}
   <IconButton
     sx={{
       position: "absolute",
-      top: "40%",
+      top: "50%",
       right: 0,
       transform: "translateY(-50%)",
       backgroundColor: "white",
@@ -345,13 +349,14 @@ const BookDetails = () => {
     }}
     onClick={() => {
       if (scrollRef.current) {
-        scrollRef.current.scrollLeft += 300; // adjust scroll distance
+        scrollRef.current.scrollLeft += 300;
       }
     }}
   >
     <ChevronRight />
   </IconButton>
 </Box>
+
 
 <Divider sx={{ my: 2 }} />
 

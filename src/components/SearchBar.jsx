@@ -1,132 +1,154 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   InputBase,
   Button,
   CircularProgress,
-  Autocomplete,
   Typography,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { fetchBooks } from "../utils/FetchBooks.js";
 import { useNavigate } from "react-router-dom";
+import { fetchBooks } from "../utils/FetchBooks.js";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadBooks = async () => {
-      if (searchTerm.length < 3) return setOptions([]);
-      //console.log("Loading books for: ", searchTerm);
+      if (searchTerm.length < 3) {
+        setOptions([]);
+        setShowDropdown(false);
+        return;
+      }
       setLoading(true);
-      const books = await fetchBooks(searchTerm);
+      const books = await fetchBooks({ query: searchTerm, maxR: 5 });
       setOptions(books);
       setLoading(false);
+      setShowDropdown(true);
     };
 
-    const delayDebounce = setTimeout(() => {
-      loadBooks();
-    }, 300); // debounce a bit
-
-    return () => clearTimeout(delayDebounce);
+    const debounce = setTimeout(loadBooks, 300);
+    return () => clearTimeout(debounce);
   }, [searchTerm]);
 
-  //const handleSeeAll = () => {
-    // Handle the "See All" button click (you can implement your custom logic here)
-   // console.log("See All clicked");
-  //};
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (book) => {
+    navigate(`/book/${book.id}`);
+    setSearchTerm("");
+    setShowDropdown(false);
   };
 
-  // Get only the first 5 results
-  const limitedOptions = options.length > 12 ? options.slice(0, 5) : options;
-  // Show loading spinner if loading
+  const handleSeeAll = () => {
+    navigate("/search", { state: { searchTerm } });
+    setSearchTerm("");
+    setShowDropdown(false);
+  };
 
   return (
-    <Box
+    <Box sx={{ position: "relative", maxWidth: 500, width: "100%" }} ref={dropdownRef}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: "white",
+          borderRadius: 0.8,
+          border: "1px solid #dcd7cc",
+          px: 1,
+          height: "40px",
+        }}
+      >
+        <SearchIcon sx={{ color: "gray" }} />
+        <InputBase
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search books..."
+          sx={{ ml: 1, flex: 1, height: "100%" }}
+        />
+        {loading && <CircularProgress size={20} sx={{ ml: 1 }} />}
+      </Box>
+
+    {showDropdown && options.length > 0 && (
+  <Paper
+    elevation={3}
+    sx={{
+      position: "absolute",
+      top: "100%", // stick right under input
+      left: 0,
+      right: 0,
+      zIndex: 10,
+      borderRadius: 1,
+      // Removed mt: 1, maxHeight, and overflow
+    }}
+  >
+    <List dense disablePadding>
+      {options.map((book) => (
+        <ListItem
+          key={book.id}
+          button
+          onClick={() => handleSelect(book)}
+          sx={{ px: 2 }}
+        >
+          <ListItemAvatar>
+            <Avatar
+              variant="square"
+              src={book.cover}
+              sx={{ width: 40, height: 60 }}
+            />
+          </ListItemAvatar>
+          <ListItemText
+            primary={
+              <Typography noWrap fontSize="0.9rem" fontWeight="bold">
+                {book.title}
+              </Typography>
+            }
+            secondary={
+              <Typography noWrap fontSize="0.75rem" color="text.secondary">
+                {book.author}
+              </Typography>
+            }
+          />
+        </ListItem>
+      ))}
+    </List>
+    <Button
+      fullWidth
+      variant="text"
+      onClick={handleSeeAll}
       sx={{
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: "white",
-        borderRadius: 0.8,
-        border: "1px solid #dcd7cc",
-        px: 1,
-        maxWidth: 700,
-        width: "100%",
-        height: "40px",
-        position: "relative",
+        borderTop: "1px solid #eee",
+        py: 1,
+        color:"black",
+        fontWeight: "bold",
+        "&:hover": {
+          backgroundColor: "#f5f5f5",
+        },
       }}
     >
-      <SearchIcon sx={{ color: "gray" }} />
-      <Autocomplete
-        freeSolo
-        sx={{ width: "100%" }}
-        options={limitedOptions} // Pass only the first 5 books
-        getOptionLabel={(option) => option.title}
-        loading={loading}
-        open={open}
-        onChange={(event, value) => {
-    if (value?.id) {
-      navigate(`/book/${value.id}`);
-      setSearchTerm(""); // Clear the search term
-    }
-  }}
-        onInputChange={(e, value) => {
-          setSearchTerm(value);
-          if (value.length > 0) {
-            handleOpen(); // Open dropdown when typing
-          } else {
-            handleClose(); // Close dropdown when input is empty
-          }
-        }}
-        onBlur={handleClose}
-        renderOption={(props, option) => (
-          <Box
-            component="li"
-            key={option.title}
-            {...props}
-            sx={{
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              gap: 1,
-              px: 1,
-            }}
-          >
-            <img
-              src={option.cover}
-              alt={option.title}
-              style={{ width: 40, height: 60, objectFit: "cover" }}
-            />
-            <Box>
-              <Typography variant="body2" noWrap>
-                {option.title}
-              </Typography>
-              <Typography variant="caption" color="text.secondary" noWrap>
-                {option.author}
-              </Typography>
-            </Box>
-          </Box>
-        )}
-        renderInput={(params) => (
-          <InputBase
-            ref={params.InputProps.ref}
-            inputProps={params.inputProps}
-            placeholder="Search books..."
-            sx={{ ml: 1, flex: 1, height: "100%", width: "100%" }}
-          />
-        )}
-        
-      />
+      Show all results for "{searchTerm}"
+    </Button>
+  </Paper>
+)}
+
     </Box>
   );
 };
