@@ -25,6 +25,7 @@ import { useState, useEffect } from "react";
 import { fetchBooks } from "../utils/FetchBooks.js"; 
 import SearchIcon from "@mui/icons-material/Search";
 import { InputBase } from "@mui/material";
+import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 
 
 
@@ -77,26 +78,7 @@ useEffect(() => {
             {/* SearchBar */}
             <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth: 200 , height: 20 }}>
               {/*<SearchBar isHeader={false} />*/}
-              <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      backgroundColor: "white",
-                      borderRadius: 0.8,
-                      border: "1px solid #dcd7cc",
-                      px: 1,
-                      maxWidth: 700,
-                      width: "100%",
-                      height: "90%",
-                    }}
-                  >
-                     <SearchIcon sx={{ color: "gray" }} />
-                      <InputBase
-                               placeholder="Search books..."
-                               sx={{ ml: 1, flex: 1 }}
-                               inputProps={{ "aria-label": "search books" }}
-                             />
-                  </Box>
+             <SimpleSearchBar />
             </Box>
 
             {/* Right: Action buttons */}
