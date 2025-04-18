@@ -3,8 +3,8 @@ import SimpleSearchBar from "../components/SimpleSearchBar";
 import { fetchBooks } from "../utils/FetchBooks.js";
 import TableComponent from "../components/Table.jsx";
 import { Box, Typography, Link, Rating, Button } from "@mui/material";
-
-
+import {ShelfButton} from "../components/ShelfButton.jsx";
+import BookHorizontalCard from "../components/BookHorizontalCard.jsx";
 import { useState , useEffect } from "react";
 
 const Search = ({globalSearchTerm}) => {
@@ -74,7 +74,7 @@ const searchTerm = globalSearchTerm ;
         {/* Search Results */}
         <Box sx={{ mt: 3 }}>
          {books.length>0  ? (
-    books.map((book) => <SearchResultItem key={book.id} book={book} />)
+    books.map((book) => <BookHorizontalCard key={book.id} book={book} />)
   ) : (
     <Typography>No results found.</Typography>
   )}
@@ -128,56 +128,3 @@ export default Search;
 
 
 
-const SearchResultItem = ({ book }) => (
-  <Box
-    sx={{
-      display: "flex",
-      gap: 2,
-      paddingY: 2,
-      borderBottom: "1px solid #ddd",
-      width: "100%",
-      height: "fit-content",
-    }}
-  >
-    {/* Book Cover */}
-    <Button
-      component={Link}
-        to={`/book/${book.id}`} 
-        color="inherit"
-        sx={{   width: 80,
-        flexShrink: 0,fontWeight: "bold", fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
-    >
-      <img
-        src={book.cover || "/placeholder.jpg"}
-        alt={book.title}
-        style={{ width: "49px", height: "75px", objectFit: "cover" }}
-      />
-    </Button>
-
-    {/* Book Info */}
-    <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Button
-        component={Link}
-        to={`/book/${book.id}`}
-        
-        color="inherit"
-        sx={{ fontWeight: "bold", fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
-      >
-        {book.title}
-      </Button>
-      <Typography variant="body2" sx={{ color: "black" }}>
-        by {book.author || "Unknown Author"}
-      </Typography>
-      <Box  sx={{ display: "block", mt: 1 }}>
-        
-        <Rating
-                    value={book.avgRating || 0}
-                    precision={0.5}
-                    readOnly
-                   size="large"
-                  />
-      </Box>
-     
-    </Box>
-  </Box>
-);
