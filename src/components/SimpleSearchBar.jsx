@@ -23,7 +23,7 @@ const SimpleSearchBar = ({ onSearch = ()=>{} }) => {
                       px: 1,
                       maxWidth: 700,
                       width: "100%",
-                      height: "90%",
+                      height: "35px",
                     }}
                   >
                      <SearchIcon sx={{ color: "gray" }} />
