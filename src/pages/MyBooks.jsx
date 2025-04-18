@@ -36,7 +36,7 @@ const MyBooks = () => {
     const [books, setBooks] = useState([]);
 
 useEffect(() => {
-  fetchBooks("lord of").then(setBooks);
+  fetchBooks({query:"lord of", maxR:10}).then(setBooks);
 }, []);
 
   return (

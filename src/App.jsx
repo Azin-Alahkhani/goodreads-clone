@@ -12,17 +12,18 @@ import { useMediaQuery } from '@mui/material'; // Import useMediaQuery from MUI
 
 const App = () => {
     const isMobile = useMediaQuery("(max-width:1200px)");
+    const [globalSearchTerm, setGlobalSearchTerm] = React.useState("");
 
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%'}}>
     <Router>
-      <Header />  {/* Display header across all pages */}
+      <Header setGlobalSearchTerm={setGlobalSearchTerm} />  {/* Display header across all pages */}
       <Box sx={{paddingTop: (isMobile ? "110px" : "64px"), paddingBottom: '20px' , display:"flex", justifyContent:"center",flexGrow:1,overflowX:"auto" }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/my-books" element={<MyBooks />} />
-        <Route path="/search" element={<Search />} /> {/* Add the Search route */}
+        <Route path="/search" element={<Search globalSearchTerm={globalSearchTerm} />} /> {/* Add the Search route */}
       </Routes>
       </Box>
     </Router>

@@ -16,7 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { fetchBooks } from "../utils/FetchBooks.js";
 
-const SearchBar = () => {
+const SearchBar = ({setGlobalSearchTerm}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -62,6 +62,7 @@ const SearchBar = () => {
     navigate("/search", { state: { searchTerm } });
     setSearchTerm("");
     setShowDropdown(false);
+    setGlobalSearchTerm(searchTerm);
   };
 
   return (

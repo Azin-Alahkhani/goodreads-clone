@@ -1,15 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import SimpleSearchBar from "../components/SimpleSearchBar";
-import { useParams } from "react-router-dom";
 import { fetchBooks } from "../utils/FetchBooks.js";
+import TableComponent from "../components/Table.jsx";
 
-const Search = () => {
+import { useState } from "react";
 
-//read params from url
- const { searchTerm } = useParams();
-    // Fetch books based on searchTerm
-     //const books = fetchBooks(searchTerm, { maxR: 20 });
+const Search = ({globalSearchTerm}) => {
+
+const searchTerm = globalSearchTerm ;
+  //const books = fetchBooks({query:searchTerm,  maxR: 10 });
+
+     const [books, setBooks] = useState([]);
+    fetchBooks({ query: searchTerm, maxR: 10 }).then((data) => {
+      setBooks(data)});
 
   return (
      <Box
@@ -29,9 +33,7 @@ const Search = () => {
 
         {/* Search Results */}
         <Box sx={{ mt: 3 }}>
-          <Typography variant="h6">Search Results</Typography>
-          {/* Map through results here */}
-          {/* e.g., <BookCard /> or just title/author preview list */}
+         {books.length>0 &&  <TableComponent books={books} />}
         </Box>
 
         {/* Filters (below results or as a sticky bar if needed) */}

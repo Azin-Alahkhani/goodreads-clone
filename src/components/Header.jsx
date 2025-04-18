@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Header = () => {
+const Header = ({setGlobalSearchTerm}) => {
   const isMobile = useMediaQuery("(max-width:1200px)");
 
   const navLinks = (
@@ -91,7 +91,7 @@ const Header = () => {
 
           {/* SearchBar in center regardless of screen size */}
           <Box sx={{ flexGrow: 1, mx: 2 }}>
-            <SearchBar  />
+            <SearchBar setGlobalSearchTerm={setGlobalSearchTerm}  />
           </Box>
 
           {/* Right: Icons + Avatar */}

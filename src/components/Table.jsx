@@ -88,14 +88,14 @@ const TableComponent = ({books=[]}) => {
                       key={index}
                       sx={{ borderBottom: "1px solid #ddd" }}
                     >
-                      <TableCell component={Link} to={`/book/${book.id}`}>
+                      <TableCell component={Link} to={`/book/${book.id}`}  sx={{":hover": {color: "darkgreen"}}}>
                         {book.cover ? <img
                           src={book.cover}
                           alt="img"
                           style={{ width: "50px", height: "auto" }}
                         /> : null}
                       </TableCell>
-                      <TableCell component={Link} to={`/book/${book.id}`}>
+                      <TableCell component={Link} to={`/book/${book.id}`}  sx={{":hover": {color: "darkgreen"}}}>
                         <Typography variant="caption">{book.title}</Typography>
                       </TableCell>
                       <TableCell>
