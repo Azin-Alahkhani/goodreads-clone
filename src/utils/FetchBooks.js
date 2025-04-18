@@ -18,6 +18,7 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
       dateRead: "-",
       dateAdded: new Date().toISOString().split("T")[0],
       cover: info.imageLinks?.thumbnail || "",
+      description: info.description || "",
     };
   });
 };

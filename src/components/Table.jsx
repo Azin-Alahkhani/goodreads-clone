@@ -18,16 +18,14 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import TableRowsIcon from "@mui/icons-material/TableRows";
-import { Link } from "react-router-dom";
-//import { useState, useEffect } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import { InputBase } from "@mui/material";
 
-const TableComponent = ({books=[]}) => {
+import { Link } from "react-router-dom";
+
+
+const TableComponent = ({books=[], cols = []}) => {
+    
     return (
-       <>
+       <Box>
         {books.length > 0 &&
          <TableContainer
               component={Paper}
@@ -50,36 +48,12 @@ const TableComponent = ({books=[]}) => {
             >
           <Table size="small">
                 <TableHead>
-                  <TableRow>
-                    <TableCell variant="head">
-                      <Typography variant="caption">Cover</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Title</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Author</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Avg Rating</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">My Rating</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Shelves</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Reviews</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Date Read</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="caption">Date Added</Typography>
-                    </TableCell>
-                    {/* <TableCell><Typography variant="caption">Actions</Typography></TableCell> */}
-                  </TableRow>
+                    {cols.map((col) => (
+                      <TableCell key={col.id} variant="head">
+                        <Typography variant="caption">{col.label}</Typography>
+                      </TableCell>
+                    ))}
+            
                 </TableHead>
 
                 <TableBody>
@@ -88,60 +62,62 @@ const TableComponent = ({books=[]}) => {
                       key={index}
                       sx={{ borderBottom: "1px solid #ddd" }}
                     >
-                      <TableCell component={Link} to={`/book/${book.id}`}  sx={{":hover": {color: "darkgreen"}}}>
-                        {book.cover ? <img
-                          src={book.cover}
-                          alt="img"
-                          style={{ width: "50px", height: "auto" }}
-                        /> : null}
-                      </TableCell>
-                      <TableCell component={Link} to={`/book/${book.id}`}  sx={{":hover": {color: "darkgreen"}}}>
-                        <Typography variant="caption">{book.title}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">{book.author}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {"★".repeat(book.avgRating)}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {"★".repeat(book.myRating)}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {book.shelves.join(", ")}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {book.reviews}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {book.dateRead}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="caption">
-                          {book.dateAdded}
-                        </Typography>
-                      </TableCell>
-                       <TableCell>
-              <Box sx={{ display: "flex", gap: 1 }}>
-                <Button size="small">Edit</Button>
-                <Button size="small">Delete</Button>
-              </Box>
-            </TableCell> 
+                        {cols.map((col) => (
+                          <TableCell key={col.id} component={Link} to={`/book/${book.id}`}  sx={{":hover": {color: "darkgreen"}}}>
+                            {col.id === "cover" ? (
+                              book.cover ? (
+                                <img
+                                  src={book.cover}
+                                  alt="img"
+                                  style={{ width: "50px", height: "auto" }}
+                                />
+                              ) : null
+                            ) : col.id === "title" ? (
+                              <Typography variant="caption">{book.title}</Typography>
+                            ) : col.id === "author" ? (
+                              <Typography variant="caption">{book.author}</Typography>
+                            ) : col.id === "avgRating" ? (
+                              <Typography variant="caption">
+                                {"★".repeat(book.avgRating)}
+                              </Typography>
+                            ) : col.id === "myRating" ? (
+                              <Typography variant="caption">
+                                {"★".repeat(book.myRating)}
+                              </Typography>
+                            ) : col.id === "shelves" ? (
+                              <Typography variant="caption">
+                                {book.shelves.join(", ")}
+                              </Typography>
+                            ) : col.id === "reviews" ? (
+                              <Typography variant="caption">
+                                {book.reviews}
+                              </Typography>
+                            ) : col.id === "dateRead" ? (
+                              <Typography variant="caption">
+                                {book.dateRead}
+                              </Typography>
+                            ) : col.id === "dateAdded" ? (
+                              <Typography variant="caption">
+                                {book.dateAdded}
+                              </Typography>
+                            ) : null}
+                            
+                          </TableCell>
+                        ))}
+                    {/* <TableCell xs={1} sx={{display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                        <Button type="text" variant="text" color="inherit" sx={{color:"black",fontSize:"10px", textTransform: "none", '&:hover': { color: "black" }}} >
+                        edit
+                        </Button>
+                         <Button type="text" variant="text" color="inherit" sx={{color:"black",fontSize:"10px", textTransform: "none", '&:hover': { color: "black" }}} >
+                        delete
+                        </Button>
+                     </TableCell>*/}
                     </TableRow>
+                   
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer>}</>
+            </TableContainer>}</Box>
     );
 }
 

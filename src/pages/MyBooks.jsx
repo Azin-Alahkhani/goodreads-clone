@@ -34,6 +34,17 @@ import TableComponent from "../components/Table.jsx";
 const MyBooks = () => {
 
     const [books, setBooks] = useState([]);
+    const tableCols = [
+            { id: "cover", label: "Cover" },
+            { id: "title", label: "Title" },
+            { id: "author", label: "Author" },
+            { id: "avgRating", label: "Avg Rating" },
+            { id: "myRating", label: "My Rating" },
+            { id: "shelves", label: "Shelves" },
+            { id: "reviews", label: "Reviews" },
+            { id: "dateRead", label: "Date Read" },
+            { id: "dateAdded", label: "Date Added" },
+        ];
 
 useEffect(() => {
   fetchBooks({query:"lord of", maxR:10}).then(setBooks);
@@ -177,7 +188,7 @@ useEffect(() => {
           {/* Main Table*/}
           <Grid sx={{ flexGrow: 1, width: "740px" }}>
            
-            <TableComponent books={books} /> 
+            <TableComponent books={books} cols={tableCols} /> 
            
           </Grid>
         </Box>

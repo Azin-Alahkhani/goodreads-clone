@@ -29,13 +29,24 @@ const SearchBar = ({setGlobalSearchTerm}) => {
       if (searchTerm.length < 3) {
         setOptions([]);
         setShowDropdown(false);
+        setLoading(false);
         return;
       }
+      try{
       setLoading(true);
+    
       const books = await fetchBooks({ query: searchTerm, maxR: 5 });
+       if (!books || !Array.isArray(books)) {
+        throw new Error("Invalid response from API");
+      }
       setOptions(books);
-      setLoading(false);
       setShowDropdown(true);
+    }catch (err) {
+      console.error("Fetch failed:", err);
+
+    } finally {
+      setLoading(false);
+    }
     };
 
     const debounce = setTimeout(loadBooks, 300);
