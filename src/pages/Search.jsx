@@ -2,7 +2,7 @@ import React from "react";
 import SimpleSearchBar from "../components/SimpleSearchBar";
 import { fetchBooks } from "../utils/FetchBooks.js";
 import TableComponent from "../components/Table.jsx";
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Rating, Button } from "@mui/material";
 
 
 import { useState , useEffect } from "react";
@@ -42,9 +42,34 @@ const searchTerm = globalSearchTerm ;
       <Box sx={{ flex: 3 , mt: 2 , width:"643px"}}>
 
             <Typography
-            variant="h4">Search</Typography>
+            variant="h4" sx={{mb:"15px", fontFamily:"monospace"}}><strong>Search</strong></Typography>
         {/* SearchBar on top */}
-        <SimpleSearchBar />
+        <Box sx={{ display: "flex" , p:1 , bgcolor: "#f5f1e9", borderRadius: 1, mb: 2, flexDirection: "column", gap: 2, justifyContent:"space-between"}}> 
+               
+               <Box sx={{ display: "flex", width:"590px" }} ><SimpleSearchBar /></Box> 
+                <Box>
+                   
+                        <Box sx={{ display: "flex", flexDirection: "row", gap: 1}}>
+                            {["all","author", "title"].map((filter, index) => (
+                                <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
+                                    <input
+                                        type="radio"
+                                        id={`filter-${filter}`}
+                                        name="filter"
+                                        value={filter}
+                                       
+                                        onChange={(e) => console.log(`Selected filter: ${e.target.value}`)}
+                                    />
+                                    <label htmlFor={`filter-${filter}`} style={{  fontSize:"13px", color:"black"}}>
+                                        {filter}
+                                    </label>
+                                </Box>
+                            ))}
+                        </Box>
+                   
+                </Box>
+        </Box>
+    
 
         {/* Search Results */}
         <Box sx={{ mt: 3 }}>
@@ -55,11 +80,7 @@ const searchTerm = globalSearchTerm ;
   )}
         </Box>
 
-        {/* Filters (below results or as a sticky bar if needed) */}
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="subtitle1">Filters</Typography>
-          {/* Add checkbox filters, dropdowns, etc. */}
-        </Box>
+        {/* Pagination or Load More Button */}
       </Box>
 
       {/* Right Column (Sidebar) */}
@@ -67,7 +88,6 @@ const searchTerm = globalSearchTerm ;
         sx={{
           flex: 1,
           minWidth: 250,
-          position: "sticky",
           top: 80,
           mt:2,
           alignSelf: "flex-start",
@@ -120,36 +140,43 @@ const SearchResultItem = ({ book }) => (
     }}
   >
     {/* Book Cover */}
-    <Box
-      sx={{
-        width: 80,
-        flexShrink: 0,
-      }}
+    <Button
+      component={Link}
+        to={`/book/${book.id}`} 
+        color="inherit"
+        sx={{   width: 80,
+        flexShrink: 0,fontWeight: "bold", fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
     >
       <img
         src={book.cover || "/placeholder.jpg"}
         alt={book.title}
         style={{ width: "49px", height: "75px", objectFit: "cover" }}
       />
-    </Box>
+    </Button>
 
     {/* Book Info */}
     <Box sx={{ display: "flex", flexDirection: "column"}}>
-      <Link
+      <Button
         component={Link}
         to={`/book/${book.id}`}
-        underline="hover"
+        
         color="inherit"
-        sx={{ fontWeight: "bold", fontSize: "1rem" }}
+        sx={{ fontWeight: "bold", fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
       >
         {book.title}
-      </Link>
+      </Button>
       <Typography variant="body2" sx={{ color: "black" }}>
         by {book.author || "Unknown Author"}
       </Typography>
-      <Typography variant="caption" sx={{ display: "block", mt: 1 }}>
-        ★ {book.avgRating || "N/A"}
-      </Typography>
+      <Box  sx={{ display: "block", mt: 1 }}>
+        
+        <Rating
+                    value={book.avgRating || 0}
+                    precision={0.5}
+                    readOnly
+                   size="large"
+                  />
+      </Box>
      
     </Box>
   </Box>
