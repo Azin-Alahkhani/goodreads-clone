@@ -1,42 +1,89 @@
-import React, { useState } from "react";
-import { Button, Menu, MenuItem, Box } from "@mui/material";
+import React from "react";
+import {
+  Button,
+  ButtonGroup,
+  Menu,
+  MenuItem,
+  Box,
+} from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-import { ArrowDropDown } from "@mui/icons-material";
+const shelves = ["Want to Read", "Currently Reading", "Read"];
 
-const ShelfButton = ({rounded="0px"}) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [shelf, setShelf] = useState("Want to Read");
+ const ShelfButton = ({bookdetail=false}) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedShelf, setSelectedShelf] = React.useState(shelves[0]);
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-  const handleSelect = (newShelf) => {
-    setShelf(newShelf);
-    handleClose();
+  const handleClick = () => {
+    console.log(`Added to shelf: ${selectedShelf}`);
   };
 
-  console.log("Selected shelf:", shelf);
+  const handleMenuItemClick = (shelf) => {
+    setSelectedShelf(shelf);
+    setAnchorEl(null);
+  };
+
+  const handleDropdownClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   return (
-    <Box>
+    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden" }}>
       <Button
-        variant="contained"
-        color="success"
         onClick={handleClick}
-        endIcon={<ArrowDropDown />}
-        sx={{ textTransform: "none",borderRadius:rounded, ":hover": { backgroundColor: "darkgreen" } }}
+        variant="contained"
+        sx={{
+          textTransform: "none",
+          backgroundColor: "green",
+          color: "#333",
+          borderTopLeftRadius:bookdetail? 16 : 2,
+          borderBottomLeftRadius: bookdetail ? 16 :2,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          "&:hover": {
+            backgroundColor: "darkgreen",
+          },
+        }}
       >
-        {shelf}
+        {selectedShelf}
       </Button>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        {["Want to Read", "Currently Reading", "Read"].map((option) => (
-          <MenuItem key={option} onClick={() => handleSelect(option)}>
-            {option}
+      <Button
+        onClick={handleDropdownClick}
+        variant="contained"
+        sx={{
+          minWidth: 36,
+          px: 0.5,
+          textTransform: "none",
+          backgroundColor: "green",
+          color: "#333",
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+          borderTopRightRadius: bookdetail ? 16 :2,
+          borderBottomRightRadius:  bookdetail ? 16 :2,
+          borderLeft: "1px solid #b6d7b2", // visual separation
+          "&:hover": {
+            backgroundColor: "oklch(52.7% 0.154 150.069)",
+          },
+        }}
+      >
+        <ArrowDropDownIcon />
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
+        {shelves.map((shelf) => (
+          <MenuItem
+            key={shelf}
+            selected={shelf === selectedShelf}
+            onClick={() => handleMenuItemClick(shelf)}
+          >
+            {shelf}
           </MenuItem>
         ))}
       </Menu>
     </Box>
   );
 };
-
-
-export  default ShelfButton;
+export default ShelfButton;

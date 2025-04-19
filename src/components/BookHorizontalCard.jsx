@@ -57,7 +57,7 @@ const BookHorizontalCard = ({ book }) => (
                    size="large"
                   />
       </Box>
-       <ShelfButton />
+       <ShelfButton bookdetail={false} />
       <Box sx={{ mt: 1, display: "flex", alignItems: "center" }}>
 
 

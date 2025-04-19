@@ -53,11 +53,11 @@ const BookDetails = () => {
       <Box sx={{ flexShrink: 0 , display: "flex", flexDirection: "column", alignItems: "center" }}>
         {book.cover ? <img
           src={book.cover}
-          alt={book.title}
+          alt={"cover"}
           style={{ width: 210, borderRadius: 8 }}
         /> :" null"}
-       <Box mt={2} display="flex" gap={1} flexWrap="wrap">
-       <ShelfButton rounded={"20px"} />
+       <Box mt={2} display="flex" gap={1} flexWrap="wrap" width={"200px"} justifyContent="center">
+       <ShelfButton bookdetail={true} />
         </Box>
       </Box>
 
