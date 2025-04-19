@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem, Box } from "@mui/material";
 
 import { ArrowDropDown } from "@mui/icons-material";
 
-const ShelfButton = () => {
+const ShelfButton = ({rounded="0px"}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [shelf, setShelf] = useState("Want to Read");
 
@@ -23,7 +23,7 @@ const ShelfButton = () => {
         color="success"
         onClick={handleClick}
         endIcon={<ArrowDropDown />}
-        sx={{ textTransform: "none" }}
+        sx={{ textTransform: "none",borderRadius:rounded, ":hover": { backgroundColor: "darkgreen" } }}
       >
         {shelf}
       </Button>

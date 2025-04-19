@@ -15,6 +15,7 @@ import { useRef } from "react";
 
 import { fetchBookById } from "../utils/FetchBooks.js"; // Adjust the import path as necessary
 import Avatar from "boring-avatars";
+import ShelfButton from "../components/ShelfButton.jsx";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -56,9 +57,7 @@ const BookDetails = () => {
           style={{ width: 210, borderRadius: 8 }}
         /> :" null"}
        <Box mt={2} display="flex" gap={1} flexWrap="wrap">
-          <Chip label="Want to Read" />
-          <Chip label="Currently Reading" />
-          <Chip label="Read" />
+       <ShelfButton rounded={"20px"} />
         </Box>
       </Box>
 
@@ -102,7 +101,7 @@ const BookDetails = () => {
         <Box
           key={index}
           sx={{
-            backgroundColor: "#f1f1f1",
+            //backgroundColor: "#f1f1f1",
             px: 1,
             py: 0.5,
             borderRadius: "8px",

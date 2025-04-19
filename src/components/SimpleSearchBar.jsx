@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Box, Button } from "@mui/material";
 import { InputBase } from "@mui/material";
 
 const SimpleSearchBar = ({ onSearch = ()=>{} }) => {
@@ -13,6 +11,7 @@ const SimpleSearchBar = ({ onSearch = ()=>{} }) => {
   };
 
   return (
+    <>
      <Box
                     sx={{
                       display: "flex",
@@ -26,13 +25,21 @@ const SimpleSearchBar = ({ onSearch = ()=>{} }) => {
                       height: "35px",
                     }}
                   >
-                     <SearchIcon sx={{ color: "gray" }} />
+                  
                       <InputBase
                                placeholder="Search books..."
                                sx={{ ml: 1, flex: 1 }}
                                inputProps={{ "aria-label": "search books" }}
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
                              />
+                            
+
                   </Box>
+                   <Button onClick={handleSearch} variant="outlined" color="black" sx={{ ml: 1, height:"70%", alignSelf:"center" }}>
+                               Search
+                             </Button>
+                             </>
   );
 }
 export default SimpleSearchBar;

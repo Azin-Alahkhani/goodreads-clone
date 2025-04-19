@@ -10,6 +10,7 @@ const Search = ({globalSearchTerm}) => {
 
 const searchTerm = globalSearchTerm ;
   //const books = fetchBooks({query:searchTerm,  maxR: 10 });
+  const [insideSearchTerm, setInsideSearchTerm] = useState("");
 
      const [books, setBooks] = useState([]);
    useEffect(() => {
@@ -24,6 +25,20 @@ const searchTerm = globalSearchTerm ;
     };
     fetchData();
   }, [searchTerm]);
+
+  useEffect(() => {
+    if (!insideSearchTerm) return;
+    const fetchData = async () => {
+      try {
+        const data = await fetchBooks({ query: insideSearchTerm, maxR: 4 });
+        setBooks(data);
+      } catch (err) {
+        console.error("Fetch failed:", err);
+      }
+    };
+    fetchData();
+  }
+  , [insideSearchTerm]);
 
   return (
      <Box
@@ -45,7 +60,9 @@ const searchTerm = globalSearchTerm ;
         {/* SearchBar on top */}
         <Box sx={{ display: "flex" , p:1 , bgcolor: "#f5f1e9", borderRadius: 1, mb: 2, flexDirection: "column", gap: 2, justifyContent:"space-between"}}> 
                
-               <Box sx={{ display: "flex", width:"590px" }} ><SimpleSearchBar /></Box> 
+               <Box sx={{ display: "flex", width:"590px" }} >
+                <SimpleSearchBar onSearch={setInsideSearchTerm} />
+                </Box> 
                 <Box>
                    
                         <Box sx={{ display: "flex", flexDirection: "row", gap: 1}}>
