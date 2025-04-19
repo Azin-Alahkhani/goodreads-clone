@@ -116,7 +116,7 @@ const SearchBar = ({setGlobalSearchTerm}) => {
       {options.map((book) => (
         <ListItem
           key={book.id}
-          button
+          button={true}
           onClick={() => handleSelect(book)}
           sx={{ px: 2 }}
         >

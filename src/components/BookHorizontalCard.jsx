@@ -6,8 +6,7 @@ import {
   Rating,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import ShelfButton from "./ShelfButton.jsx"; // Assuming you have a ShelfButton component
-
+import ShelfButton from "./ShelfButton.jsx"; 
 const BookHorizontalCard = ({ book }) => (
   <Box
     sx={{
@@ -58,8 +57,9 @@ const BookHorizontalCard = ({ book }) => (
                    size="large"
                   />
       </Box>
+       <ShelfButton />
       <Box sx={{ mt: 1, display: "flex", alignItems: "center" }}>
- <ShelfButton />
+
 
 </Box>
 

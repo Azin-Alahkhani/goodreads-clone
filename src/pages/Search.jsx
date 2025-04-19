@@ -3,7 +3,6 @@ import SimpleSearchBar from "../components/SimpleSearchBar";
 import { fetchBooks } from "../utils/FetchBooks.js";
 import TableComponent from "../components/Table.jsx";
 import { Box, Typography, Link, Rating, Button } from "@mui/material";
-import {ShelfButton} from "../components/ShelfButton.jsx";
 import BookHorizontalCard from "../components/BookHorizontalCard.jsx";
 import { useState , useEffect } from "react";
 
