@@ -23,7 +23,6 @@ import TableRowsIcon from "@mui/icons-material/TableRows";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchBooks } from "../utils/FetchBooks.js"; 
-import SearchIcon from "@mui/icons-material/Search";
 import { InputBase } from "@mui/material";
 import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 import TableComponent from "../components/Table.jsx";
@@ -56,11 +55,11 @@ useEffect(() => {
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        maxWidth: "1200px",
+        maxWidth: "1440px",
         px: 2,
       }}
     >
-      <Box sx={{ width: "100%", maxWidth: "1200px", px: 2 }}>
+      <Box sx={{ width: "70%" }}>
         {/* Top: Title and SearchBar and Buttons */}
         <Box
           sx={{
@@ -87,12 +86,13 @@ useEffect(() => {
               justifyContent: "end",
               alignItems: "center",
               flexGrow: 1,
+              m:1,
             }}
           >
             {/* SearchBar */}
-            <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth: 200 , height: 40 }}>
+            <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth:250, height: 30 }}>
               {/*<SearchBar isHeader={false} />*/}
-             <SimpleSearchBar />
+             <SimpleSearchBar isMyBooks={true} />
             </Box>
 
             {/* Right: Action buttons */}
