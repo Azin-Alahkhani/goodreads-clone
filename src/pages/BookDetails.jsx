@@ -48,7 +48,7 @@ const BookDetails = () => {
   if (!book) return <Typography sx={{ m: 4 }}>Book not found.</Typography>;
 
   return (
-    <Box sx={{ p: 1, maxWidth: 1000, margin: 2, display: "flex", gap: 4 }}>
+    <Box sx={{ p: 1, maxWidth: "1000px", margin: 2, display: "flex", gap: 4 }}>
       {/* Left: Cover */}
       <Box sx={{ flexShrink: 0 , display: "flex", flexDirection: "column", alignItems: "center" }}>
         {book.cover ? <img

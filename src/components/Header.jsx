@@ -112,7 +112,12 @@ const Header = ({setGlobalSearchTerm}) => {
               <Avatar name="Miss Blue" variant="beam" />
             </IconButton>
           </Box>
-           {isMobile && (
+      
+        </Toolbar>
+      </AppBar>
+
+      {/* Second Row Nav (Only on mobile: screen < 1200px) */}
+          {isMobile && (
         <Box
           sx={{
             height: "46px",
@@ -129,11 +134,6 @@ const Header = ({setGlobalSearchTerm}) => {
           {navLinks}
         </Box>
       )}
-        </Toolbar>
-      </AppBar>
-
-      {/* Second Row Nav (Only on mobile: screen < 1200px) */}
-     
     </>
   );
 };
