@@ -5,7 +5,8 @@ import Header from './components/Header'; // Import the Header
 import Home from './pages/Home';
 import BookDetails from './pages/BookDetails';
 import MyBooks from './pages/MyBooks';
-import Search from './pages/Search'; // Import the Search page
+import Search from './pages/Search'; 
+import OccasionHeader from './components/OccasionHeader';
 import { Box } from '@mui/material';
 import { useMediaQuery } from '@mui/material'; // Import useMediaQuery from MUI
 
@@ -17,8 +18,9 @@ const App = () => {
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%'}}>
     <Router>
-      <Header setGlobalSearchTerm={setGlobalSearchTerm} />  
-      <Box sx={{paddingTop: (isMobile ? "110px" : "64px"), paddingBottom: '20px' , display:"flex", justifyContent:"center", flexDirection:"column",flexGrow:1,overflowX:"auto" , width:"1440px" }}>
+      <OccasionHeader />
+    <Header setGlobalSearchTerm={setGlobalSearchTerm} />  
+    <Box sx={{paddingTop: (isMobile ? "138px" : "92px"), paddingBottom: '20px' , display:"flex", justifyContent:"center", flexDirection:"column",flexGrow:1,overflowX:"auto" , width:"1440px" }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/:id" element={<BookDetails />} />

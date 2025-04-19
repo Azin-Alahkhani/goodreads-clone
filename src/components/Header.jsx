@@ -24,27 +24,27 @@ const Header = ({setGlobalSearchTerm}) => {
     <>
       <Button
       color="inherit"
-      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
+      sx={{ color: "black",fontFamily:"Nimbus Sans Novus", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
       component={Link} to={`/`}
       >
         Home
       </Button>
       <Button
       color="inherit" 
-      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/my-books`}
       >
         My Books
         </Button>
       <Button
-      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/browse`}
       color="inherit"
       >
         Browse</Button>
       <Button 
       color="inherit"
-      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/community`}
       >Community</Button>
     </>
@@ -56,23 +56,15 @@ const Header = ({setGlobalSearchTerm}) => {
         position="fixed"
         color="default"
         elevation={1}
-        sx={{ backgroundColor: "#f5f1e9", px: 2, height: 64 }}
+        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:15 }}
       >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 2,
-            mx:12,
-          }}
-        >
+       
           {/* Left: Logo */}
           <Box sx={{ display: "flex", alignItems: "center", mr:2 }}>
-            <Typography variant="h6" sx={{ fontWeight: "thin", fontFamily: "monospace" }}>
+            <Typography variant="h6" sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus" }}>
               MyGood
             </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", fontFamily: "Nimbus Sans Novus" }}>
               reads
             </Typography>
           </Box>
@@ -86,7 +78,8 @@ const Header = ({setGlobalSearchTerm}) => {
                 display: 'none',
               },
               flexGrow: 1,
-              justifyContent: "center",
+              justifyContent: "center", 
+              
             }}
           >
             {navLinks}
@@ -116,7 +109,7 @@ const Header = ({setGlobalSearchTerm}) => {
             </IconButton>
           </Box>
       
-        </Toolbar>
+       
       </AppBar>
 
       {/* Second Row Nav (Only on mobile: screen < 1200px) */}
@@ -130,7 +123,7 @@ const Header = ({setGlobalSearchTerm}) => {
             backgroundColor: "#f5f1e9",    
             width: "100%",
             position: "absolute",
-            top: 64.5,
+            top: 92,
             borderBottom: "solid #ccc",
           }}
         >

@@ -86,7 +86,7 @@ const SearchBar = ({setGlobalSearchTerm}) => {
           borderRadius: 0.8,
           border: "1px solid #dcd7cc",
           px: 1,
-          height: "40px",
+          height: "30px",
         }}
       >
         <SearchIcon sx={{ color: "gray" }} />
