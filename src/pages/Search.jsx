@@ -3,7 +3,8 @@ import SimpleSearchBar from "../components/SimpleSearchBar";
 import { fetchBooks } from "../utils/FetchBooks.js";
 import TableComponent from "../components/Table.jsx";
 import { Box, Typography, Link, Rating, Button , Grid , List ,ListItem, ListItemText, IconButton,
-  Divider,} from "@mui/material";
+  Divider,
+  CircularProgress,} from "@mui/material";
 import BookHorizontalCard from "../components/BookHorizontalCard.jsx";
 import { useState , useEffect } from "react";
 
@@ -14,16 +15,20 @@ const searchTerm = globalSearchTerm ;
   //const books = fetchBooks({query:searchTerm,  maxR: 10 });
   const [insideSearchTerm, setInsideSearchTerm] = useState("");
   const [relatedShelves, setRelatedShelves] = useState([]);
+  const [loading, setLoading] = useState(false);
 
      const [books, setBooks] = useState([]);
    useEffect(() => {
     if (!searchTerm) return;
     const fetchData = async () => {
       try {
+        setLoading(true);
         const data = await fetchBooks({ query: searchTerm, maxR: 10 });
         setBooks(data);
+        setLoading(false);
       } catch (err) {
         console.error("Fetch failed:", err);
+        setLoading(false);
       }
     };
     fetchData();
@@ -65,7 +70,8 @@ const searchTerm = globalSearchTerm ;
             gap: 2,
           }}
         >
-     <Box sx={{display:"flex", flexDirection:"", width:"70%", justifyContent:"space-between"}} >
+          {loading && <CircularProgress /> }
+    {!loading && <Box sx={{display:"flex", flexDirection:"", width:"70%", justifyContent:"space-between"}} >
        {/* Left Column (Main Search + Results) */}
       <Box sx={{ flex: 3 , mt: 2 , width:"643px"}}>
 
@@ -155,7 +161,7 @@ const searchTerm = globalSearchTerm ;
               ))}
             </List>*/}
           </Grid>
-     </Box>
+     </Box>}
     </Box>
   );
 };
