@@ -65,7 +65,8 @@ const searchTerm = globalSearchTerm ;
             gap: 2,
           }}
         >
-      {/* Left Column (Main Search + Results) */}
+     <Box sx={{display:"flex", flexDirection:"", width:"70%", justifyContent:"space-between"}} >
+       {/* Left Column (Main Search + Results) */}
       <Box sx={{ flex: 3 , mt: 2 , width:"643px"}}>
 
             <Typography
@@ -118,16 +119,18 @@ const searchTerm = globalSearchTerm ;
             sx={{
               width: "200px",
               flexShrink: 0,
+             
             }}
           >
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 10, mt:10,
+              ml:5 }}
             >
-              Related shelves
+              RELATED SHELVES
             </Typography>
-            <List dense>
+            <List dense sx={{ ml:5 }}>
               {["Fiction", "Young adult", "Science fiction", "Romance", "Classic"].map(
                 (shelf) => (
                   <ListItem key={shelf} button>
@@ -136,7 +139,7 @@ const searchTerm = globalSearchTerm ;
                 )
               )}
             </List>
-            <Divider sx={{ my: 1 }} />
+           
             {/*<Typography
               variant="h6"
               gutterBottom
@@ -152,6 +155,7 @@ const searchTerm = globalSearchTerm ;
               ))}
             </List>*/}
           </Grid>
+     </Box>
     </Box>
   );
 };
