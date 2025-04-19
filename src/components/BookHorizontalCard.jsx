@@ -41,7 +41,7 @@ const BookHorizontalCard = ({ book }) => (
         to={`/book/${book.id}`}
         
         color="inherit"
-        sx={{ fontWeight: "bold", height:"50%",fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
+        sx={{ fontWeight: "bold", height:"50%",fontSize: "1rem", justifyContent:"flex-start" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
       >
         {book.title}
       </Button>
@@ -58,12 +58,6 @@ const BookHorizontalCard = ({ book }) => (
                   />
       </Box>
        <ShelfButton bookdetail={false} />
-      <Box sx={{ mt: 1, display: "flex", alignItems: "center" }}>
-
-
-</Box>
-
-     
     </Box>
   </Box>
 );

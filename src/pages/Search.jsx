@@ -2,22 +2,25 @@ import React from "react";
 import SimpleSearchBar from "../components/SimpleSearchBar";
 import { fetchBooks } from "../utils/FetchBooks.js";
 import TableComponent from "../components/Table.jsx";
-import { Box, Typography, Link, Rating, Button } from "@mui/material";
+import { Box, Typography, Link, Rating, Button , Grid , List ,ListItem, ListItemText, IconButton,
+  Divider,} from "@mui/material";
 import BookHorizontalCard from "../components/BookHorizontalCard.jsx";
 import { useState , useEffect } from "react";
+
 
 const Search = ({globalSearchTerm}) => {
 
 const searchTerm = globalSearchTerm ;
   //const books = fetchBooks({query:searchTerm,  maxR: 10 });
   const [insideSearchTerm, setInsideSearchTerm] = useState("");
+  const [relatedShelves, setRelatedShelves] = useState([]);
 
      const [books, setBooks] = useState([]);
    useEffect(() => {
     if (!searchTerm) return;
     const fetchData = async () => {
       try {
-        const data = await fetchBooks({ query: searchTerm, maxR: 4 });
+        const data = await fetchBooks({ query: searchTerm, maxR: 10 });
         setBooks(data);
       } catch (err) {
         console.error("Fetch failed:", err);
@@ -39,15 +42,25 @@ const searchTerm = globalSearchTerm ;
     fetchData();
   }
   , [insideSearchTerm]);
+  useEffect(() => {
+    if (books.length > 0) {
+       
+      setRelatedShelves(books[0].categories);
+    }
+  },[books]);
+  useEffect(() => {},[relatedShelves]);
+
+  
 
   return (
      <Box
           sx={{
             display: "flex",
             justifyContent: "center",
+            flexDirection: "row",
             width: "100%",
             maxWidth: "1200px",
-            px:25,
+            px:15,
             mt:1,
             gap: 2,
           }}
@@ -100,41 +113,45 @@ const searchTerm = globalSearchTerm ;
       </Box>
 
       {/* Right Column (Sidebar) */}
-      <Box
-        sx={{
-          flex: 1,
-          minWidth: 250,
-          top: 80,
-          mt:2,
-          alignSelf: "flex-start",
-          height: "fit-content",
-        }}
-      >
-        <Typography variant="h6" gutterBottom>
-          Related Shelves
-        </Typography>
-        {/* Replace with actual shelf data */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          {["Fantasy", "Historical Fiction", "Sci-Fi", "Thriller"].map(
-            (shelf, i) => (
-              <Box
-                key={i}
-                sx={{
-                  p: 1,
-                  backgroundColor: "#f5f5f5",
-                  borderRadius: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor: "#e0e0e0",
-                  },
-                }}
-              >
-                {shelf}
-              </Box>
-            )
-          )}
-        </Box>
-      </Box>
+       {/* Sidebar */}
+          <Grid
+            sx={{
+              width: "200px",
+              flexShrink: 0,
+            }}
+          >
+            <Typography
+              variant="body1"
+              gutterBottom
+              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+            >
+              Related shelves
+            </Typography>
+            <List dense>
+              {["Fiction", "Young adult", "Science fiction", "Romance", "Classic"].map(
+                (shelf) => (
+                  <ListItem key={shelf} button>
+                    <ListItemText primary={shelf} />
+                  </ListItem>
+                )
+              )}
+            </List>
+            <Divider sx={{ my: 1 }} />
+            {/*<Typography
+              variant="h6"
+              gutterBottom
+              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+            >
+              Related Shelves
+            </Typography>
+            <List dense>
+              {relatedShelves  && relatedShelves.map((shelf) => (
+                <ListItem key={shelf} button>
+                  <ListItemText primary={shelf} />
+                </ListItem>
+              ))}
+            </List>*/}
+          </Grid>
     </Box>
   );
 };

@@ -24,27 +24,27 @@ const Header = ({setGlobalSearchTerm}) => {
     <>
       <Button
       color="inherit"
-      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
       component={Link} to={`/`}
       >
         Home
       </Button>
       <Button
       color="inherit" 
-      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/my-books`}
       >
         My Books
         </Button>
       <Button
-      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/browse`}
       color="inherit"
       >
         Browse</Button>
       <Button 
       color="inherit"
-      sx={{ color: "black", textTransform: "none", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none", fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/community`}
       >Community</Button>
     </>
@@ -64,12 +64,13 @@ const Header = ({setGlobalSearchTerm}) => {
             justifyContent: "space-between",
             alignItems: "center",
             gap: 2,
+            mx:12,
           }}
         >
           {/* Left: Logo */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", mr:2 }}>
             <Typography variant="h6" sx={{ fontWeight: "thin", fontFamily: "monospace" }}>
-              My Good
+              MyGood
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: "bold", fontFamily: "monospace" }}>
               reads
@@ -84,18 +85,20 @@ const Header = ({setGlobalSearchTerm}) => {
               '@media (max-width:1200px)': {
                 display: 'none',
               },
+              flexGrow: 1,
+              justifyContent: "center",
             }}
           >
             {navLinks}
           </Box>
 
           {/* SearchBar in center regardless of screen size */}
-          <Box sx={{ flexGrow: 1, mx: 2 }}>
+          <Box sx={{ flexGrow: 1, ml: 2 }}>
             <SearchBar setGlobalSearchTerm={setGlobalSearchTerm}  />
           </Box>
 
           {/* Right: Icons + Avatar */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 , justifyItems:"flex-start" }}>
             <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Notifications">
               <NotificationsNoneOutlinedIcon />
             </IconButton>

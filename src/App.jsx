@@ -17,8 +17,8 @@ const App = () => {
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%'}}>
     <Router>
-      <Header setGlobalSearchTerm={setGlobalSearchTerm} />  {/* Display header across all pages */}
-      <Box sx={{paddingTop: (isMobile ? "110px" : "64px"), paddingBottom: '20px' , display:"flex", justifyContent:"center",flexGrow:1,overflowX:"auto" }}>
+      <Header setGlobalSearchTerm={setGlobalSearchTerm} />  
+      <Box sx={{paddingTop: (isMobile ? "110px" : "64px"), paddingBottom: '20px' , display:"flex", justifyContent:"center", flexDirection:"column",flexGrow:1,overflowX:"auto" , width:"1440px" }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/:id" element={<BookDetails />} />

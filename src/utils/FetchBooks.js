@@ -1,6 +1,5 @@
 // utils/fetchBooks.js
 export const fetchBooks = async ({query, maxR=10}) => {
-  console.log("Fetching books with query:", query,encodeURIComponent(query));
 const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(query)}&maxResults=${maxR}`); 
  const data = await response.json();
 
@@ -19,6 +18,11 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
       dateAdded: new Date().toISOString().split("T")[0],
       cover: info.imageLinks?.thumbnail || "",
       description: info.description || "",
+       publisher: info.publisher || "Unknown",
+    publishedDate: info.publishedDate || "N/A",
+    pageCount: info.pageCount || "N/A",
+    previewLink: info.previewLink || "",
+    categories: info.categories || [],
     };
   });
 };

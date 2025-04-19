@@ -101,10 +101,10 @@ useEffect(() => {
                 display: "flex",
                 flexWrap: "wrap",
                 alignItems: "center",
-                gap: 1,
+                gap: 0.2,
               }}
             >
-              <Button size="small" component={Link}  sx={{ fontSize: "10px", color:"darkgreen" }}>
+              <Button size="small" component={Link}  sx={{ fontSize: "10px", color:"black", ":hover": { color: "black" } }} to={`/add-book`}>
                 <Typography variant="caption">Batch Edit</Typography> 
               </Button>
               <Button size="small" sx={{ color: "black" }}>
@@ -113,7 +113,7 @@ useEffect(() => {
               <Button size="small" sx={{ color: "black" }}>
                 Stats
               </Button>
-              <Button size="small" sx={{ color: "black" }}>
+              <Button size="small" sx={{ color: "black" , textDecoration:"none" }}>
                 Print
               </Button>
               <IconButton
