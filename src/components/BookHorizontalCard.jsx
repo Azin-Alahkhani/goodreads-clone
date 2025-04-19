@@ -45,7 +45,7 @@ const BookHorizontalCard = ({ book }) => (
       >
         {book.title}
       </Button>
-      <Typography variant="body2" sx={{ color: "black" , ml:1 }}>
+      <Typography variant="body2" sx={{ color: "#41270e" , ml:1 }}>
         by {book.author || "Unknown Author"}
       </Typography>
       <Box  sx={{ display: "block", mt: 1 }}>

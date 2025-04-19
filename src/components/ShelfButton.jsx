@@ -34,7 +34,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
         variant="contained"
         sx={{
           textTransform: "none",
-          backgroundColor: "green",
+          backgroundColor: "#409d6a",
           color: "#333",
           borderTopLeftRadius:bookdetail? 16 : 2,
           borderBottomLeftRadius: bookdetail ? 16 :2,
@@ -54,7 +54,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
           minWidth: 36,
           px: 0.5,
           textTransform: "none",
-          backgroundColor: "green",
+          backgroundColor: "#409d6a",
           color: "#333",
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
