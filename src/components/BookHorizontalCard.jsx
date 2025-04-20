@@ -46,9 +46,9 @@ const BookHorizontalCard = ({ book }) => (
         {book.title}
       </Button>
       <Typography variant="body2" sx={{ color: "#41270e" , ml:1 }}>
-        by {book.author || "Unknown Author"}
+        by {book.author || "Unknown Author"}<Typography variant="caption" color="grey" fontSize={"10px"} > (Mygoodreads author)</Typography>
       </Typography>
-      <Box  sx={{ display: "block", mt: 1 }}>
+      <Box  sx={{ display: "flex", my: 1, flexDirection: "row"}}>
         
         <Rating
                     value={book.avgRating || 0}
@@ -56,8 +56,11 @@ const BookHorizontalCard = ({ book }) => (
                     readOnly
                    size="large"
                   />
+                  <Typography variant="caption" alignSelf={"center"} color="grey" fontSize={"10px"}>4.18 avg rating — 1,328,045 ratings — published 2020 — 138 editions</Typography>
       </Box>
-       <ShelfButton bookdetail={false} />
+      <Box sx={{width:"150px"}}>
+         <ShelfButton bookdetail={false} />
+      </Box>
     </Box>
   </Box>
 );

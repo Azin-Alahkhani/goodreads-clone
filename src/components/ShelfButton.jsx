@@ -15,6 +15,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
   const [selectedShelf, setSelectedShelf] = React.useState(shelves[0]);
 
   const handleClick = () => {
+    
     console.log(`Added to shelf: ${selectedShelf}`);
   };
 
@@ -26,6 +27,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
   const handleDropdownClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
 
   return (
     <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden" }}>
@@ -36,7 +38,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
           textTransform: "none",
           backgroundColor: "#409d6a",
           color: "#333",
-          borderTopLeftRadius:bookdetail? 16 : 2,
+          borderTopLeftRadius: bookdetail ? 16 : 2,
           borderBottomLeftRadius: bookdetail ? 16 :2,
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
