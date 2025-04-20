@@ -49,3 +49,11 @@
   font-style: normal;
   font-display: swap;
 }
+
+button,
+input,
+label,
+.MuiTypography-root,
+.MuiButton-root {
+  font-family: "Nimbus Sans Novus";
+}
