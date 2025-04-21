@@ -15,7 +15,6 @@ const Home = ({setGlobalSearchTerm}) => {
         height:"100%",
         px: 2,
         mt:1.5,
-        
       }}
   >
       <Box sx={{
@@ -24,14 +23,14 @@ const Home = ({setGlobalSearchTerm}) => {
       justifyContent:"center",
       alignItems:"start",
       gap: 2,
-       width: "87%" }}>
+       width: "1120px" }}>
         {/* Left Column */}
         <Box sx={{ flex: 1, width: 300 }}>
           <LeftSidebar setGlobalSearchTerm={setGlobalSearchTerm} />
         </Box>
 
         {/* Center Column (Feed) */}
-        <Box sx={{ flex: 2.5, width: 540 }}>
+        <Box sx={{ flex: 1, width: "520px" }}>
           <Feed />
         </Box>
 

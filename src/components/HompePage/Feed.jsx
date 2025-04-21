@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import SlumpBusterCard from "./SlumpBusterCard";
-import Post from "./FeedPost";
+import FeedPost from "./FeedPost";
 import { IoIosSettings } from "react-icons/io";
 import { FcSettings } from "react-icons/fc";
 
@@ -11,6 +11,7 @@ const FeedHeader = () => (
       justifyContent: "space-between",
       alignItems: "center",
       mb: 2,
+      width:"520px"
     }}
   >
     <Typography variant="body" fontWeight="bold">
@@ -25,26 +26,29 @@ const FeedHeader = () => (
   </Box>
 );
 
-const dummyPosts = [
-  {
-    user: { name: "Alice", avatar: "/avatars/alice.png" },
-    text: "Finished reading *The Night Circus* — 5 stars!",
-    timestamp: "2 hours ago",
+const post = 
+{
+  user: {
+    name: "Jane Bookworm",
+    avatar: "/avatars/jane.png",
   },
-  {
-    user: { name: "Bob", avatar: "/avatars/bob.png" },
-    text: "Started *Project Hail Mary*. So far, so awesome.",
-    timestamp: "Yesterday",
-  },
-];
+  timestamp: "3 hours ago",
+  type: "review", // or "general" / "progress"
+  bookTitle: "The Book Thief",
+  content: "This book broke my heart in the best way. Highly recommend.",
+  comments: [
+    { user: "Tom", text: "Totally agree!" },
+    { user: "Anna", text: "It's on my TBR now!" },
+  ],
+};
 
 const Feed = () => (
   <Box>
     <SlumpBusterCard />
     <FeedHeader />
-    {dummyPosts.map((post, idx) => (
-      <Post key={idx} {...post} />
-    ))}
+    
+      <FeedPost post={post}/>
+ 
   </Box>
 );
 

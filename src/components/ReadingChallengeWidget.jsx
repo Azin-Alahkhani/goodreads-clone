@@ -1,6 +1,6 @@
 import { Box, Typography, Button, LinearProgress } from "@mui/material";
 import readingChallengImg from "../assets/readingCh.png"
-const ReadingChallengeWidget = ({ challenge = { goal: 20, read: 8 } , empty=false }) => {
+const ReadingChallengeWidget = ({ challenge = { goal: 20, read: 8 } , empty=true }) => {
   const percent = Math.min((challenge.read / challenge.goal) * 100, 100);
 
   return (

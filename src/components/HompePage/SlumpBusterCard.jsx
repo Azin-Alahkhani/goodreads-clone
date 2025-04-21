@@ -2,7 +2,7 @@ import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
 import slumpBusterImage from "../../assets/SlumpBuster.jpg";
 
 const SlumpBusterCard = () => (
-  <Card sx={{ mb: 3 , height:"180px", borderRadius:0.5 }}>
+  <Card sx={{ mb: 3 , height:"180px", borderRadius:0.5 , width:"520px" }}>
     <CardMedia
       component="img"
       height="116px"
