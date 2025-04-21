@@ -122,6 +122,7 @@ const FooterWidget = () => {
           <img src={appstore} width={120} height={40}/>
           <img src={googleplay} width={120} height={40}/>
     </Box>
+    <Typography variant="body1" sx={{my:1}}>Mobile Version</Typography>
     <Typography color="grey" variant="body2">© 2025 Goodreads, Inc.</Typography>
   </Box>
   );

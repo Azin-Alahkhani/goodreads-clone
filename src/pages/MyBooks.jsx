@@ -106,16 +106,16 @@ useEffect(() => {
                 gap: 0,
               }}
             >
-              <Button size="small" component={Link}  sx={{fontSize: "10px", color:"black", ":hover": { color: "black" } }} to={`/add-book`}>
+              <Button size="small" component={Link}  sx={{fontSize: "10px", color:"black", ":hover":{backgroundColor:"inherit"} }} to={`/add-book`}>
                 <Typography variant="caption">Batch Edit</Typography> 
               </Button>
-              <Button size="small" sx={{ color: "black" }}>
+              <Button size="small" sx={{ color: "black", ":hover":{backgroundColor:"inherit"}}}>
                 Settings
               </Button>
-              <Button size="small" sx={{ color: "black" }}>
+              <Button size="small" sx={{ color: "black", ":hover":{backgroundColor:"inherit"} }}>
                 Stats
               </Button>
-              <Button size="small" sx={{ color: "black" , textDecoration:"none" }}>
+              <Button size="small" sx={{ color: "black" , textDecoration:"none", ":hover":{backgroundColor:"inherit"} }}>
                 Print
               </Button>
               <IconButton
@@ -148,13 +148,17 @@ useEffect(() => {
               flexShrink: 0,
             }}
           >
-            <Typography
+           <Box sx={{display:"flex",flexDirection:"row", justifyContent:"flex-start", alignItems:"center"}}>
+             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+              sx={{ fontFamily: "Helvetica", fontWeight: "bold", fontSize: 14 }}
             >
-              Bookshelves
-            </Typography>
+              Bookshelves 
+                          </Typography>
+                          <Button variant="text" sx={{color:"text.green",ml:0, ":hover":{color:"inherit", textDecoration:"underline"}}}>(edit)</Button>
+
+           </Box>
             <List dense>
               {["All", "Read", "Currently Reading", "Want to Read"].map(
                 (shelf) => (
@@ -168,7 +172,7 @@ useEffect(() => {
             <Typography
               variant="h6"
               gutterBottom
-              sx={{ fontFamily: "Arial", fontWeight: "bold", fontSize: 14 }}
+              sx={{ fontFamily: "Helvetica", fontWeight: "bold", fontSize: 14 }}
             >
               Your reading activity
             </Typography>

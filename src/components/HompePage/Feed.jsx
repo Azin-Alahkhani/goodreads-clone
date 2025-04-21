@@ -76,7 +76,7 @@ const posts = [{
   },
   timestamp: "1w",
   type: "general", // or "general" / "progress"
-  bookTitle: "The Raven Boys",
+  //bookTitle: "The Raven Boys",
   content: "Hi. Anyone knows any good bookstores in Kingston?",
   comments: [
     { user: "Tom", text: "Totally agree!" },
