@@ -24,27 +24,27 @@ const Header = ({setGlobalSearchTerm}) => {
     <Box>
       <Button
       color="inherit"
-      sx={{ color: "black",fontFamily:"Nimbus Sans Novus", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1.2rem" }}
+      sx={{ color: "black",fontFamily: "Helvetica", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
       component={Link} to={`/`}
       >
         Home
       </Button>
       <Button
       color="inherit" 
-      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1.2rem", '&:hover': { color: "black" } }}
+      sx={{  color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/my-books`}
       >
         My Books
         </Button>
       <Button
-      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1.2rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/browse`}
       color="inherit"
       >
         Browse</Button>
       <Button 
       color="inherit"
-      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/community`}
       >Community</Button>
     </Box>
@@ -61,10 +61,10 @@ const Header = ({setGlobalSearchTerm}) => {
        
           {/* Left: Logo */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h5" sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus" }}>
-              MyGood
+            <Typography variant="h5" sx={{ fontWeight: "100", fontFamily: "Helvetica" }}>
+              Mygood
             </Typography>
-            <Typography variant="h5" sx={{ fontWeight: "bold", fontFamily: "Nimbus Sans Novus" }}>
+            <Typography variant="h6" sx={{ fontWeight: "normal", fontFamily: "Helvetica" }}>
               reads
             </Typography>
           </Box>

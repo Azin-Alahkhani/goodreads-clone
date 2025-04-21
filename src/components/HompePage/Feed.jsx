@@ -84,7 +84,7 @@ const posts = [{
   ],
 },
 ]
-const Feed = ({showSlump=false}) => (
+const Feed = ({showSlump=true}) => (
   <Box>
    {showSlump &&  <SlumpBusterCard />}
     <FeedHeader />

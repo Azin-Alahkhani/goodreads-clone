@@ -89,7 +89,7 @@ const Search = ({ globalSearchTerm }) => {
           <Box sx={{ flex: 3, mt: 2, width: "643px" }}>
             <Typography
              
-              sx={{ mb: "15px", fontFamily: "Nimbus Sans Novus" , fontSize:"25px", fontWeight:"bold", color:"#41270e" }}
+              sx={{ mb: "15px", fontFamily: "Helvetica" , fontSize:"25px", fontWeight:"bold", color:"#41270e" }}
             >
               <strong>Search</strong>
             </Typography>
@@ -163,7 +163,7 @@ const Search = ({ globalSearchTerm }) => {
               variant="body1"
               gutterBottom
               sx={{
-                fontFamily: "Nimbus Sans Novus",
+                fontFamily: "Helvetica",
                 fontWeight: "bold",
                 fontSize: 10,
                 mt: 10,

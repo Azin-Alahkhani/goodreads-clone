@@ -63,7 +63,7 @@ const BookDetails = () => {
 
       {/* Right: Info */}
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column" , gap: 1 }}>
-        <Typography variant="h3" sx={{fontFamily:"Nimbus Sans Novus"}}>{book.title}</Typography>
+        <Typography variant="h3" sx={{fontFamily:"Helvetica"}}>{book.title}</Typography>
         <Typography variant="h5" color="text.secondary" gutterBottom>
           {book.author || "Unknown Author"}
         </Typography>
@@ -75,7 +75,7 @@ const BookDetails = () => {
             readOnly
            size="large"
           />
-          <Typography variant="h3" color="text.primary"  fontFamily={"fNimbus Sans Novus"}>
+          <Typography variant="h3" color="text.primary"  fontFamily={"fHelvetica"}>
              <strong>{book.avgRating || "—"} </strong>
              </Typography>
           <Typography variant="body2">

@@ -41,7 +41,7 @@
   color: #888;
 }
 @font-face {
-  font-family: "Nimbus Sans Novus";
+  font-family: "Helvetica";
   src: url("/fonts/nimbus-sans-novus-cond-light.woff2") format("woff2");
   src: url("/fonts/nimbus-sans-novus-light.woff") format("woff");
 
@@ -55,5 +55,5 @@ input,
 label,
 .MuiTypography-root,
 .MuiButton-root {
-  font-family: "Nimbus Sans Novus";
+  font-family: "Helvetica";
 }

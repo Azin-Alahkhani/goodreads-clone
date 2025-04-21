@@ -10,10 +10,10 @@ const SlumpBusterCard = () => (
       alt="Bust your reading slump"
     />
     <CardContent sx={{mb:1,mt:1.5, py:0}}>
-      <Typography variant="h6" fontWeight="bold" fontFamily= "Nimbus Sans Novus" >
+      <Typography variant="h6" fontWeight="bold" fontFamily= "Helvetica" >
         Need Help Busting a Reading Slump?
       </Typography>
-      <Typography variant="body1" sx={{fontFamily: "Nimbus Sans Novus" , color:"text.secondary"}}>
+      <Typography variant="body1" sx={{fontFamily: "Helvetica" , color:"text.secondary"}}>
         We've got 132 page-turning books to inspire you anew!
       </Typography>
     </CardContent>

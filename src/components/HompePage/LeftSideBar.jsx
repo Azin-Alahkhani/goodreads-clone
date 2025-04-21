@@ -52,7 +52,7 @@ const LeftSideBar = ({setGlobalSearchTerm}) => {
       </Typography>
         <Box sx={{display:"flex", flexDirection:"column", alignItems:"start", gap:1}}>
           {["Want to read", "Read", "Currently reading"].map((shelf) => (
-            <Button key={shelf} variant="text" sx={{height:"16px",color:"text.green",fontSize:"16px",":hover":{textTransform:"none", textDecoration:"underline", backgroundColor:"inherit"}}}> 0   {shelf}</Button>
+            <Button key={shelf} variant="text" sx={{height:"13px",fontWeight:"bold",color:"text.green",fontSize:"13px",":hover":{textTransform:"none", textDecoration:"underline", backgroundColor:"inherit"}}}>0   {shelf}</Button>
           ))}
         </Box>
       </Box>

@@ -13,13 +13,13 @@ const OccasionHeader = () => {
        
           <Typography
             variant="h6"
-            sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus", alignSelf: "center" }}
+            sx={{ fontWeight: "thin", fontFamily: "Helvetica", alignSelf: "center" }}
           >
             <strong>✮</strong> 100 Years of Beloved Books
           </Typography>
           <Typography
             variant="h6"
-            sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus", alignSelf: "center", fontSize:"0.75rem" }}
+            sx={{ fontWeight: "thin", fontFamily: "Helvetica", alignSelf: "center", fontSize:"0.75rem" }}
           >
             Celebrating the Classics...
           </Typography>

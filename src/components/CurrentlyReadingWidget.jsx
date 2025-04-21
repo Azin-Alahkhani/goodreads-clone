@@ -47,17 +47,17 @@ const CurrentlyReadingWidget = ({ books = [], setGlobalSearchTerm }) => {
           >
             {firstBook.title}
           </Link> <Typography fontSize="13px" fontWeight="bold">by {firstBook.author}</Typography> 
-          <Button sx={{width:"120px", height:"20px", backgroundColor:"inherit", borderColor:"text.primary" ,":hover":{bgcolor:"text.primary", color:"white"}}} variant="outlined" color="text.primary">Update progress</Button>
+          <Button sx={{width:"123px", height:"20px", backgroundColor:"inherit", borderColor:"text.primary" ,":hover":{bgcolor:"text.primary", color:"white"}}} variant="outlined" color="text.primary">Update progress</Button>
         
           </Box>
        
           </Box>
           {/*bottom buttons */}
             <Box sx={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-                          <Button variant="text" sx={{color:"text.green",fontSize:"14px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>View all book</Button>
+                          <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>View all book</Button>
 <strong>.</strong>
-            <Button variant="text" sx={{color:"text.green",fontSize:"14px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>Add a book</Button>
-           <strong>.</strong> <Button variant="text" sx={{color:"text.green",fontSize:"14px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>General update</Button>
+            <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>Add a book</Button>
+           <strong>.</strong> <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>General update</Button>
           </Box>
           
         </Box>

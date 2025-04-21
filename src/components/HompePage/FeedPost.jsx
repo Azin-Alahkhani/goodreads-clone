@@ -116,7 +116,7 @@ const FeedPost = ({ post }) => {
             value={userNewComment}
             onChange={(e)=>setUserNewComment(e.target.value)}
             sx={{ mt: 1 ,backgroundColor:"white"}}
-                style={{width:"100%", fontFamily: "Nimbus Sans Novus", resize: 'vertical', }}
+                style={{width:"100%", fontFamily: "Helvetica", resize: 'vertical', }}
           />
           {showCommentBtn && 
           <Button variant="outlined" disabled={userNewComment.length=== 0 } sx={{width:"110px" , height:"20px"}}>Comment</Button>}

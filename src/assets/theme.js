@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   typography: {
     fontSize: 12,
-        fontFamily: "Nimbus Sans Novus",
+        fontFamily: "Helvetica",
  
     body1: {
       fontSize: '0.95rem',
@@ -26,7 +26,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none", // disables ALL CAPS globally
-              fontFamily: "Nimbus Sans Novus",
+             fontFamily: "Helvetica",
+             fontWeight:"500",
 
         },
       },
