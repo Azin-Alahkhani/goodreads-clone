@@ -121,8 +121,8 @@ const Header = ({setGlobalSearchTerm}) => {
             justifyContent: "center",
             gap: 1,
             backgroundColor: "#f5f1e9",    
-            width: "100%",
-            position: "absolute",
+            width: "inherit",
+            position: "fixed",
             top: 92,
             borderBottom: "solid #ccc",
           }}
