@@ -17,21 +17,21 @@ import { Link } from 'react-router-dom';
 
 
 
-const Header = ({setGlobalSearchTerm}) => {
+const Header = ({setGlobalSearchTerm, isSmall}) => {
   const isMobile = useMediaQuery("(max-width:1200px)");
 
   const navLinks = (
-    <Box>
-      <Button
+    <>
+      {!isSmall && <Button
       color="inherit"
       sx={{ color: "black",fontFamily: "Helvetica", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
       component={Link} to={`/`}
       >
         Home
-      </Button>
+      </Button>}
       <Button
       color="inherit" 
-      sx={{  color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ mx: isSmall? 6 : "", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/my-books`}
       >
         My Books
@@ -44,10 +44,10 @@ const Header = ({setGlobalSearchTerm}) => {
         Browse</Button>
       <Button 
       color="inherit"
-      sx={{ color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{mx: isSmall? 6 : "", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/community`}
       >Community</Button>
-    </Box>
+    </>
   );
 
   return (
@@ -60,7 +60,7 @@ const Header = ({setGlobalSearchTerm}) => {
       >
        
           {/* Left: Logo */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", color:"inherit", ":hover":{color:"inherit"} }} component={Link} to={`/`}>
             <Typography variant="h5" sx={{ fontWeight: "100", fontFamily: "Helvetica" }}>
               Mygood
             </Typography>
@@ -118,13 +118,13 @@ const Header = ({setGlobalSearchTerm}) => {
           sx={{
             height: "46px",
             display: "flex",
-            justifyContent: "center",
-            gap: 1,
+            justifyContent: isSmall? "space-between" : "center",
             backgroundColor: "#f5f1e9",    
             width: "inherit",
             position: "fixed",
+            gap:5.5,
             top: 92,
-            borderBottom: "solid #ccc",
+            borderBottom: "1px solid #ccc",
           }}
         >
           {navLinks}
