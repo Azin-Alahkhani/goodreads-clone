@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { ChevronRight } from "@mui/icons-material";
 import { useRef } from "react";
-
+import DOMPurify from "dompurify";
 import { fetchBookById } from "../utils/FetchBooks.js"; // Adjust the import path as necessary
 import Avatar from "boring-avatars";
 import ShelfButton from "../components/ShelfButton.jsx";
@@ -425,19 +425,19 @@ const BookDetails = () => {
 export default BookDetails;
 
 
-const ExpandableText = ({ text = "", lines = 3 , variant="body2"}) => {
+
+const ExpandableText = ({ text = "", lines = 5}) => {
   const [expanded, setExpanded] = useState(false);
-
   const toggleExpanded = () => setExpanded((prev) => !prev);
-
   const shouldTruncate = text.length > 300;
+
+  const cleanHTML = DOMPurify.sanitize(text);
 
   return (
     <Box>
-      <Typography
-        variant={variant}
+      <Box
         sx={{
-          color: "text.secondary",
+          color: "text.primary",
           display: "-webkit-box",
           WebkitLineClamp: expanded ? "none" : lines,
           WebkitBoxOrient: "vertical",
@@ -445,13 +445,21 @@ const ExpandableText = ({ text = "", lines = 3 , variant="body2"}) => {
           textOverflow: "ellipsis",
           whiteSpace: "pre-line",
         }}
-      >
-        {text || "No content available."}
-      </Typography>
+        dangerouslySetInnerHTML={{ __html: cleanHTML }}
+      />
       {shouldTruncate && (
         <Button
           onClick={toggleExpanded}
-          sx={{ mt: 1, px: 0, textTransform: "none" }}
+          sx={{
+        mb: 1,
+        p: 0,
+        fontSize: "15px",
+        justifyContent: "flex-start",
+        fontWeight: "bold",
+        textAlign: "left",
+        color: "text.green",
+        ":hover": { textDecoration: "underline", backgroundColor: "inherit" },
+      }}
           size="small"
         >
           {expanded ? "Show less" : "Show more"}

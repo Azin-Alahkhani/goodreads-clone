@@ -30,7 +30,7 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
   
 
   return (
-    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden", height:"25px",
+    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden", height:!bookdetail ? "25px" :"40px",
  }}>
       <Button
         onClick={handleClick}
@@ -39,8 +39,8 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
           textTransform: "none",
           backgroundColor: "#409d6a",
           color: "#333",
-          borderTopLeftRadius: bookdetail ? 16 : 2,
-          borderBottomLeftRadius: bookdetail ? 16 :2,
+          borderTopLeftRadius: bookdetail ? 20 : 2,
+          borderBottomLeftRadius: bookdetail ? 20 :2,
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
           "&:hover": {
@@ -61,8 +61,8 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
           color: "#333",
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
-          borderTopRightRadius: bookdetail ? 16 :2,
-          borderBottomRightRadius:  bookdetail ? 16 :2,
+          borderTopRightRadius: bookdetail ? 20 :2,
+          borderBottomRightRadius:  bookdetail ? 20 :2,
           borderLeft: "1px solid #b6d7b2", // visual separation
           "&:hover": {
             backgroundColor: "oklch(52.7% 0.154 150.069)",

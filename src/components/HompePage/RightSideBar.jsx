@@ -21,6 +21,7 @@ const RightSidebar = () => (
           flexDirection: "column",
           backgroundColor:"inherit",
           gap:1,
+          ml:1,
         }}
       >
     <NewsWidget />

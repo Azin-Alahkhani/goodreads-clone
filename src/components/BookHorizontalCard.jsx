@@ -14,7 +14,7 @@ const BookHorizontalCard = ({ book , isBig=true }) => (
       flexDirection: "row",
       gap: 1,
       paddingY: 1,
-      borderBottom: "1px solid #ddd",
+      borderBottom: isBig ? "1px solid #ddd" : "none",
       width: "100%",
       height: "fit-content",
     }}
@@ -24,18 +24,18 @@ const BookHorizontalCard = ({ book , isBig=true }) => (
       component={Link}
         to={`/book/${book.id}`} 
         color="inherit"
-        sx={{   width: 80,
+        sx={{   width: 80, 
         flexShrink: 0,fontWeight: "bold", fontSize: "1rem" , ":hover":{textTransform:"none", color:"darkgreen", background:"none"}}}
     >
       <img
         src={book.cover || "/placeholder.jpg"}
         alt={book.title}
-        style={{ width: "49px", height: "75px", objectFit: "cover" }}
+        style={{ width: isBig? "49px" : "95px", height: isBig? "75px" : "140px", objectFit: "cover" }}
       />
     </Button>
 
     {/* Book Info */}
-    <Box sx={{ display: "flex", flexDirection: "column", height:"25px"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", height:"25px" , ml: isBig ? 0 : 2}}>
       <Button
         component={Link}
         to={`/book/${book.id}`}
