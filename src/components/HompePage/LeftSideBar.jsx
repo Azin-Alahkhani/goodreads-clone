@@ -1,9 +1,10 @@
 // src/components/HomeSidebarLeft.jsx
 import React from "react";
-import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemText, Divider , Button } from "@mui/material";
 import CurrentlyReadingWidget from "../CurrentlyReadingWidget";
 import BookCover from "../../assets/bookcover.webp"
 import ReadingChallengeWidget from "../ReadingChallengeWidget";
+import WantToReadWidget from "../WantToReadWidget";
 
 const LeftSideBar = ({setGlobalSearchTerm}) => {
     const currentlyReadingBooks = [
@@ -37,31 +38,23 @@ const LeftSideBar = ({setGlobalSearchTerm}) => {
       <Divider />
 
       <Box>
-        <Typography variant="body1" fontWeight="bold" fontSize={14}>
-          Want to Read
-        </Typography>
-        <List dense>
-          {["Book A", "Book B"].map((book) => (
-            <ListItem key={book} button="true">
-              <ListItemText primary={book} />
-            </ListItem>
-          ))}
-        </List>
+        <WantToReadWidget />
       </Box>
 
       <Divider />
 
       <Box>
-        <Typography variant="body1" fontWeight="bold" fontSize={14}>
-          Your Shelves
-        </Typography>
-        <List dense>
+        <Typography
+        variant="body1"
+        sx={{ mb: 1, fontWeight: "bold", color: "text.primary",textTransform: "uppercase" }}
+      >
+        bookshelves
+      </Typography>
+        <Box sx={{display:"flex", flexDirection:"column", alignItems:"start", gap:1}}>
           {["Want to read", "Read", "Currently reading"].map((shelf) => (
-            <ListItem key={shelf} button="true">
-              <ListItemText primary={shelf} />
-            </ListItem>
+            <Button key={shelf} variant="text" sx={{height:"16px",color:"text.green",fontSize:"16px",":hover":{textTransform:"none", textDecoration:"underline", backgroundColor:"inherit"}}}> 0   {shelf}</Button>
           ))}
-        </List>
+        </Box>
       </Box>
     </Box>
   );

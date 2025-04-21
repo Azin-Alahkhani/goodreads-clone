@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import ShelfButton from "./ShelfButton.jsx"; 
-const BookHorizontalCard = ({ book }) => (
+const BookHorizontalCard = ({ book , isBig=true }) => (
   <Box
     sx={{
       display: "flex",
@@ -35,7 +35,7 @@ const BookHorizontalCard = ({ book }) => (
     </Button>
 
     {/* Book Info */}
-    <Box sx={{ display: "flex", flexDirection: "column"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", height:"25px"}}>
       <Button
         component={Link}
         to={`/book/${book.id}`}
@@ -46,17 +46,18 @@ const BookHorizontalCard = ({ book }) => (
         {book.title}
       </Button>
       <Typography variant="body2" sx={{ color: "#41270e" , ml:1 }}>
-        by {book.author || "Unknown Author"}<Typography variant="caption" color="grey" fontSize={"10px"} > (Mygoodreads author)</Typography>
+        by {book.author || "Unknown Author"}
+       {isBig && <Typography variant="caption" color="grey" fontSize={"10px"} > (Mygoodreads author)</Typography>}
       </Typography>
-      <Box  sx={{ display: "flex", my: 1, flexDirection: "row"}}>
+      <Box  sx={{ display: "flex", flexDirection: "row", mb:1, ml:1}}>
         
         <Rating
                     value={book.avgRating || 0}
                     precision={0.5}
                     readOnly
-                   size="large"
+                   size="small"
                   />
-                  <Typography variant="caption" alignSelf={"center"} color="grey" fontSize={"10px"}>4.18 avg rating — 1,328,045 ratings — published 2020 — 138 editions</Typography>
+                  {isBig && <Typography variant="caption" alignSelf={"center"} color="grey" fontSize={"10px"}>4.18 avg rating — 1,328,045 ratings — published 2020 — 138 editions</Typography>}
       </Box>
       <Box sx={{width:"150px"}}>
          <ShelfButton bookdetail={false} />

@@ -15,6 +15,10 @@ const theme = createTheme({
     caption: {
       fontSize: '0.7rem',
     },
+    captionBig:{
+      fontSize :'0.8rem',
+    }
+    
     
   },
   components: {
