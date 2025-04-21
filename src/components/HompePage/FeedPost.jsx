@@ -7,9 +7,11 @@ import {
   TextField,
   TextareaAutosize,
   Divider,
+  Rating,
 } from "@mui/material";
 import Avatar from "boring-avatars";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FeedPost = ({ post }) => {
     const [showCommentBtn,setShowCommentBtn]=useState(false);
@@ -50,15 +52,25 @@ const FeedPost = ({ post }) => {
       {/* Main Content Box */}
       <Box sx={{ px: 2, m:1 }}>
         {/* Name & timestamp */}
-        <Box display={"flex"} sx={{display:"flex", flexDirection:"row" , width:"100%", justifyContent:"space-between" , mt:2, mb:1}}>
-              <Typography variant="body1" fontWeight="bold">
+        <Box display={"flex"} sx={{display:"flex", flexDirection:"row" , width:"100%", justifyContent:"space-between" , mt:2}}>
+             <Box sx={{display:"flex", flexDirection:"row",gap:1,justifyContent:"flex-start"}}> 
+                <Typography variant="body1" fontWeight="bold" >
           {post.user.name}
         </Typography>
+        {post.type === "review" && (
+            <Typography variant="body1" fontWeight="thin" >reviewed <strong>{post.bookTitle}</strong></Typography>
+          )}</Box>
+         
         <Typography variant="caption" color="text.secondary" gutterBottom>
           {post.timestamp}
         </Typography>
         </Box>
-      
+            {post.type === "review" && <Box sx={{display:"flex", flexDirection:"row",gap:1,justifyContent:"flex-start", alignItems:"center"}}> 
+            <Typography variant="caption" color="grey">Rating</Typography>
+            <Rating value={4} size="small"/> <Button component={Link} sx={{color:"text.green", ":hover":{textDecoration:"underline", backgroundColor:"inherit", color:"text.green"}}}>
+                Read {post.user.name}'s review
+            </Button>
+          </Box>}
 
         {/* Post Content */}
         <Box sx={{  }}>
@@ -67,11 +79,11 @@ const FeedPost = ({ post }) => {
           )}
           {post.type === "progress" && (
             <Typography variant="body1">
-              🔄 Progress update on <strong>{post.bookTitle}</strong>: {post.content}
+              {post.user.name} is currently reading <strong>{post.bookTitle}</strong> : {post.content}
             </Typography>
           )}
           {post.type === "general" && (
-            <Typography variant="body1">💭 {post.content}</Typography>
+            <Typography variant="body1"> {post.content}</Typography>
           )}
         </Box>
 

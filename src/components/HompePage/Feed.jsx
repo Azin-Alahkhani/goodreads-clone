@@ -41,13 +41,57 @@ const post =
     { user: "Anna", text: "It's on my TBR now!" },
   ],
 };
-
+const posts = [{
+  user: {
+    name: "Jane Bookworm",
+    avatar: "/avatars/jane.png",
+  },
+  timestamp: "3w",
+  type: "review", // or "general" / "progress"
+  bookTitle: "The Book Thief",
+  content: "This book broke my heart in the best way. Highly recommend.",
+  comments: [
+    { user: "Tom", text: "Totally agree!" },
+    { user: "Anna", text: "It's on my TBR now!" },
+  ],
+},
+{
+  user: {
+    name: "Judy Moody",
+    avatar: "/avatars/jane.png",
+  },
+  timestamp: "1w",
+  type: "progress", // or "general" / "progress"
+  bookTitle: "The Raven Boys",
+  content: "page 119 out of 542",
+  comments: [
+    { user: "Tom", text: "Totally agree!" },
+    { user: "Anna", text: "It's on my TBR now!" },
+  ],
+},
+{
+  user: {
+    name: "Andy McGue",
+    avatar: "/avatars/jane.png",
+  },
+  timestamp: "1w",
+  type: "general", // or "general" / "progress"
+  bookTitle: "The Raven Boys",
+  content: "Hi. Anyone knows any good bookstores in Kingston?",
+  comments: [
+    { user: "Tom", text: "Totally agree!" },
+    { user: "Anna", text: "It's on my TBR now!" },
+  ],
+},
+]
 const Feed = () => (
   <Box>
     <SlumpBusterCard />
     <FeedHeader />
     
       <FeedPost post={post}/>
+       <FeedPost post={posts[1]}/>
+        <FeedPost post={posts[2]}/>
  
   </Box>
 );
