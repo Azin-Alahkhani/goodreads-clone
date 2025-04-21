@@ -77,7 +77,7 @@ const SearchBar = ({setGlobalSearchTerm}) => {
   };
 
   return (
-    <Box sx={{ position: "relative", maxWidth: 400, width: "100%" }} ref={dropdownRef}>
+    <Box sx={{ position: "relative", maxWidth: 900, width: "100%" }} ref={dropdownRef}>
       <Box
         sx={{
           display: "flex",

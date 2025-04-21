@@ -14,37 +14,42 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import Avatar from "boring-avatars";
 import { PiChatsCircleBold } from "react-icons/pi";
 import { Link } from 'react-router-dom';
+import { SearchOutlined, SearchRounded } from "@mui/icons-material";
+import { useState } from "react";
+import SimpleSearchBar from "./SimpleSearchBar";
 
 
 
 const Header = ({setGlobalSearchTerm, isSmall}) => {
   const isMobile = useMediaQuery("(max-width:1200px)");
+  const [showSearchbar,setShowSearchbar] = useState(false);
+ 
 
   const navLinks = (
     <>
       {!isSmall && <Button
       color="inherit"
-      sx={{ color: "black",fontFamily: "Helvetica", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
+      sx={{ color: "black",fontFamily: "Helvetica", textTransform: "none", '&:hover': { color: "black" , backgroundColor:"inherit" }, fontSize: "1rem" }}
       component={Link} to={`/`}
       >
         Home
       </Button>}
       <Button
       color="inherit" 
-      sx={{ mx: isSmall? 6 : "", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ mx: isSmall? 6 : "",width:"100px", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" , backgroundColor:"inherit" } }}
       component={Link} to={`/my-books`}
       >
         My Books
         </Button>
       <Button
-      sx={{ color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" , backgroundColor:"inherit" } }}
       component={Link} to={`/browse`}
       color="inherit"
       >
         Browse</Button>
       <Button 
       color="inherit"
-      sx={{mx: isSmall? 6 : "", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{mx: isSmall? 6 : "", color: "black", textTransform: "none",fontFamily:"Helvetica",  fontSize: "1rem", '&:hover': { color: "black", backgroundColor:"inherit"  } }}
       component={Link} to={`/community`}
       >Community</Button>
     </>
@@ -56,8 +61,11 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
         position="fixed"
         color="default"
         elevation={1}
-        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:18 }}
+        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent : isMobile ? "space-between" :"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:!isSmall?18:2,boxShadow:"0", borderBottom:"1px solid rgb(215, 209, 203)" }}
       >
+        {isSmall && <Button onClick={()=>setShowSearchbar(true)} sx={{width:"fit-content", ":hover":{cursor:"pointer", backgroundColor:"inherit"}}} >
+          <SearchRounded  sx={{color:"gray"}} />
+          </Button>}
        
           {/* Left: Logo */}
           <Box sx={{ display: "flex", alignItems: "center", color:"inherit", ":hover":{color:"inherit"} }} component={Link} to={`/`}>
@@ -86,13 +94,13 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
           </Box>
 
           {/* SearchBar in center regardless of screen size */}
-          <Box sx={{ flexGrow: 1, ml: 2 }}>
-            <SearchBar setGlobalSearchTerm={setGlobalSearchTerm}  />
-          </Box>
+         {!isSmall && <Box sx={{ flexGrow: 1, ml: 2 }}>
+            <SearchBar setGlobalSearchTerm={setGlobalSearchTerm} isHeader={true} />
+          </Box>}
 
           {/* Right: Icons + Avatar */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 , justifyItems:"flex-start" }}>
-            <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Notifications">
+            {!isSmall && <><IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Notifications">
               <NotificationsNoneOutlinedIcon />
             </IconButton>
             <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Group conversations">
@@ -103,7 +111,7 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
             </IconButton>
             <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Settings">
               <BsPeople />
-            </IconButton>
+            </IconButton></>}
             <IconButton sx={{ height: 30, width: 30 , bgcolor:"#beb9b1" }} title="Profile">
               <Avatar name="Miss Blue" variant="beam" />
             </IconButton>
@@ -128,6 +136,26 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
           }}
         >
           {navLinks}
+        </Box>
+      )}
+       {showSearchbar &&  (
+        <Box
+          sx={{
+            height: "46px",
+            display: "flex",
+            justifyContent: isSmall? "space-between" : "center",
+            backgroundColor: "#f5f1e9",    
+            width: "inherit",
+            position: "fixed",
+            gap:5.5,
+            top: 92,
+            borderBottom: "1px solid #ccc",
+          }}
+        >
+         <Box  sx={{display:"flex", flexDirection:"row", gap:1, width:"100%" ,alignItems:"center", mx:1}}>
+           <SearchBar setGlobalSearchTerm={setGlobalSearchTerm}/>
+           <Button onClick={()=>setShowSearchbar(false)} variant="outlined" sx={{backgroundColor:"inherit", height:"20px"}}>Cancel</Button>
+         </Box>
         </Box>
       )}
     </>
