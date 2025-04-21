@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material";
 import CurrentlyReadingWidget from "../CurrentlyReadingWidget";
 import BookCover from "../../assets/bookcover.webp"
+import ReadingChallengeWidget from "../ReadingChallengeWidget";
 
 const LeftSideBar = ({setGlobalSearchTerm}) => {
     const currentlyReadingBooks = [
@@ -30,14 +31,7 @@ const LeftSideBar = ({setGlobalSearchTerm}) => {
       <Divider sx={{my:0.5}}/>
 
       <Box>
-        <Typography variant="body1" fontWeight="bold" fontSize={14}>
-          Reading Challenge
-        </Typography>
-        <List dense>
-          <ListItem button="true">
-            <ListItemText primary="View Challenge" />
-          </ListItem>
-        </List>
+        <ReadingChallengeWidget />
       </Box>
 
       <Divider />
