@@ -32,7 +32,7 @@ const post =
     name: "Jane Bookworm",
     avatar: "/avatars/jane.png",
   },
-  timestamp: "3 hours ago",
+  timestamp: "3w",
   type: "review", // or "general" / "progress"
   bookTitle: "The Book Thief",
   content: "This book broke my heart in the best way. Highly recommend.",

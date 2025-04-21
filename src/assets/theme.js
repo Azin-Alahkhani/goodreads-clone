@@ -7,7 +7,7 @@ const theme = createTheme({
         fontFamily: "Nimbus Sans Novus",
  
     body1: {
-      fontSize: '0.85rem',
+      fontSize: '0.95rem',
     },
     body2: {
       fontSize: '0.75rem',
@@ -40,6 +40,10 @@ const theme = createTheme({
       primary: '#3C3C3C', // Text color for primary content
       secondary: '#767676', // Lighter brown for secondary text
       green : '#00635D',
+    },
+    goodreads :{
+      bgBrown :"#f9f7f5",
+      bgBrown2 :"#f3f3f3",
     }
   },
   
