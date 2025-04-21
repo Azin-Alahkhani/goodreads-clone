@@ -6,10 +6,10 @@ import recCover from "../assets/bookcover.webp"
 const RecommendationWidget = ()=>{
 const currentBook = "The Way of Kings";
 const recBook = {
-    id:23,
+    id:"dTUAAQAAQBAJ",
     cover:recCover,
-    title:"The Book",
-    author:"Miranda Allen",
+    title:"Words of radiance",
+    author:"Brandon Sanderson",
     avgRating:3.5,
 };
 
