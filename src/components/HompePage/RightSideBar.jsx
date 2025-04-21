@@ -1,6 +1,7 @@
 import { Box, Typography, Paper, Divider } from "@mui/material";
 import NewsWidget from "../NewsWidget";
 import RecommendationWidget from "../RecommendationWidget";
+import FooterWidget from "../FooterWidget";
 
 
 const SidebarSection = ({ title, children }) => (
@@ -27,9 +28,9 @@ const RightSidebar = () => (
     <NewsWidget />
     <Divider sx={{my:1}}/>
     <RecommendationWidget />
-    <SidebarSection title="Footer">
-      <Typography variant="caption">© 2025 BookVibe Inc.</Typography>
-    </SidebarSection>
+     <Divider sx={{my:1}}/>
+     <FooterWidget />
+    
   </Box>
 );
 
