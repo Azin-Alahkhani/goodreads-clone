@@ -67,8 +67,8 @@ useEffect(() => {
             overflow: "auto",
             alignItems: "center",
             gap: 2,
-            my: 2,
-            mt: 4,
+            my: 0.7,
+           
           }}
         >
           {/* Left: Title */}
@@ -82,15 +82,17 @@ useEffect(() => {
           <Box
             sx={{
               display: "flex",
-              gap: 2,
+              gap: 1,
               justifyContent: "end",
               alignItems: "center",
               flexGrow: 1,
-              m:1,
+              mx:1,
+              my:0.7,
+              
             }}
           >
             {/* SearchBar */}
-            <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth:250, height: 30 }}>
+            <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth:250, height: 25 }}>
               {/*<SearchBar isHeader={false} />*/}
              <SimpleSearchBar isMyBooks={true} />
             </Box>
@@ -101,10 +103,10 @@ useEffect(() => {
                 display: "flex",
                 flexWrap: "wrap",
                 alignItems: "center",
-                gap: 0.2,
+                gap: 0,
               }}
             >
-              <Button size="small" component={Link}  sx={{ fontSize: "10px", color:"black", ":hover": { color: "black" } }} to={`/add-book`}>
+              <Button size="small" component={Link}  sx={{fontSize: "10px", color:"black", ":hover": { color: "black" } }} to={`/add-book`}>
                 <Typography variant="caption">Batch Edit</Typography> 
               </Button>
               <Button size="small" sx={{ color: "black" }}>
@@ -133,12 +135,12 @@ useEffect(() => {
             </Box>
           </Box>
         </Box>
-        <Divider sx={{ my: 2 }}  />
+        <Divider sx={{ my: 0.5 }}  />
         <Box sx={{ display: "flex",
             overflow: "auto",
             justifyContent: "center",
             gap: 5,
-            my: 2,}}>
+            my: 1,}}>
           {/* Sidebar */}
           <Grid
             sx={{

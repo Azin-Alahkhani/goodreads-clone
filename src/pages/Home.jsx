@@ -12,8 +12,10 @@ const Home = ({setGlobalSearchTerm}) => {
         justifyContent: "center",
         width: "100%",
         maxWidth: "1440px",
+        height:"100%",
         px: 2,
         mt:1.5,
+        
       }}
   >
       <Box sx={{

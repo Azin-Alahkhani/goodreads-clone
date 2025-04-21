@@ -29,21 +29,11 @@ const TableComponent = ({books=[], cols = []}) => {
         {books.length > 0 &&
          <TableContainer
               component={Paper}
+              sx={{backgroundColor:"inherit", boxShadow:"none"}}
               x={{
                 minWidth: 740,
                 borderCollapse: "separate",
-                borderSpacing: 0,
-                "& td, & th": {
-                  borderBottom: "1px solid #ddd",
-                  borderRight: "none",
-                  borderLeft: "none",
-                },
-                "& thead tr": {
-                  backgroundColor: "transparent",
-                },
-                "& tbody tr:last-child td": {
-                  borderBottom: "none",
-                },
+               
               }}
             >
           <Table size="small">
