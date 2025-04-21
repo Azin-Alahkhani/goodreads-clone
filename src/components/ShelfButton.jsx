@@ -30,7 +30,8 @@ const shelves = ["Want to Read", "Currently Reading", "Read"];
   
 
   return (
-    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden" }}>
+    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden", height:"25px",
+ }}>
       <Button
         onClick={handleClick}
         variant="contained"
