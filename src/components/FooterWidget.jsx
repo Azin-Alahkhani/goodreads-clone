@@ -1,4 +1,11 @@
 import { Button, Box, Typography } from "@mui/material";
+import instaIcon from "../assets/footer_instagram.svg"
+import twitterIcon from "../assets/footer_twitter.svg"
+import facebookIcon from "../assets/footer_facebook.svg"
+import linkedinIcon from "../assets/footer_linkedin.svg"
+
+
+
 
 const FooterWidget = () => {
   return (
@@ -101,9 +108,14 @@ const FooterWidget = () => {
             textTransform: "uppercase",
           }}
         >
-          Connext
+          Connet
         </Typography>
-        <Box>social icons</Box>
+        <Box sx={{display:"flex",flexDirection:"row", gap:1}}>
+          <img src={instaIcon} />
+          <img src={twitterIcon} />
+          <img src={facebookIcon} />
+          <img src={linkedinIcon} />
+        </Box>
     </Box>
     <Typography color="grey" variant="body2">© 2025 Goodreads, Inc.</Typography>
   </Box>
