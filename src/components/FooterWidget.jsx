@@ -3,7 +3,8 @@ import instaIcon from "../assets/footer_instagram.svg"
 import twitterIcon from "../assets/footer_twitter.svg"
 import facebookIcon from "../assets/footer_facebook.svg"
 import linkedinIcon from "../assets/footer_linkedin.svg"
-
+import googleplay from "../assets/googleplay.png"
+import appstore from "../assets/appstore.svg"
 
 
 
@@ -116,6 +117,10 @@ const FooterWidget = () => {
           <img src={facebookIcon} />
           <img src={linkedinIcon} />
         </Box>
+    </Box>
+    <Box sx={{display:"flex", flexDirection:"row", gap:2, mt:3}}>
+          <img src={appstore} width={120} height={40}/>
+          <img src={googleplay} width={120} height={40}/>
     </Box>
     <Typography color="grey" variant="body2">© 2025 Goodreads, Inc.</Typography>
   </Box>

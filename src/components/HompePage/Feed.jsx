@@ -84,9 +84,9 @@ const posts = [{
   ],
 },
 ]
-const Feed = () => (
+const Feed = ({showSlump=false}) => (
   <Box>
-    <SlumpBusterCard />
+   {showSlump &&  <SlumpBusterCard />}
     <FeedHeader />
     
       <FeedPost post={post}/>

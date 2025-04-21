@@ -89,10 +89,10 @@ const FeedPost = ({ post }) => {
 
         {/* Buttons */}
         <Box sx={{ display: "flex", gap: 2, mt: 1 }}>
-          <Button variant="text" size="small" sx={{ p: 0, minWidth: 0 , color:"text.green", ":hover":{textDecoration:"underline" , backgroundColor:"inherit", color:"text.green"} }}>
-            Like
-          </Button>
-          <Button variant="text" size="small" sx={{ p: 0, minWidth: 0 , color:"text.green", ":hover":{textDecoration:"underline" , backgroundColor:"inherit"} }}>
+          <Button variant="text" size="large" sx={{ p: 0, minWidth: 0 , color:"text.green", ":hover":{textDecoration:"underline" , backgroundColor:"inherit", color:"text.green"} }}>
+            Like 
+          </Button>•
+          <Button variant="text" size="large" sx={{ p: 0, minWidth: 0 , color:"text.green", ":hover":{textDecoration:"underline" , backgroundColor:"inherit"} }}>
             Comment
           </Button>
         </Box>
@@ -103,9 +103,9 @@ const FeedPost = ({ post }) => {
 
       <Box sx={{backgroundColor:"goodreads.bgBrown2", borderTop:"1px solid rgb(205, 196, 196)",}}>
          
-          <Box sx={{mt:1, mx:0.5}}><Typography variant="body1" fontWeight="bold">BlackPanda and 106 others liked this</Typography></Box>
+          <Box sx={{mt:1, mx:0.9}}><Typography variant="body1" fontWeight="bold">BlackPanda and 106 others liked this</Typography></Box>
         {/* Comment Box (basic demo) */}
-        <Box sx={{ mt: 2 , p:1, borderTop:"1px solid rgb(205, 196, 196)" , display:"flex", flexDirection:"row", gap:1, alignItems:"start" }}>
+        <Box sx={{ mt: 1 , p:1, borderTop:"1px solid rgb(205, 196, 196)" , display:"flex", flexDirection:"row", gap:1, alignItems:"start" }}>
          <Avatar size={34}  name="Azin Alahkhani" variant="beam"/>
           <Box sx={{display:"flex", flexDirection:"column", width:"480px", gap:1, mb:1}}>
             <TextareaAutosize

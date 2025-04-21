@@ -21,23 +21,23 @@ const Header = ({setGlobalSearchTerm}) => {
   const isMobile = useMediaQuery("(max-width:1200px)");
 
   const navLinks = (
-    <>
+    <Box>
       <Button
       color="inherit"
-      sx={{ color: "black",fontFamily:"Nimbus Sans Novus", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1rem" }}
+      sx={{ color: "black",fontFamily:"Nimbus Sans Novus", textTransform: "none", '&:hover': { color: "black" }, fontSize: "1.2rem" }}
       component={Link} to={`/`}
       >
         Home
       </Button>
       <Button
       color="inherit" 
-      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1.2rem", '&:hover': { color: "black" } }}
       component={Link} to={`/my-books`}
       >
         My Books
         </Button>
       <Button
-      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
+      sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1.2rem", '&:hover': { color: "black" } }}
       component={Link} to={`/browse`}
       color="inherit"
       >
@@ -47,7 +47,7 @@ const Header = ({setGlobalSearchTerm}) => {
       sx={{ color: "black", textTransform: "none",fontFamily:"Nimbus Sans Novus",  fontSize: "1rem", '&:hover': { color: "black" } }}
       component={Link} to={`/community`}
       >Community</Button>
-    </>
+    </Box>
   );
 
   return (
@@ -56,15 +56,15 @@ const Header = ({setGlobalSearchTerm}) => {
         position="fixed"
         color="default"
         elevation={1}
-        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:13 }}
+        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:18 }}
       >
        
           {/* Left: Logo */}
-          <Box sx={{ display: "flex", alignItems: "center", mr:2 }}>
-            <Typography variant="h6" sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="h5" sx={{ fontWeight: "thin", fontFamily: "Nimbus Sans Novus" }}>
               MyGood
             </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "bold", fontFamily: "Nimbus Sans Novus" }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", fontFamily: "Nimbus Sans Novus" }}>
               reads
             </Typography>
           </Box>
