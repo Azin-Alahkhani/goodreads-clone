@@ -2,14 +2,14 @@ import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
 import slumpBusterImage from "../../assets/SlumpBuster.jpg";
 
 const SlumpBusterCard = () => (
-  <Card sx={{ mb: 3 , height:"180px" }}>
+  <Card sx={{ mb: 3 , height:"180px", borderRadius:0.5 }}>
     <CardMedia
       component="img"
-      height="114px"
+      height="116px"
       image={slumpBusterImage}
       alt="Bust your reading slump"
     />
-    <CardContent>
+    <CardContent sx={{mb:1,mt:1.5, py:0}}>
       <Typography variant="h6" fontWeight="bold" fontFamily= "Nimbus Sans Novus" >
         Need Help Busting a Reading Slump?
       </Typography>

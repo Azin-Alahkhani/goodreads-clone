@@ -12,7 +12,9 @@ const Home = () => {
         justifyContent: "center",
         width: "100%",
         maxWidth: "1440px",
+        //height:"100%",
         px: 2,
+        mt:1.5,
       }}
   >
       <Box sx={{
@@ -21,6 +23,7 @@ const Home = () => {
       //minWidth: "1000px", // ensure it doesn't wrap early
       //width: "100%",
       justifyContent:"center",
+      alignItems:"start",
       gap: 2,
        width: "72%" }}>
         {/* Left Column */}
