@@ -56,7 +56,7 @@ const Header = ({setGlobalSearchTerm}) => {
         position="fixed"
         color="default"
         elevation={1}
-        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:15 }}
+        sx={{ backgroundColor: "#f5f1e9",  height: 46 , top:46, display:"flex", justifyContent:"center", alignItems:"center", zIndex: 1000 ,flexDirection:"row", gap:3, px:13 }}
       >
        
           {/* Left: Logo */}
