@@ -10,6 +10,7 @@ const SimpleSearchBar = ({ onSearch = ()=>{} , isMyBooks=false }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(query);
+    
   };
 
   return (

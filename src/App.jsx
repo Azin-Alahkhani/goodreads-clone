@@ -20,9 +20,9 @@ const App = () => {
     <Router>
       <OccasionHeader />
     <Header setGlobalSearchTerm={setGlobalSearchTerm} />  
-    <Box sx={{paddingTop: (isMobile ? "138px" : "92px"),backgroundColor:"#f4f1ea", paddingBottom: '20px' , display:"flex",  flexDirection:"column",flexGrow:1,overflowX:"auto" , width:"1440px" }}>
+    <Box sx={{paddingTop: (isMobile ? "138px" : "92px"),backgroundColor:"#f9f7f5", paddingBottom: '20px' , display:"flex",  flexDirection:"column",flexGrow:1,overflowX:"auto" , width:"1440px" }}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setGlobalSearchTerm={setGlobalSearchTerm} />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/my-books" element={<MyBooks />} />
         <Route path="/search" element={<Search globalSearchTerm={globalSearchTerm} />} /> {/* Add the Search route */}

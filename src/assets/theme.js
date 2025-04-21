@@ -39,6 +39,7 @@ const theme = createTheme({
     text: {
       primary: '#3C3C3C', // Text color for primary content
       secondary: '#767676', // Lighter brown for secondary text
+      green : '#00635D',
     }
   },
   

@@ -4,7 +4,7 @@ import RightSidebar from '../components/HompePage/RightSideBar';
 import LeftSidebar from '../components/HompePage/LeftSideBar';
 import Feed from '../components/HompePage/Feed';
 
-const Home = () => {
+const Home = ({setGlobalSearchTerm}) => {
   return (
   <Box 
   sx={{
@@ -12,7 +12,6 @@ const Home = () => {
         justifyContent: "center",
         width: "100%",
         maxWidth: "1440px",
-        //height:"100%",
         px: 2,
         mt:1.5,
       }}
@@ -20,15 +19,13 @@ const Home = () => {
       <Box sx={{
       display: "flex",
       flexDirection: "row",
-      //minWidth: "1000px", // ensure it doesn't wrap early
-      //width: "100%",
       justifyContent:"center",
       alignItems:"start",
       gap: 2,
-       width: "72%" }}>
+       width: "87%" }}>
         {/* Left Column */}
         <Box sx={{ flex: 1, width: 300 }}>
-          <LeftSidebar />
+          <LeftSidebar setGlobalSearchTerm={setGlobalSearchTerm} />
         </Box>
 
         {/* Center Column (Feed) */}

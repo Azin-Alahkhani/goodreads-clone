@@ -4,30 +4,30 @@ import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/mat
 import CurrentlyReadingWidget from "../CurrentlyReadingWidget";
 import BookCover from "../../assets/bookcover.webp"
 
-const LeftSideBar = () => {
+const LeftSideBar = ({setGlobalSearchTerm}) => {
     const currentlyReadingBooks = [
   {
     id: "123",
     title: "The Way of Kings",
     cover: BookCover,
+    author:"Brandon Sanderson",
   },
 ];
   return (
     <Box
       sx={{
-        minWidth: "200px",
-        maxWidth: "250px",
+        width: "300px",
         flexShrink: 0,
         display: "flex",
         flexDirection: "column",
-        gap: 2,
+        gap:1,
       }}
     >
       <Box>
-      <CurrentlyReadingWidget books={currentlyReadingBooks} />
+      <CurrentlyReadingWidget setGlobalSearchTerm={setGlobalSearchTerm} books={currentlyReadingBooks} />
       </Box>
 
-      <Divider />
+      <Divider sx={{my:0.5}}/>
 
       <Box>
         <Typography variant="body1" fontWeight="bold" fontSize={14}>
