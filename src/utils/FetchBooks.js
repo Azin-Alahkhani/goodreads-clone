@@ -12,7 +12,7 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
       author: (info.authors && info.authors.join(", ")) || "Unknown",
       avgRating: 3.5,
       myRating: 3, // user input later maybe
-      shelves: ["To-read"],
+      shelves: [],
       reviews: info.ratingsCount || 0,
       dateRead: "-",
       dateAdded: new Date().toISOString().split("T")[0],
@@ -23,6 +23,7 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
     pageCount: info.pageCount || "N/A",
     previewLink: info.previewLink || "",
     categories: info.categories || [],
+    
     };
   });
 };
@@ -31,7 +32,6 @@ export const fetchBookById = async (id) => {
   const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`);
   const data = await response.json();
   const info = data.volumeInfo;
-  console.log(info.authors);
   const cover =
     info.imageLinks?.thumbnail ||
     info.imageLinks?.smallThumbnail ||
@@ -43,7 +43,7 @@ export const fetchBookById = async (id) => {
     author: (info.authors && info.authors.join(", ")) || "Unknown",
     avgRating:  3.5,
     myRating: 3,
-    shelves: ["To-read"],
+    shelves: [],
     reviews: info.ratingsCount || 0,
     dateRead: "-",
     dateAdded: new Date().toISOString().split("T")[0],

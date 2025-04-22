@@ -1,11 +1,7 @@
 import React from "react";
 import {
   Box,
-  Grid,
   Typography,
-  List,
-  ListItem,
-  ListItemText,
   Table,
   TableBody,
   TableCell,
@@ -13,10 +9,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Container,
-  Button,
-  IconButton,
-  Divider,
+ 
 } from "@mui/material";
 
 import { Link } from "react-router-dom";
@@ -39,7 +32,7 @@ const TableComponent = ({books=[], cols = []}) => {
           <Table size="small">
                 <TableHead>
                     {cols.map((col) => (
-                      <TableCell key={col.id} variant="head">
+                      <TableCell key={col.id} >
                         <Typography variant="caption">{col.label}</Typography>
                       </TableCell>
                     ))}
@@ -76,7 +69,7 @@ const TableComponent = ({books=[], cols = []}) => {
                               </Typography>
                             ) : col.id === "shelves" ? (
                               <Typography variant="caption">
-                                {book.shelves.join(", ")}
+                                {book.shelves?.length>1 && book.shelves.join(", ")} {book.shelves?.length===1 && book.shelves}
                               </Typography>
                             ) : col.id === "reviews" ? (
                               <Typography variant="caption">

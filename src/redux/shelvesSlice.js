@@ -30,6 +30,8 @@ const shelvesSlice = createSlice({
   reducers: {
     addBookToShelf: (state, action) => {
       const { shelf, book } = action.payload;
+      console.log(shelf, book.title)
+      book.shelves.push(shelf);
       if (!state.shelves[shelf].find(b => b.id === book.id)) {
         state.shelves[shelf].push(book);
       }

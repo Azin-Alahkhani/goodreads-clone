@@ -22,17 +22,26 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchBooks } from "../utils/FetchBooks.js"; 
 import { InputBase } from "@mui/material";
 import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 import TableComponent from "../components/Table.jsx";
+import { useSelector } from "react-redux";
 
 
 
 
 const MyBooks = () => {
 
-    const [books, setBooks] = useState([]);
+    const toReadBooks = useState(useSelector((state)=>state.shelves.shelves.wantToRead));
+    const currentReadBooks =  useSelector((state)=>state.shelves.shelves.currentlyReading)
+    const readBooks =  useSelector((state)=>state.shelves.shelves.read);
+
+    const books = (currentReadBooks.concat(toReadBooks)).concat(readBooks)
+    
+    //localStorage.clear(); 
+
+    
+
     const tableCols = [
             { id: "cover", label: "Cover" },
             { id: "title", label: "Title" },
@@ -46,7 +55,8 @@ const MyBooks = () => {
         ];
 
 useEffect(() => {
-  fetchBooks({query:"lord of", maxR:10}).then(setBooks);
+  //fetchBooks({query:"lord of", maxR:10}).then(setBooks);
+
 }, []);
 
   return (
@@ -162,7 +172,7 @@ useEffect(() => {
             <List dense>
               {["All", "Read", "Currently Reading", "Want to Read"].map(
                 (shelf) => (
-                  <ListItem key={shelf} button>
+                  <ListItem key={shelf} >
                     <ListItemText primary={shelf} />
                   </ListItem>
                 )

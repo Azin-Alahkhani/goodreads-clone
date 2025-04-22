@@ -16,7 +16,7 @@ const BookHorizontalCard = ({ book , isBig=true }) => (
       paddingY: 1,
       borderBottom: isBig ? "1px solid #ddd" : "none",
       width: "100%",
-      height: "fit-content",
+      
     }}
   >
     {/* Book Cover */}

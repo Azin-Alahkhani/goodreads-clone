@@ -49,6 +49,7 @@ const theme = createTheme({
     goodreads :{
       bgBrown :"#f9f7f5",
       bgBrown2 :"#f3f3f3",
+      black:"#4f4f4d"
     }
   },
   

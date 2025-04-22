@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBookToShelf } from "../redux/shelvesSlice";
 import { FindBookInShelves } from "../redux/shelvesSelector";
 import { FaCheck, FaPencil } from "react-icons/fa6";
+import ShelfModal from "./ShelfModal";
 
 const shelves = ["Want to Read", "Currently Reading", "Read"];
 const shelfMap = {
@@ -24,28 +25,43 @@ const shelfMap = {
  
   const dispatch = useDispatch();
   const savedShelfName = useSelector((state) => FindBookInShelves(state, book.id));
-  console.log("Book is in:", savedShelfName);
+
 const [selectedShelf, setSelectedShelf] = React.useState( savedShelfName || shelves[0]);
 
 
 
 const handleClick = () => {
+  if(!bookdetail){
   const shelfKey = shelfMap[selectedShelf];
-  dispatch(addBookToShelf({ shelf: shelfKey, book }));
   console.log(`Added "${book.title}" to ${shelfKey}`);
+  dispatch(addBookToShelf({ shelf: shelfKey, book }));
+  
+  }
+  else {
+    setShowModal(true);
+
+  }
 };
+
+const [showModal,setShowModal]= useState(false)
 
 
   const handleMenuItemClick = (shelf) => {
     setSelectedShelf(shelf);
-    const shelfKey = shelfMap[selectedShelf];
+    
+    const shelfKey = shelfMap[shelf];
+    console.log(shelf,savedShelfName , shelfKey)
   dispatch(addBookToShelf({ shelf: shelfKey, book }));
     setAnchorEl(null);
+    setShowModal(false);
   };
 
   const handleDropdownClick = (event) => {
+    if(!bookdetail)
     setAnchorEl(event.currentTarget);
+  else setShowModal(true);
   };
+  
 
   //const openModal = ()=>{}
   
@@ -129,6 +145,7 @@ const handleClick = () => {
           </MenuItem>
         ))}
       </Menu>
+     {showModal && <ShelfModal bookShelf={savedShelfName} open={showModal} book={book} handleClose={()=>setShowModal(false)} onShelfSelect={handleMenuItemClick}/>}
     </Box>
   );
 };

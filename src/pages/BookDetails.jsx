@@ -40,9 +40,7 @@ const BookDetails = () => {
           loadBook();
     
   }, [id]);
-  useEffect(() => {
-    if(book) console.log(book);
-  },[book]);
+
 
   if (loading) return <CircularProgress sx={{ m: 4 }} />;
   if (!book) return <Typography sx={{ m: 4 }}>Book not found.</Typography>;
