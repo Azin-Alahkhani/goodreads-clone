@@ -10,7 +10,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useDispatch, useSelector } from "react-redux";
 import { addBookToShelf } from "../redux/shelvesSlice";
 import { FindBookInShelves } from "../redux/shelvesSelector";
-import { FaPencil } from "react-icons/fa6";
+import { FaCheck, FaPencil } from "react-icons/fa6";
 
 const shelves = ["Want to Read", "Currently Reading", "Read"];
 const shelfMap = {
@@ -46,10 +46,13 @@ const handleClick = () => {
   const handleDropdownClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  //const openModal = ()=>{}
   
 
   return (
-    <Box sx={{ display: "inline-flex", borderRadius: 2, overflow: "hidden", height:!bookdetail ? "25px" :"40px",
+    <Box sx={{ display: "inline-flex", borderRadius: 2, maxHeight:!bookdetail ? "23px" :"40px",minHeight:!bookdetail ? "23px" :"40px",
+       width:!bookdetail?"135px" : "400px", boxShadow:"none"
  }}>
       <Button
         onClick={handleClick}
@@ -60,28 +63,43 @@ const handleClick = () => {
           gap:1,
           backgroundColor: savedShelfName?"inherit": "#409d6a",
           color: "#333",
-          border: savedShelfName ? "black 1px solid": "none",
+          border: savedShelfName ? "tan 1px solid": "none",
           borderTopLeftRadius: bookdetail ? 20 : 2,
           borderBottomLeftRadius: bookdetail ? 20 :2,
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
           "&:hover": {
             backgroundColor: savedShelfName?"inherit":"darkgreen",
-             border:savedShelfName ? "black 1px solid": "none",
+             border:savedShelfName ? "tan 1px solid": "none",
           },
         }}
       >
-       {savedShelfName ? <FaPencil /> : null}{selectedShelf}
+         {savedShelfName && bookdetail ? <FaPencil /> : null}{savedShelfName && !bookdetail ? <FaCheck /> : null}
+        <span
+    style={{
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      display: "inline-block",
+      width: "100%",
+    }}
+  >
+     {selectedShelf}
+  </span>
+      
       </Button>
       <Button
         onClick={handleDropdownClick}
         variant="contained"
         sx={{
-          minWidth: 36,
+          minWidth: 26,
           px: 0.5,
           textTransform: "none",
-          backgroundColor:savedShelfName?"inherit": "#409d6a",
-          border: savedShelfName ? "black 1px solid": "none",
+          backgroundColor:savedShelfName && bookdetail ?"inherit": "#409d6a",
+          border: savedShelfName && bookdetail ? "tan 1px solid": "none",
           color: "#333",
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
@@ -89,8 +107,8 @@ const handleClick = () => {
           borderBottomRightRadius:  bookdetail ? 20 :2,
           borderLeft: "1px solid rgb(74, 75, 74)", // visual separation
           "&:hover": {
-            backgroundColor: savedShelfName?"inherit":"oklch(52.7% 0.154 150.069)",
-            border:savedShelfName ? "black 1px solid": "none",
+            backgroundColor: savedShelfName && bookdetail ?"inherit":"oklch(52.7% 0.154 150.069)",
+            border:savedShelfName && bookdetail ? "tan 1px solid": "none",
           },
         }}
       >
