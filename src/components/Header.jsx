@@ -72,7 +72,7 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
             <Typography variant="h5" sx={{ fontWeight: "100", fontFamily: "Helvetica" }}>
               Mygood
             </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "normal", fontFamily: "Helvetica" }}>
+            <Typography variant="h5" sx={{ fontWeight: "normal", fontFamily: "Helvetica" }}>
               reads
             </Typography>
           </Box>
@@ -95,7 +95,7 @@ const Header = ({setGlobalSearchTerm, isSmall}) => {
 
           {/* SearchBar in center regardless of screen size */}
          {!isSmall && <Box sx={{ flexGrow: 1, ml: 2 }}>
-            <SearchBar setGlobalSearchTerm={setGlobalSearchTerm} isHeader={true} />
+            <SearchBar setGlobalSearchTerm={setGlobalSearchTerm} />
           </Box>}
 
           {/* Right: Icons + Avatar */}

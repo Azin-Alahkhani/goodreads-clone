@@ -21,6 +21,7 @@ const shelfMap = {
   const [selectedShelf, setSelectedShelf] = React.useState(shelves[0]);
 
   const dispatch = useDispatch();
+  
 
 const handleClick = () => {
   const shelfKey = shelfMap[selectedShelf];
