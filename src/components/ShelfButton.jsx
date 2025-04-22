@@ -7,17 +7,27 @@ import {
   Box,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useDispatch } from "react-redux";
+import { addBookToShelf } from "../redux/shelvesSlice";
 
 const shelves = ["Want to Read", "Currently Reading", "Read"];
-
- const ShelfButton = ({bookdetail=false}) => {
+const shelfMap = {
+  "Want to Read": "wantToRead",
+  "Currently Reading": "currentlyReading",
+  "Read": "read",
+};
+ const ShelfButton = ({bookdetail=false, book}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedShelf, setSelectedShelf] = React.useState(shelves[0]);
 
-  const handleClick = () => {
-    
-    console.log(`Added to shelf: ${selectedShelf}`);
-  };
+  const dispatch = useDispatch();
+
+const handleClick = () => {
+  const shelfKey = shelfMap[selectedShelf];
+  dispatch(addBookToShelf({ shelf: shelfKey, book }));
+  console.log(`Added "${book.title}" to ${shelfKey}`);
+};
+
 
   const handleMenuItemClick = (shelf) => {
     setSelectedShelf(shelf);

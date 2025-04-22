@@ -60,7 +60,7 @@ const BookHorizontalCard = ({ book , isBig=true }) => (
                   {isBig && <Typography variant="caption" alignSelf={"center"} color="grey" fontSize={"10px"}>4.18 avg rating — 1,328,045 ratings — published 2020 — 138 editions</Typography>}
       </Box>
       <Box sx={{width:"150px"}}>
-         <ShelfButton bookdetail={false} />
+         <ShelfButton bookdetail={false} book={book} />
       </Box>
     </Box>
   </Box>

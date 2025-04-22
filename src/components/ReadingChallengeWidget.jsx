@@ -48,7 +48,7 @@ const ReadingChallengeWidget = ({ challenge = { goal: 20, read: 8 } , empty=true
               height: 131,
               objectFit: "cover",
             }} />
-            <Button variant="outlined" sx={{width:"120px",borderRadius:0.7}}>Start challenge</Button>
+            <Button variant="outlined" sx={{width:"115px",borderRadius:0.7, height:"20px"}}>Start challenge</Button>
           </Box>
         </Box>}
     </Box>

@@ -57,7 +57,7 @@ const BookDetails = () => {
           style={{ width: 210, borderRadius: 8 }}
         /> :" null"}
        <Box mt={2} display="flex" gap={1} flexWrap="wrap" width={"200px"} justifyContent="center">
-       <ShelfButton bookdetail={true} />
+       <ShelfButton bookdetail={true} book={book} />
         </Box>
       </Box>
 
