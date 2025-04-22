@@ -6,14 +6,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Container,
   Button,
   IconButton,
   Divider,
@@ -21,7 +13,6 @@ import {
 import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 import TableComponent from "../components/Table.jsx";
 import { useSelector } from "react-redux";
@@ -31,7 +22,7 @@ import { useSelector } from "react-redux";
 
 const MyBooks = () => {
 
-    const toReadBooks = useState(useSelector((state)=>state.shelves.shelves.wantToRead));
+    const toReadBooks = useSelector((state)=>state.shelves.shelves.wantToRead);
     const currentReadBooks =  useSelector((state)=>state.shelves.shelves.currentlyReading)
     const readBooks =  useSelector((state)=>state.shelves.shelves.read);
 
@@ -53,10 +44,26 @@ const MyBooks = () => {
             { id: "dateAdded", label: "Date Added" },
         ];
 
-useEffect(() => {
-  //fetchBooks({query:"lord of", maxR:10}).then(setBooks);
+        const getShelfCount = (shelf)=>{
+          const tr = toReadBooks.length;
+          const cr = currentReadBooks.length ;
+          const re = readBooks.length;
+          const all = tr + cr + re;
+        switch(shelf){
+          case "All" :
+            return all;
+          case "Want to Read" :
+            return tr;
+          
+          case "Currently Reading" :
+            return cr;
+          case "Read" :
+            return re;
+          default :
+            return null
+          }
 
-}, []);
+        }
 
   return (
     <Box
@@ -83,7 +90,7 @@ useEffect(() => {
           {/* Left: Title */}
           <Typography
             variant="h6"
-            sx={{ fontFamily: "Arial", justifySelf: "start" }}
+            sx={{ fontFamily: "Merriweather", justifySelf: "start", fontSize:20, fontWeight:"800" , color:"text.green"}}
           >
             My Books
           </Typography>
@@ -168,15 +175,15 @@ useEffect(() => {
                           <Button variant="text" sx={{color:"text.green",ml:0, ":hover":{color:"inherit", textDecoration:"underline"}}}>(edit)</Button>
 
            </Box>
-            <List dense>
+            <Box>
               {["All", "Read", "Currently Reading", "Want to Read"].map(
                 (shelf) => (
-                  <ListItem key={shelf} >
-                    <ListItemText primary={shelf} />
-                  </ListItem>
+                  <Button variant="text" key={shelf} sx={{display:"flex", flexDirection:"column", alignItems:"flex-start"}} >
+                  {shelf} ({getShelfCount(shelf)})
+                  </Button>
                 )
               )}
-            </List>
+            </Box>
             <Divider sx={{ my: 1 }} />
             <Typography
               variant="h6"
