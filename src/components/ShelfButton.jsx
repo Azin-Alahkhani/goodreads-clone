@@ -7,8 +7,10 @@ import {
   Box,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBookToShelf } from "../redux/shelvesSlice";
+import { FindBookInShelves } from "../redux/shelvesSelector";
+import { FaPencil } from "react-icons/fa6";
 
 const shelves = ["Want to Read", "Currently Reading", "Read"];
 const shelfMap = {
@@ -16,12 +18,16 @@ const shelfMap = {
   "Currently Reading": "currentlyReading",
   "Read": "read",
 };
+
  const ShelfButton = ({bookdetail=false, book}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedShelf, setSelectedShelf] = React.useState(shelves[0]);
-
+ 
   const dispatch = useDispatch();
-  
+  const savedShelfName = useSelector((state) => FindBookInShelves(state, book.id));
+  console.log("Book is in:", savedShelfName);
+const [selectedShelf, setSelectedShelf] = React.useState( savedShelfName || shelves[0]);
+
+
 
 const handleClick = () => {
   const shelfKey = shelfMap[selectedShelf];
@@ -32,6 +38,8 @@ const handleClick = () => {
 
   const handleMenuItemClick = (shelf) => {
     setSelectedShelf(shelf);
+    const shelfKey = shelfMap[selectedShelf];
+  dispatch(addBookToShelf({ shelf: shelfKey, book }));
     setAnchorEl(null);
   };
 
@@ -48,18 +56,22 @@ const handleClick = () => {
         variant="contained"
         sx={{
           textTransform: "none",
-          backgroundColor: "#409d6a",
+          display:"inline-flex",
+          gap:1,
+          backgroundColor: savedShelfName?"inherit": "#409d6a",
           color: "#333",
+          border: savedShelfName ? "black 1px solid": "none",
           borderTopLeftRadius: bookdetail ? 20 : 2,
           borderBottomLeftRadius: bookdetail ? 20 :2,
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
           "&:hover": {
-            backgroundColor: "darkgreen",
+            backgroundColor: savedShelfName?"inherit":"darkgreen",
+             border:savedShelfName ? "black 1px solid": "none",
           },
         }}
       >
-        {selectedShelf}
+       {savedShelfName ? <FaPencil /> : null}{selectedShelf}
       </Button>
       <Button
         onClick={handleDropdownClick}
@@ -68,15 +80,17 @@ const handleClick = () => {
           minWidth: 36,
           px: 0.5,
           textTransform: "none",
-          backgroundColor: "#409d6a",
+          backgroundColor:savedShelfName?"inherit": "#409d6a",
+          border: savedShelfName ? "black 1px solid": "none",
           color: "#333",
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
           borderTopRightRadius: bookdetail ? 20 :2,
           borderBottomRightRadius:  bookdetail ? 20 :2,
-          borderLeft: "1px solid #b6d7b2", // visual separation
+          borderLeft: "1px solid rgb(74, 75, 74)", // visual separation
           "&:hover": {
-            backgroundColor: "oklch(52.7% 0.154 150.069)",
+            backgroundColor: savedShelfName?"inherit":"oklch(52.7% 0.154 150.069)",
+            border:savedShelfName ? "black 1px solid": "none",
           },
         }}
       >

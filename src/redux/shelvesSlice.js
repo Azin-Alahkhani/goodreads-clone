@@ -34,15 +34,16 @@ const shelvesSlice = createSlice({
         state.shelves[shelf].push(book);
       }
     },
+    
     removeBookFromShelf: (state, action) => {
       const { shelf, bookId } = action.payload;
       state.shelves[shelf] = state.shelves[shelf].filter(b => b.id !== bookId);
     },
     setAllShelves: (state, action) => {
       state.shelves = action.payload;
-    }
-  },
-  setChallengeGoal: (state, action) => {
+    },
+     
+    setChallengeGoal: (state, action) => {
   state.challenge.goal = action.payload;
 },
 incrementChallengeProgress: (state) => {
@@ -51,8 +52,12 @@ incrementChallengeProgress: (state) => {
 resetChallenge: (state) => {
   state.challenge = { goal: 0, current: 0 };
 },
+  },
+  
 
 });
 
 export const { addBookToShelf, removeBookFromShelf, setAllShelves ,setChallengeGoal,incrementChallengeProgress,resetChallenge} = shelvesSlice.actions;
 export default shelvesSlice.reducer;
+
+
