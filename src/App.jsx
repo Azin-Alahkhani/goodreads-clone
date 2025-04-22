@@ -10,6 +10,7 @@ import OccasionHeader from './components/OccasionHeader';
 import { Box } from '@mui/material';
 import { useMediaQuery } from '@mui/material'; // Import useMediaQuery from MUI
 import { useLocation } from 'react-router-dom'; // import this!
+import FooterWidget from './components/FooterWidget';
 
 
 
@@ -18,7 +19,7 @@ const AppContent = ({ setGlobalSearchTerm, isMobile, globalSearchTerm, isSmall }
   const isHome = location.pathname === "/";
   const backgroundColor = isHome ? "#f9f7f5" : "#ffffff";
    return (
-    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100vh' , width: '100%', backgroundColor:"#f9f7f5"}}>
 
       <OccasionHeader />
     <Header setGlobalSearchTerm={setGlobalSearchTerm} isSmall={isSmall} />  
@@ -30,6 +31,7 @@ const AppContent = ({ setGlobalSearchTerm, isMobile, globalSearchTerm, isSmall }
         <Route path="/search" element={<Search globalSearchTerm={globalSearchTerm} />} /> {/* Add the Search route */}
       </Routes>
       </Box>
+      {!isHome && <FooterWidget isHome={isHome} />}
   
     </Box>
   );

@@ -8,14 +8,19 @@ import appstore from "../assets/appstore.svg"
 
 
 
-const FooterWidget = () => {
+const FooterWidget = ({isHome = true}) => {
   return (
   <Box sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
+        display:"flex",
+        flexDirection: isHome ?  "column" :"row",
+        justifyContent: isHome ? "flex-start" :"space-between",
         gap: 1,
+        mt: isHome ? 2 : 5,
+        mb:2,
+        mx: isHome ? 1 : 9,
       }}>
+       <Box sx={{gap:5 , display:"flex", flexDirection: isHome?"column":"row" , mx:!isHome ? 10 :"10px"}}>
+         {/* company & work with us */}
       <Box
       sx={{
         display: "flex",
@@ -99,7 +104,8 @@ const FooterWidget = () => {
         ))}
       </Box>
     </Box>
-    <Box>
+    {/*connect */}
+    <Box >
          <Typography
           variant="body1"
           sx={{
@@ -118,12 +124,16 @@ const FooterWidget = () => {
           <img src={linkedinIcon} />
         </Box>
     </Box>
-    <Box sx={{display:"flex", flexDirection:"row", gap:2, mt:3}}>
+       </Box>
+    {/*appstore & googleplay & version */}
+    <Box sx={{mx : isHome ? 1 : 10}}>
+      <Box sx={{display:"flex", flexDirection:"row", gap:2, mt:1}}>
           <img src={appstore} width={120} height={40}/>
           <img src={googleplay} width={120} height={40}/>
     </Box>
     <Typography variant="body1" sx={{my:1}}>Mobile Version</Typography>
     <Typography color="grey" variant="body2">© 2025 Goodreads, Inc.</Typography>
+    </Box>
   </Box>
   );
 };

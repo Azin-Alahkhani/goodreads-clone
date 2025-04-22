@@ -22,7 +22,6 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { InputBase } from "@mui/material";
 import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 import TableComponent from "../components/Table.jsx";
 import { useSelector } from "react-redux";
