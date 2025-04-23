@@ -272,36 +272,19 @@ useEffect(() => {
                           <Button variant="text" sx={{color:"text.green",ml:0, ":hover":{color:"inherit", textDecoration:"underline"}}}>(edit)</Button>
 
            </Box>
-            <Box>
+            <Box >
               {["All", "Read", "Currently Reading", "Want to Read"].map(
                 (shelf) => (
-                  <Button onClick={()=>setSelectedShelf(shelf)} variant="text" key={shelf} sx={{display:"flex", flexDirection:"column", alignItems:"flex-start"}} >
+                  <Button onClick={()=>setSelectedShelf(shelf)} variant="text" key={shelf} sx={{":hover":{color:"text.green",backgroundColor:"inherit", textDecoration:"underline"} , display:"flex", flexDirection:"column", alignItems:"flex-start", color:"text.green"}} >
                   {shelf} ({getShelfCount(shelf)})
                   </Button>
                 )
               )}
             </Box>
             <Divider sx={{ my: 1 }} />
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{ fontFamily: "Helvetica", fontWeight: "bold", fontSize: 14 }}
-            >
-              Your reading activity
-            </Typography>
-            <List dense>
-              {[
-                "Review Drafts",
-                "Kindle Notes & Highlights",
-                "Reading Challenge",
-                "Year in Books",
-                "Reading stats",
-              ].map((shelf) => (
-                <ListItem key={shelf} button>
-                  <ListItemText primary={shelf} />
-                </ListItem>
-              ))}
-            </List>
+            <SideBarItem items={["Review Drafts","Kindle Notes & Highlights","Reading Challenge","Year in Books","Reading stats"]} title="Your reading activity" />
+            <SideBarItem title="Add books" items={["Amazon book purchases","Recommendations","Explore"]} />
+            <SideBarItem title="Tools" items={["Find duplicates","Widgets","Import and export"]}/>
           </Grid>
 
           {/* Main Table*/}
@@ -317,3 +300,26 @@ useEffect(() => {
 };
 
 export default MyBooks;
+
+
+const SideBarItem =({items,  title})=>{
+
+  return(
+<Box sx={{mt:2}}>
+<Typography
+              variant="h6"
+              gutterBottom
+              sx={{ fontFamily: "Helvetica", fontWeight: "bold", fontSize: 14 }}
+            >
+              {title}
+            </Typography>
+            <List dense>
+              {items.map((shelf) => (
+                  <Button variant="text" key={shelf} sx={{":hover":{color:"text.green",backgroundColor:"inherit", textDecoration:"underline"} , display:"flex", flexDirection:"column", alignItems:"flex-start", color:"text.green"}} >
+                  {shelf} 
+                  </Button>
+                ))}
+            </List>
+            </Box>
+  )
+}
