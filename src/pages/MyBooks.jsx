@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import SimpleSearchBar from "../components/SimpleSearchBar.jsx";
 import TableComponent from "../components/Table.jsx";
 import { useSelector } from "react-redux";
+import { CloseOutlined } from "@mui/icons-material";
 
 
 
@@ -26,7 +27,9 @@ const MyBooks = () => {
     const currentReadBooks =  useSelector((state)=>state.shelves.shelves.currentlyReading)
     const readBooks =  useSelector((state)=>state.shelves.shelves.read);
 
-    const books = (currentReadBooks.concat(toReadBooks)).concat(readBooks)
+    const [books, setBooks] = useState((currentReadBooks.concat(toReadBooks)).concat(readBooks))
+    
+     const [selectedShelf, setSelectedShelf] = useState(null)
     
     //localStorage.clear(); 
 
@@ -65,6 +68,28 @@ const MyBooks = () => {
 
         }
 
+        useEffect(()=>{
+          if(selectedShelf){
+             switch(selectedShelf){
+          case "All" :
+             setBooks((currentReadBooks.concat(toReadBooks)).concat(readBooks))
+             break;
+          case "Want to Read" :
+            setBooks(toReadBooks);
+             break;
+          case "Currently Reading" :
+            setBooks(currentReadBooks);
+             break;
+          case "Read" :
+             setBooks(readBooks);
+             break;
+          default :
+            break;
+          }
+          } else setBooks((currentReadBooks.concat(toReadBooks)).concat(readBooks))
+
+        },[selectedShelf])
+
   return (
     <Box
       sx={{
@@ -88,12 +113,57 @@ const MyBooks = () => {
           }}
         >
           {/* Left: Title */}
-          <Typography
+          <Box sx={{
+            display: "flex",
+            flexDirection:"row",
+            alignItems: "center",
+            justifyContent:"flex-start",
+            gap: 1,
+            my: 0.7,
+           
+          }}>
+            <Typography
             variant="h6"
             sx={{ fontFamily: "Merriweather", justifySelf: "start", fontSize:20, fontWeight:"800" , color:"text.green"}}
           >
             My Books
           </Typography>
+          {/* Conditionally render ribbon next to title */}
+          {selectedShelf && selectedShelf!=="All" && (
+            <Box sx={{display:"flex", flexDirection:"row", justifyContent:"flex-start"}}>
+              <Box
+              sx={{
+                backgroundColor: "goodreads.brown",
+                alignItems:"center",
+                color: "primary.main",
+                padding: "0.5rem 0.5rem",
+                borderTopLeftRadius: "5px",
+                borderBottomLeftRadius: "5px",
+                marginLeft: 2,
+                //width:"80px",
+                fontWeight: "bold",
+              }}
+            >
+            {selectedShelf} ({getShelfCount(selectedShelf)})
+            </Box>
+            <Button 
+            onClick={()=>setSelectedShelf(null)}
+            sx={{
+                backgroundColor: "goodreads.brown2",
+                alignItems:"center",
+                color: "text.secondary",
+                padding: "6px 6px",
+                borderTopRightRadius: "5px",
+                borderBottomRightRadius: "5px",                
+                maxWidth:"13px",
+                minWidth:"13px",
+
+                //fontWeight: "bold",
+              }}
+            ><CloseOutlined /></Button>
+            </Box>
+          )}
+          </Box>
         {/* Right */}
           <Box
             sx={{
@@ -178,7 +248,7 @@ const MyBooks = () => {
             <Box>
               {["All", "Read", "Currently Reading", "Want to Read"].map(
                 (shelf) => (
-                  <Button variant="text" key={shelf} sx={{display:"flex", flexDirection:"column", alignItems:"flex-start"}} >
+                  <Button onClick={()=>setSelectedShelf(shelf)} variant="text" key={shelf} sx={{display:"flex", flexDirection:"column", alignItems:"flex-start"}} >
                   {shelf} ({getShelfCount(shelf)})
                   </Button>
                 )

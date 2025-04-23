@@ -49,7 +49,9 @@ const theme = createTheme({
     goodreads :{
       bgBrown :"#f9f7f5",
       bgBrown2 :"#f3f3f3",
-      black:"#4f4f4d"
+      black:"#4f4f4d",
+      brown:"#f4f4ea",
+      brown2:"#e9e5d3",
     }
   },
   
