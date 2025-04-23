@@ -12,7 +12,7 @@ const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=inti
       author: (info.authors && info.authors.join(", ")) || "Unknown",
       avgRating: 3.5,
       myRating: 3, // user input later maybe
-      shelves: [],
+      shelves: "",
       reviews: info.ratingsCount || 0,
       dateRead: "-",
       dateAdded: new Date().toISOString().split("T")[0],
@@ -43,7 +43,7 @@ export const fetchBookById = async (id) => {
     author: (info.authors && info.authors.join(", ")) || "Unknown",
     avgRating:  3.5,
     myRating: 3,
-    shelves: [],
+    shelves: "",
     reviews: info.ratingsCount || 0,
     dateRead: "-",
     dateAdded: new Date().toISOString().split("T")[0],

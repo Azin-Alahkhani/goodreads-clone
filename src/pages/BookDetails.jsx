@@ -53,7 +53,7 @@ const BookDetails = () => {
         maxWidth: "1440px",
         height:"100%",
         px: 2,
-        mt:1.5,
+        mt:2.5,
       }}>
      <Box 
      sx={{
@@ -66,10 +66,10 @@ const BookDetails = () => {
        {/* Left: Cover */}
       <Box sx={{ flexShrink: 0 , display: "flex", flexDirection: "column", alignItems: "center" }}>
         {book.cover ? <img
-          src={book.cover}
+          src={book?.cover}
           alt={"cover"}
           style={{ width: 210, borderRadius: 8 }}
-        /> :" null"}
+        /> :" no image available"}
        <Box mt={2} display="flex" gap={1} flexWrap="wrap" width={"200px"} justifyContent="center">
        <ShelfButton bookdetail={true} book={book} />
         </Box>

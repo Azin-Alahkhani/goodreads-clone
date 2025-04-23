@@ -31,7 +31,7 @@ const shelvesSlice = createSlice({
     addBookToShelf: (state, action) => {
       const { shelf, book } = action.payload;
       console.log(shelf, book.title)
-      book.shelves.push(shelf);
+      book.shelves = shelf;
       if (!state.shelves[shelf].find(b => b.id === book.id)) {
         state.shelves[shelf].push(book);
       }
@@ -39,7 +39,9 @@ const shelvesSlice = createSlice({
     
     removeBookFromShelf: (state, action) => {
       const { shelf, bookId } = action.payload;
-      state.shelves[shelf] = state.shelves[shelf].filter(b => b.id !== bookId);
+      console.log(shelf)
+      const updated = state.shelves[shelf].filter(b => b.id !== bookId);
+      state.shelves[shelf] = [...updated];
     },
     setAllShelves: (state, action) => {
       state.shelves = action.payload;

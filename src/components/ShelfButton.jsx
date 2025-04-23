@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useDispatch, useSelector } from "react-redux";
-import { addBookToShelf } from "../redux/shelvesSlice";
+import { addBookToShelf, removeBookFromShelf } from "../redux/shelvesSlice";
 import { FindBookInShelves } from "../redux/shelvesSelector";
 import { FaCheck, FaPencil } from "react-icons/fa6";
 import ShelfModal from "./ShelfModal";
@@ -25,16 +25,23 @@ const shelfMap = {
  
   const dispatch = useDispatch();
   const savedShelfName = useSelector((state) => FindBookInShelves(state, book.id));
-
+  
 const [selectedShelf, setSelectedShelf] = React.useState( savedShelfName || shelves[0]);
+const isShelved = savedShelfName ? true : false;
 
+  console.log(book.id," is in ",savedShelfName)
 
 
 const handleClick = () => {
   if(!bookdetail){
   const shelfKey = shelfMap[selectedShelf];
   console.log(`Added "${book.title}" to ${shelfKey}`);
+
+  if(savedShelfName){
+    handleRemoveFromShelf();
+  }
   dispatch(addBookToShelf({ shelf: shelfKey, book }));
+  
   
   }
   else {
@@ -45,6 +52,18 @@ const handleClick = () => {
 
 const [showModal,setShowModal]= useState(false)
 
+    const handleRemoveFromShelf=()=>{
+      const shelfKey = shelfMap[savedShelfName];
+      console.log(`removing "${book.id}" from  ${shelfKey}`,savedShelfName);
+      if(shelfKey)
+      dispatch(removeBookFromShelf({shelf:shelfKey, bookId:book.id}));
+      setShowModal(false);
+      //setSavedShelfName(null)
+
+    }
+    useEffect(() => {
+  setSelectedShelf(savedShelfName || shelves[0]);
+}, [savedShelfName]);
 
   const handleMenuItemClick = (shelf) => {
     setSelectedShelf(shelf);
@@ -77,9 +96,9 @@ const [showModal,setShowModal]= useState(false)
           textTransform: "none",
           display:"inline-flex",
           gap:1,
-          backgroundColor: savedShelfName?"inherit": "#409d6a",
+          backgroundColor: isShelved ?"inherit": "#409d6a",
           color: "#333",
-          border: savedShelfName ? "tan 1px solid": "none",
+          border: isShelved ? "tan 1px solid": "none",
           borderTopLeftRadius: bookdetail ? 20 : 2,
           borderBottomLeftRadius: bookdetail ? 20 :2,
           borderTopRightRadius: 0,
@@ -88,12 +107,12 @@ const [showModal,setShowModal]= useState(false)
           overflow: "hidden",
           textOverflow: "ellipsis",
           "&:hover": {
-            backgroundColor: savedShelfName?"inherit":"darkgreen",
-             border:savedShelfName ? "tan 1px solid": "none",
+            backgroundColor: isShelved ?"inherit":"darkgreen",
+             border:isShelved ? "tan 1px solid": "none",
           },
         }}
       >
-         {savedShelfName && bookdetail ? <FaPencil /> : null}{savedShelfName && !bookdetail ? <FaCheck /> : null}
+         {isShelved && bookdetail ? <FaPencil /> : null}{isShelved && !bookdetail ? <FaCheck /> : null}
         <span
     style={{
       overflow: "hidden",
@@ -144,8 +163,12 @@ const [showModal,setShowModal]= useState(false)
             {shelf}
           </MenuItem>
         ))}
+        <MenuItem onClick={()=>{
+          handleRemoveFromShelf()
+          setAnchorEl(null)
+        }}>Remove from shelves</MenuItem>
       </Menu>
-     {showModal && <ShelfModal bookShelf={savedShelfName} open={showModal} book={book} handleClose={()=>setShowModal(false)} onShelfSelect={handleMenuItemClick}/>}
+     {showModal && <ShelfModal shelves={shelves} handleRemoveFromShelf={handleRemoveFromShelf} bookShelf={savedShelfName} open={showModal} book={book} handleClose={()=>setShowModal(false)} onShelfSelect={handleMenuItemClick}/>}
     </Box>
   );
 };

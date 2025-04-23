@@ -9,7 +9,6 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { Height } from "@mui/icons-material";
 import { FaCheck } from "react-icons/fa";
 
 const style = {
@@ -34,17 +33,29 @@ const style = {
   transition: "transform 0.3s ease-in-out",
 };
 
-const ShelfModal = ({ open, handleClose, book, onShelfSelect, bookShelf }) => {
-  const shelves = ["Want to Read", "Currently Reading", "Read"];
+const ShelfModal = ({ open, handleClose,book, onShelfSelect, handleRemoveFromShelf , shelves }) => {
+  
       console.log("button clicked");
-      const [selectedShelf, setSelectedShelf] = useState(bookShelf);
-    const handleClickShelf = (shelf)=>{
+      const [selectedShelf, setSelectedShelf] = useState(book.shelves);
+      console.log("book in :", book.shelves)
+    
+      const handleClickShelf = (shelf)=>{
         setSelectedShelf(shelf)
         
     }
-   useEffect(()=>{
-    console.log(selectedShelf, bookShelf)
-   },[selectedShelf])
+   
+
+const showCheck = (shelf)=>{
+  if(shelf ===selectedShelf)
+    return true
+  return false;
+}
+
+useEffect(()=>{
+ 
+},[selectedShelf])
+    
+  
   return (
     <Modal
       open={open}
@@ -62,14 +73,12 @@ const ShelfModal = ({ open, handleClose, book, onShelfSelect, bookShelf }) => {
         <Box sx={style}>
          <Box sx={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
              <Typography variant="h6" fontWeight="bold" mb={1}>
-            Add to shelf
+            Add this book to your shelf
           </Typography>
           <Button onClick={handleClose}>X</Button>
          </Box>
-          <Typography variant="body2" color="text.secondary" mb={2}>
-            {book.title}
-          </Typography>
-          <Divider sx={{ mb: 2 }} />
+         
+          <Box sx={{mb:3}}></Box>
           {shelves.map((shelf) => (
             <Button
               key={shelf}
@@ -78,6 +87,8 @@ const ShelfModal = ({ open, handleClose, book, onShelfSelect, bookShelf }) => {
               onClick={()=>{handleClickShelf(shelf)}}
               sx={{
                 mb: 1,
+                display:"inline-flex",
+                gap:1,
                 borderRadius: 7,
                 fontSize:15,
                 textAlign:"center",
@@ -85,9 +96,23 @@ const ShelfModal = ({ open, handleClose, book, onShelfSelect, bookShelf }) => {
                 border :"2px solid",
               }}
             >
-              {selectedShelf===shelf && <FaCheck/>}{shelf}
+              {showCheck(shelf) && <FaCheck />}{shelf}
             </Button>
           ))}
+          {book.shelves &&  <Button
+          fullWidth
+              variant="text"
+              sx={{
+               
+                fontSize:15,
+                textAlign:"center",
+                
+                mb: 1,
+               
+                textTransform: "none",
+              }}
+              onClick={handleRemoveFromShelf}
+          >Remove from your shelves</Button>}
           <Button
           fullWidth
               variant="outlined"
