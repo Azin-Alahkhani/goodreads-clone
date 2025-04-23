@@ -15,10 +15,10 @@ import {
 import { Link } from "react-router-dom";
 
 
-const TableComponent = ({books=[], cols = []}) => {
+const TableComponent = ({books, cols  }) => {
     
     return (
-       <Box>
+       <Box display="flex" justifyContent="center">
         {books.length > 0 &&
          <TableContainer
               component={Paper}
@@ -100,7 +100,9 @@ const TableComponent = ({books=[], cols = []}) => {
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer>}</Box>
+            </TableContainer>}
+            {books.length<1 && <Typography variant="caption2" sx={{mt:10,color:"grey",}}>No matching items! </Typography>}
+            </Box>
     );
 }
 

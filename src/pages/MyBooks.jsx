@@ -27,9 +27,13 @@ const MyBooks = () => {
     const currentReadBooks =  useSelector((state)=>state.shelves.shelves.currentlyReading)
     const readBooks =  useSelector((state)=>state.shelves.shelves.read);
 
-    const [books, setBooks] = useState((currentReadBooks.concat(toReadBooks)).concat(readBooks))
+
+
+    //const [books, setBooks] = useState((currentReadBooks.concat(toReadBooks)).concat(readBooks))
     
      const [selectedShelf, setSelectedShelf] = useState(null)
+
+     const [searchTerm,setSearchTerm] = useState("");
     
     //localStorage.clear(); 
 
@@ -68,27 +72,50 @@ const MyBooks = () => {
 
         }
 
-        useEffect(()=>{
-          if(selectedShelf){
-             switch(selectedShelf){
-          case "All" :
-             setBooks((currentReadBooks.concat(toReadBooks)).concat(readBooks))
-             break;
-          case "Want to Read" :
-            setBooks(toReadBooks);
-             break;
-          case "Currently Reading" :
-            setBooks(currentReadBooks);
-             break;
-          case "Read" :
-             setBooks(readBooks);
-             break;
-          default :
-            break;
-          }
-          } else setBooks((currentReadBooks.concat(toReadBooks)).concat(readBooks))
+     const [allBooks, setAllBooks] = useState([]);
+    const [books, setBooks] = useState([]);
 
-        },[selectedShelf])
+useEffect(() => {
+  let updatedBooks = [];
+  switch (selectedShelf) {
+    case "Want to Read":
+      updatedBooks = toReadBooks;
+      break;
+    case "Currently Reading":
+      updatedBooks = currentReadBooks;
+      break;
+    case "Read":
+      updatedBooks = readBooks;
+      break;
+    case "All":
+    default:
+      updatedBooks = [...toReadBooks, ...currentReadBooks, ...readBooks];
+      break;
+  }
+
+  setAllBooks(updatedBooks);
+  setBooks(updatedBooks);
+  setSearchTerm("")
+}, [selectedShelf, toReadBooks, currentReadBooks, readBooks]);
+
+
+      useEffect(() => {
+  if (searchTerm.trim().length > 0) {
+    const lowerTerm = searchTerm.toLowerCase();
+    const filtered = allBooks.filter(
+      (book) =>
+        book.title.toLowerCase().includes(lowerTerm) ||
+        (book.author && book.author.toLowerCase().includes(lowerTerm))
+    );
+    setBooks(filtered);
+  } else {
+    // Reset to unfiltered
+    setBooks(allBooks);
+  }
+}, [searchTerm, allBooks]);
+
+
+   
 
   return (
     <Box
@@ -128,7 +155,7 @@ const MyBooks = () => {
           >
             My Books
           </Typography>
-          {/* Conditionally render ribbon next to title */}
+         
           {selectedShelf && selectedShelf!=="All" && (
             <Box sx={{display:"flex", flexDirection:"row", justifyContent:"flex-start"}}>
               <Box
@@ -180,7 +207,7 @@ const MyBooks = () => {
             {/* SearchBar */}
             <Box sx={{ flexGrow: 1, minWidth: 200, maxWidth:250, height: 25 }}>
               {/*<SearchBar isHeader={false} />*/}
-             <SimpleSearchBar isMyBooks={true} />
+             <SimpleSearchBar isMyBooks={true} onSearch={setSearchTerm} />
             </Box>
 
             {/* Right: Action buttons */}

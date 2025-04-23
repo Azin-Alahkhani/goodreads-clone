@@ -29,7 +29,7 @@ const BookHorizontalCard = ({ book , isBig=true }) => (
     >
       <img
         src={book.cover || "/placeholder.jpg"}
-        alt={book.title}
+        alt="no img"
         style={{ width: isBig? "49px" : "95px", height: isBig? "75px" : "140px", objectFit: "cover" }}
       />
     </Button>
