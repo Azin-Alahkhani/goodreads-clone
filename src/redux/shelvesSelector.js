@@ -1,15 +1,17 @@
-export const FindBookInShelves = (state,id)=>{
-    const {shelves} = state.shelves;
-      if (shelves.wantToRead.find(b => b.id === id)) {
-        return "Want to Read";
-      }
-       if (shelves.currentlyReading.find(b => b.id === id)) {
-        return "Currently Reading";
-      }
-      if (shelves.read.find(b => b.id === id)) {
-              return "Read";
-      }
-      return null
+// shelvesSelector.js
+export const FindBookInShelves = (state, bookId) => {
+  const shelfData = state.shelves?.shelves;
+  if (!shelfData) return null;
 
-    };
-    
+  if (shelfData.wantToRead?.some((b) => b.id === bookId)) {
+    return "Want to Read";
+  }
+  if (shelfData.currentlyReading?.some((b) => b.id === bookId)) {
+    return "Currently Reading";
+  }
+  if (shelfData.read?.some((b) => b.id === bookId)) {
+    return "Read";
+  }
+
+  return null;
+};

@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import CurrentReadPlaceholderImg from "../assets/currentReadPic.svg"
 import SimpleSearchBar from "./SimpleSearchBar";
 import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
 
-const CurrentlyReadingWidget = ({ books = [], setGlobalSearchTerm }) => {
+const CurrentlyReadingWidget = ({ setGlobalSearchTerm }) => {
+  const books = useSelector((state)=>state.shelves.shelves.currentlyReading)
   const hasBooks = books.length > 0;
   const firstBook = books[0];
 
@@ -54,7 +56,7 @@ const CurrentlyReadingWidget = ({ books = [], setGlobalSearchTerm }) => {
           </Box>
           {/*bottom buttons */}
             <Box sx={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-                          <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>View all book</Button>
+                          <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>View all books</Button>
 <strong>.</strong>
             <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>Add a book</Button>
            <strong>.</strong> <Button variant="text" sx={{color:"text.green",fontSize:"13px",":hover":{textTransform:"none", backgroundColor:"inherit"}}}>General update</Button>

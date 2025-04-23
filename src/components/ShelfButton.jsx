@@ -38,8 +38,9 @@ const handleClick = () => {
   console.log(`Added "${book.title}" to ${shelfKey}`);
 
   if(savedShelfName){
-    handleRemoveFromShelf();
-  }
+    //handleRemoveFromShelf();
+    console.log("book is shelved", savedShelfName)
+  } else
   dispatch(addBookToShelf({ shelf: shelfKey, book }));
   
   
@@ -54,7 +55,7 @@ const [showModal,setShowModal]= useState(false)
 
     const handleRemoveFromShelf=()=>{
       const shelfKey = shelfMap[savedShelfName];
-      console.log(`removing "${book.id}" from  ${shelfKey}`,savedShelfName);
+      console.log(`removing "${book.title}" from  ${shelfKey}`,savedShelfName);
       if(shelfKey)
       dispatch(removeBookFromShelf({shelf:shelfKey, bookId:book.id}));
       setShowModal(false);
@@ -96,7 +97,7 @@ const [showModal,setShowModal]= useState(false)
           textTransform: "none",
           display:"inline-flex",
           gap:1,
-          backgroundColor: isShelved ?"inherit": "#409d6a",
+          backgroundColor: savedShelfName ?"inherit": "#409d6a",
           color: "#333",
           border: isShelved ? "tan 1px solid": "none",
           borderTopLeftRadius: bookdetail ? 20 : 2,

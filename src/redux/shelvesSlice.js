@@ -39,9 +39,9 @@ const shelvesSlice = createSlice({
     
     removeBookFromShelf: (state, action) => {
       const { shelf, bookId } = action.payload;
-      console.log(shelf)
+      console.log("removing from:",shelf," book ",bookId)
       const updated = state.shelves[shelf].filter(b => b.id !== bookId);
-      state.shelves[shelf] = [...updated];
+      state.shelves[shelf] = updated;
     },
     setAllShelves: (state, action) => {
       state.shelves = action.payload;

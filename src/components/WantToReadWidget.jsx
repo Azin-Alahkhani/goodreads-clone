@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import toReadImg from "../assets/toRead.svg"
 import SimpleSearchBar from "./SimpleSearchBar";
 import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
 
-const WantToReadWidget = ({ books = []}) => {
+const WantToReadWidget = () => {
+  const books = useSelector((state)=>state.shelves.shelves.wantToRead)
   const hasBooks = books.length > 0;
   const firstBook = books[0];
 
@@ -47,7 +49,7 @@ const WantToReadWidget = ({ books = []}) => {
           >
             {firstBook.title}
           </Link> <Typography fontSize="13px" fontWeight="bold">by {firstBook.author}</Typography> 
-          <Button sx={{width:"120px", height:"20px", backgroundColor:"inherit", borderColor:"text.primary" ,":hover":{bgcolor:"text.primary", color:"white"}}} variant="outlined" color="text.primary">Update progress</Button>
+          <Button sx={{width:"127px", height:"20px", backgroundColor:"inherit", borderColor:"text.primary" ,":hover":{bgcolor:"text.primary", color:"white"}}} variant="outlined" color="text.primary">Update progress</Button>
         
           </Box>
        
