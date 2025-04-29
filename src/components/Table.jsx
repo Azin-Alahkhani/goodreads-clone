@@ -69,7 +69,7 @@ const TableComponent = ({books, cols  }) => {
                               </Typography>
                             ) : col.id === "shelves" ? (
                               <Typography variant="caption">
-                                ..
+                                {book.shelves}
                               </Typography>
                             ) : col.id === "reviews" ? (
                               <Typography variant="caption">

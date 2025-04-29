@@ -37,7 +37,7 @@ const shelvesSlice = createSlice({
      
       if (!state.shelves[shelf].find(b => b.id === book.id)) {
         state.shelves[shelf].push(book);
-        
+        book.shelves=shelf;
       }
     },
     
