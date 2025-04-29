@@ -29,18 +29,19 @@ const shelfMap = {
 const [selectedShelf, setSelectedShelf] = React.useState( savedShelfName || shelves[0]);
 const isShelved = savedShelfName ? true : false;
 
-  console.log(book.id," is in ",savedShelfName)
+  //console.log(book.title," is in ",savedShelfName , isShelved)
 
 
 const handleClick = () => {
   if(!bookdetail){
   const shelfKey = shelfMap[selectedShelf];
-  console.log(`Added "${book.title}" to ${shelfKey}`);
+  //console.log(`Added "${book.title}" to ${shelfKey}`);
 
-  if(savedShelfName){
-    //handleRemoveFromShelf();
-    console.log("book is shelved", savedShelfName)
-  } else
+  if(isShelved){
+     console.log("book is shelved", savedShelfName)
+    handleRemoveFromShelf();
+   
+  } 
   dispatch(addBookToShelf({ shelf: shelfKey, book }));
   
   
@@ -56,10 +57,12 @@ const [showModal,setShowModal]= useState(false)
     const handleRemoveFromShelf=()=>{
       const shelfKey = shelfMap[savedShelfName];
       console.log(`removing "${book.title}" from  ${shelfKey}`,savedShelfName);
-      if(shelfKey)
-      dispatch(removeBookFromShelf({shelf:shelfKey, bookId:book.id}));
+      if(shelfKey){
+        dispatch(removeBookFromShelf({shelf:shelfKey, book:book}));
       setShowModal(false);
       //setSavedShelfName(null)
+      }
+      
 
     }
     useEffect(() => {
@@ -70,7 +73,11 @@ const [showModal,setShowModal]= useState(false)
     setSelectedShelf(shelf);
     
     const shelfKey = shelfMap[shelf];
-    console.log(shelf,savedShelfName , shelfKey)
+   if(isShelved){
+     console.log("book is shelved", savedShelfName)
+    handleRemoveFromShelf();
+   
+  } 
   dispatch(addBookToShelf({ shelf: shelfKey, book }));
     setAnchorEl(null);
     setShowModal(false);

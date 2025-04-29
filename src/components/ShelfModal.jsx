@@ -33,11 +33,11 @@ const style = {
   transition: "transform 0.3s ease-in-out",
 };
 
-const ShelfModal = ({ open, handleClose,book, onShelfSelect, handleRemoveFromShelf , shelves }) => {
+const ShelfModal = ({ open, handleClose,book, onShelfSelect, handleRemoveFromShelf , shelves , bookShelf }) => {
   
-      console.log("button clicked");
-      const [selectedShelf, setSelectedShelf] = useState(book.shelves);
-      console.log("book in :", book.shelves)
+      //console.log("button clicked");
+      const [selectedShelf, setSelectedShelf] = useState(bookShelf);
+      console.log("book is :", book)
     
       const handleClickShelf = (shelf)=>{
         setSelectedShelf(shelf)
@@ -99,7 +99,7 @@ useEffect(()=>{
               {showCheck(shelf) && <FaCheck />}{shelf}
             </Button>
           ))}
-          {book.shelves &&  <Button
+          {bookShelf &&  <Button
           fullWidth
               variant="text"
               sx={{

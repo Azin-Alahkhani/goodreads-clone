@@ -30,18 +30,23 @@ const shelvesSlice = createSlice({
   reducers: {
     addBookToShelf: (state, action) => {
       const { shelf, book } = action.payload;
-      console.log(shelf, book.title)
-      book.shelves = shelf;
+      //console.log(shelf, book.title)
+    
+
+
+     
       if (!state.shelves[shelf].find(b => b.id === book.id)) {
         state.shelves[shelf].push(book);
+        
       }
     },
     
     removeBookFromShelf: (state, action) => {
-      const { shelf, bookId } = action.payload;
-      console.log("removing from:",shelf," book ",bookId)
-      const updated = state.shelves[shelf].filter(b => b.id !== bookId);
+      const { shelf, book } = action.payload;
+      //console.log("removing from:",shelf," book ",bookId)
+      const updated = state.shelves[shelf].filter(b => b.id !== book.id);
       state.shelves[shelf] = updated;
+      
     },
     setAllShelves: (state, action) => {
       state.shelves = action.payload;
